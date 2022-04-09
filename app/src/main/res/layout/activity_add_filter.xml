@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include android:id="@+id/header"
+        layout="@layout/layout_appbar" />
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:weightSum="8">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvPrice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:ellipsize="end"
+                android:fontFamily="@font/font_regular"
+                android:maxLines="1"
+                android:padding="10dp"
+                android:text="Price - ₹"
+                android:textColor="@color/black_85"
+                android:textSize="14sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorGreyTrackingStatus" />
+
+            <TextView
+                android:id="@+id/tvMoq"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorGreyTrackingStatusBackground"
+                android:ellipsize="end"
+                android:fontFamily="@font/font_regular"
+                android:maxLines="1"
+                android:padding="10dp"
+                android:text="MOQ"
+                android:textColor="@color/black_85"
+                android:textSize="14sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorGreyTrackingStatus" />
+
+            <TextView
+                android:id="@+id/tvMargin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorGreyTrackingStatusBackground"
+                android:ellipsize="end"
+                android:fontFamily="@font/font_regular"
+                android:maxLines="1"
+                android:padding="10dp"
+                android:text="Margin - %"
+                android:textColor="@color/black_85"
+                android:textSize="14sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorGreyTrackingStatus" />
+
+            <TextView
+                android:id="@+id/tvType"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorGreyTrackingStatusBackground"
+                android:ellipsize="end"
+                android:fontFamily="@font/font_regular"
+                android:maxLines="1"
+                android:padding="10dp"
+                android:text="Type"
+                android:textColor="@color/black_85"
+                android:textSize="14sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorGreyTrackingStatus" />
+
+            <TextView
+                android:id="@+id/tvFlavour"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorGreyTrackingStatusBackground"
+                android:ellipsize="end"
+                android:fontFamily="@font/font_regular"
+                android:maxLines="1"
+                android:padding="10dp"
+                android:text="Flavour"
+                android:textColor="@color/black_85"
+                android:textSize="14sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorGreyTrackingStatus" />
+
+            <TextView
+                android:id="@+id/tvProductType"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorGreyTrackingStatusBackground"
+                android:ellipsize="end"
+                android:fontFamily="@font/font_regular"
+                android:maxLines="1"
+                android:padding="10dp"
+                android:text="Product Type"
+                android:textColor="@color/black_85"
+                android:textSize="14sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorGreyTrackingStatus" />
+
+            <TextView
+                android:id="@+id/tvBrand"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorGreyTrackingStatusBackground"
+                android:ellipsize="end"
+                android:fontFamily="@font/font_regular"
+                android:maxLines="1"
+                android:padding="10dp"
+                android:text="Brand"
+                android:textColor="@color/black_85"
+                android:textSize="14sp" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/colorGreyTrackingStatus" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="5">
+
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</LinearLayout>

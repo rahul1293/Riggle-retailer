@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.riggle.ui.profile.earnings.PointsItemListViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:background="@color/white">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/font_regular"
+            android:letterSpacing="0.01"
+            android:lineSpacingExtra="2sp"
+            android:text='@{viewModel.data.coins>0?"Coins earn":"Coins used"}'
+            android:textColor="#000000"
+            android:textSize="14sp"
+            android:textStyle="normal"
+            app:layout_constraintEnd_toStartOf="@+id/textView3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Coins used - (Order No. 33221)" />
+        <!--android:text="@{`Coins used - (Order No. `+viewModel.data.cart_id + `)`}"-->
+
+        <RelativeLayout
+            android:id="@+id/rlRedeemed"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:visibility='@{viewModel.data.redeemed_riggle_coins>0?View.VISIBLE:View.GONE}'
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView3">
+
+            <TextView
+                android:id="@+id/tvRedeem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="@font/font_regular"
+                android:letterSpacing="0.01"
+                android:lineSpacingExtra="2sp"
+                android:text="Coins used"
+                android:textColor="#000000"
+                android:textSize="14sp"
+                android:textStyle="normal"
+                tools:text="Coins used - (Order No. 33221)" />
+
+            <TextView
+                android:id="@+id/textView4"
+                customRedeemCoinsText="@{viewModel.data}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:drawablePadding="4dp"
+                android:fontFamily="@font/font_medium"
+                android:letterSpacing="0.01"
+                android:lineSpacingExtra="0sp"
+                android:textColor="#ff0a0a"
+                android:textSize="16sp"
+                android:textStyle="normal"
+                app:drawableEndCompat="@drawable/ic_riggle_coin"
+                tools:text="-1,000 " />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/textView2"
+            date="@{viewModel.data.created}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/font_regular"
+            android:letterSpacing="0.01"
+            android:lineSpacingExtra="2sp"
+            android:textColor="@color/black_38"
+            android:textSize="14sp"
+            android:textStyle="normal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rlRedeemed"
+            tools:text="23 Jan 2020" />
+
+        <View
+            android:id="@+id/view2"
+            android:layout_width="1dp"
+            android:layout_height="16dp"
+            android:layout_marginStart="8dp"
+            android:background="@color/black_38"
+            app:layout_constraintBottom_toBottomOf="@+id/textView2"
+            app:layout_constraintStart_toEndOf="@+id/textView2"
+            app:layout_constraintTop_toTopOf="@+id/textView2" />
+
+        <TextView
+            time="@{viewModel.data.created}"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/font_regular"
+            android:letterSpacing="0.01"
+            android:lineSpacingExtra="2sp"
+            android:text="16:33"
+            android:textColor="@color/black_38"
+            android:textSize="14sp"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toBottomOf="@+id/view2"
+            app:layout_constraintEnd_toStartOf="@+id/textView3"
+            app:layout_constraintStart_toEndOf="@+id/view2"
+            app:layout_constraintTop_toTopOf="@+id/view2" />
+
+        <TextView
+            android:id="@+id/textView3"
+            customCoinsText="@{viewModel.data}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:drawablePadding="4dp"
+            android:fontFamily="@font/font_medium"
+            android:letterSpacing="0.01"
+            android:lineSpacingExtra="0sp"
+            android:textColor="#ff0a0a"
+            android:textSize="16sp"
+            android:textStyle="normal"
+            app:drawableEndCompat="@drawable/ic_riggle_coin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textView"
+            tools:text="-1,000 " />
+
+        <!--app:layout_constraintBottom_toBottomOf="@+id/textView2"-->
+
+        <TextView
+            android:id="@+id/tvViewOrderDetails"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/btn_corner_16dp"
+            android:elevation="8dp"
+            android:fontFamily="@font/font_regular"
+            android:gravity="center_vertical"
+            android:letterSpacing="0.01"
+            android:lineSpacingExtra="4sp"
+            android:paddingHorizontal="8dp"
+            android:paddingVertical="4dp"
+            android:text="@string/view_order_details"
+            android:textColor="#ff4e00"
+            android:textSize="12sp"
+            android:textStyle="normal"
+            android:visibility="@{viewModel.data.on_event==`order`?View.VISIBLE: View.GONE,default = gone}"
+            app:drawableEndCompat="@drawable/ic_arrow_right"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView2"
+            tools:visibility="visible" />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="12dp"
+            android:background="@color/black_18"
+            app:layout_constraintTop_toBottomOf="@+id/tvViewOrderDetails" />
+
+        <TextView
+            android:id="@+id/tvNoMoreHistory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
+            android:fontFamily="@font/montserrat_medium"
+            android:letterSpacing="0.01"
+            android:lineSpacingExtra="0sp"
+            android:text="@string/no_more_history"
+            android:textColor="@color/black_38"
+            android:textSize="14sp"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divider" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

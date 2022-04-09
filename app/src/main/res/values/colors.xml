@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--
+     for opacity changes
+   100% — FF
+95% — F2
+90% — E6
+85% — D9
+80% — CC
+75% — BF
+70% — B3
+65% — A6
+60% — 99
+55% — 8C
+50% — 80
+45% — 73
+40% — 66
+35% — 59
+30% — 4D
+25% — 40
+20% — 33
+15% — 26
+10% — 1A
+5% — 0D
+0% — 00
+    -->
+
+
+    <color name="colorPrimary">#ff4e00</color>
+    <color name="colorPrimary_34">#59ff4e00</color>
+    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorAccent">#ff4e00</color>
+    <color name="colorYellow">#ffd100</color>
+    <color name="colorYellow_34">#59ffd100</color>
+
+
+
+    <!-- colors for tab and screent text -->
+
+    <color name="tab_indicator_gray">#c0c0c0</color>
+    <color name="intro_title_color">#000000</color>
+    <color name="intro_description_color">#656565</color>
+    <color name="colorGreyTrackingStatus">#dfdfdf</color>
+    <color name="colorGreyTrackingStatusBackground">#f3f3f3</color>
+
+
+    <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
+    <color name="transparent">#00000000</color>
+    <color name="black_85">#D9000000</color>
+    <color name="black_68">#AD000000</color>
+    <color name="black_54">#8A000000</color>
+    <color name="black_38">#61000000</color>
+    <color name="black_18">#2E000000</color>
+    <color name="black_06">#0F000000</color>
+
+
+    <color name="primary_09">#17ff4e00</color>
+
+
+    <color name="txt_disabled">#61000000</color>
+
+    <color name="profit_color">#2fca22</color>
+    <color name="layout_bg">#f6f6f6</color>
+    <color name="seperator_clr">#2E000000</color>
+    <color name="colorError">#ff0a0a</color>
+    <color name="colorSuccess_30">#4D27cb00</color>
+    <color name="colorSuccess_60">#9927cb00</color>
+    <color name="colorSuccess">#27cb00</color>
+    <color name="colorChipBackground">#fff2ec</color>
+    <color name="colorChipStroke">#ffcab2</color>
+
+</resources>

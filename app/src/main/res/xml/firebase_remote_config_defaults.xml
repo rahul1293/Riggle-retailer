@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<defaultsMap>
+    <entry>
+        <key>store_type</key>
+        <value>[{"store_type":"General Store","key":1},{"store_type":"Dairy","key":2},{"store_type":"Medical Store","key":3},{"store_type":"Supermarket","key":4},{"store_type":"QSR / Food Joint","key":5},{"store_type":"24 hr convenience store","key":6},{"store_type":"Other","key":100}]</value>
+    </entry>
+
+    <entry>
+        <key>role_type</key>
+        <value>[{"role":"Owner","key":"owner"},{"role":"Co-owner","key":"co-owner"},{"role":"Staff","key":"staff"}]</value>
+    </entry>
+
+</defaultsMap>

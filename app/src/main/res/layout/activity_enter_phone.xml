@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+<RelativeLayout
+    android:id="@+id/constraintLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:paddingLeft="28dp"
+    android:paddingRight="28dp"
+    tools:context=".ui.other.registration.EnterPhoneActivity">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivRiggle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="104dp"
+        app:srcCompat="@drawable/ic_riggle" />
+
+    <TextView
+        android:id="@+id/tvWelcome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ivRiggle"
+        android:layout_marginTop="44dp"
+        android:alpha="0.85"
+        android:fontFamily="@font/font_bold"
+        android:text="@string/welcome_to_riggle"
+        android:textColor="@color/black"
+        android:textSize="22sp" />
+
+    <TextView
+        android:id="@+id/tvLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvWelcome"
+        android:layout_marginTop="4dp"
+        android:alpha="0.85"
+        android:fontFamily="@font/font_regular"
+        android:text="@string/please_login_to_continue"
+        android:textColor="@color/black"
+        android:textSize="16sp" />
+
+    <LinearLayout
+        android:id="@+id/llPhone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvLogin"
+        android:layout_marginTop="48dp"
+        android:background="@drawable/rounded_4dp_border"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:alpha="0.85"
+            android:fontFamily="@font/font_semibold"
+            android:padding="12dp"
+            android:text="+91"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:alpha="0.18"
+            android:background="@color/black" />
+
+        <EditText
+            android:id="@+id/etPhone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:alpha="0.85"
+            android:background="@color/transparent"
+            android:fontFamily="@font/font_semibold"
+            android:hint="@string/enter_phone_number"
+            android:inputType="number"
+            android:lineSpacingExtra="3sp"
+            android:maxLength="10"
+            android:padding="12dp"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tVTermsAndPrivacyPolicy"
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:textSize="12sp"
+        android:layout_gravity="bottom"
+        android:lineSpacingExtra="4dp"
+        android:paddingBottom="16dp"
+        android:layout_below="@id/llPhone"
+        android:clickable="true"
+        android:layout_marginTop="32dp"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        tools:text="By Clicking on Login button, you are accepting our Terms of use and Privacy policy"
+        android:fontFamily="@font/font_regular"
+        android:focusable="true" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnContinue"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_gravity="bottom"
+        android:layout_below="@id/tVTermsAndPrivacyPolicy"
+        android:alpha="0.2"
+        android:background="@drawable/btn_rounded_corner_6dp"
+        android:clickable="false"
+        android:fontFamily="@font/font_bold"
+        android:text="@string/login"
+        android:textColor="@color/white"
+        app:cornerRadius="6dp" />
+
+
+
+</RelativeLayout>
+
+</FrameLayout>

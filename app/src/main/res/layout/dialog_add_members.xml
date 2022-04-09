@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:cardCornerRadius="8dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivCross"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="end"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="8dp"
+            android:padding="4dp"
+            app:srcCompat="@drawable/ic_cross" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            app:srcCompat="@drawable/ic_add_member_large" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/font_semibold"
+            android:text="@string/add_member"
+            android:textColor="@color/black_85"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginRight="24dp"
+            android:fontFamily="@font/font_regular"
+            android:gravity="center_horizontal"
+            android:text="@string/add_member_popup_text"
+            android:textColor="@color/black_54"
+            android:textSize="12sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="12dp"
+            android:fontFamily="@font/font_semibold"
+            android:text="@string/phone_no"
+            android:textAllCaps="true"
+            android:textColor="@color/black_54"
+            android:textSize="12sp" />
+
+        <EditText
+            android:id="@+id/etPhone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:fontFamily="@font/font_regular"
+            android:hint="@string/enter_phone_number_here"
+            android:inputType="number"
+            android:maxLength="10"
+            android:textColor="@color/black_54"
+            android:textSize="12sp"
+            app:backgroundTint="@color/black_18" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="12dp"
+            android:fontFamily="@font/font_semibold"
+            android:text="Name"
+            android:textAllCaps="true"
+            android:textColor="@color/black_54"
+            android:textSize="12sp" />
+
+        <EditText
+            android:id="@+id/etName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:fontFamily="@font/font_regular"
+            android:hint="Enter Name"
+            android:inputType="textCapWords"
+            android:maxLength="10"
+            android:textColor="@color/black_54"
+            android:textSize="12sp"
+            app:backgroundTint="@color/black_18" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="12dp"
+            android:fontFamily="@font/font_semibold"
+            android:text="@string/role"
+            android:visibility="gone"
+            android:textAllCaps="true"
+            android:textColor="@color/black_54"
+            android:textSize="12sp" />
+
+        <androidx.appcompat.widget.AppCompatSpinner
+            android:id="@+id/spinnerRole"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginRight="12dp"
+            android:background="@drawable/rounded_4dp_border" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="24dp"
+            android:background="@color/black_18" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:padding="8dp">
+
+            <TextView
+                android:id="@+id/tvCancel"
+                android:layout_width="match_parent"
+                android:layout_height="32dp"
+                android:layout_toLeftOf="@+id/viewDivider"
+                android:fontFamily="@font/font_semibold"
+                android:gravity="center"
+                android:text="@string/cancel"
+                android:textColor="@color/black_38"
+                android:textSize="16sp" />
+
+            <View
+                android:id="@+id/viewDivider"
+                android:layout_width="1dp"
+                android:layout_height="32dp"
+                android:layout_centerInParent="true"
+                android:background="@color/black_18" />
+
+            <TextView
+                android:id="@+id/tvAdd"
+                android:layout_width="match_parent"
+                android:layout_height="32dp"
+                android:layout_toRightOf="@+id/viewDivider"
+                android:enabled="false"
+                android:fontFamily="@font/font_semibold"
+                android:gravity="center"
+                android:text="@string/add"
+                android:textColor="@color/txt_disabled"
+                android:textSize="16sp" />
+
+
+        </RelativeLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

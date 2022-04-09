@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:paddingLeft="24dp"
+    android:paddingRight="24dp"
+    tools:context=".ui.other.registration.EnterOTPActivity">
+
+    <TextView
+        android:id="@+id/tvOtpSent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="52dp"
+        android:alpha="0.85"
+        android:fontFamily="@font/font_bold"
+        android:text="@string/otp_sent"
+        android:textColor="@color/black"
+        android:textSize="22sp" />
+
+    <TextView
+        android:id="@+id/tvEnterOtp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvOtpSent"
+        android:layout_marginTop="8dp"
+        android:alpha="0.85"
+        android:fontFamily="@font/font_regular"
+        android:text="@string/please_enter_otp"
+        android:textColor="@color/black"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/tvPhone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvEnterOtp"
+        android:alpha="0.28"
+        android:fontFamily="@font/font_medium"
+        android:textColor="@color/black"
+        android:textSize="16sp" />
+
+    <in.aabhasjindal.otptextview.OtpTextView
+        android:id="@+id/otp_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvPhone"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
+        android:textColor="@color/black"
+        app:bar_enabled="true"
+        app:bar_height="2dp"
+        app:height="40dp"
+        app:length="6"
+        app:otp_text_size="20dp"
+        app:width="40dp" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_verify"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="bottom"
+        android:layout_margin="24dp"
+        android:alpha="0.2"
+        android:background="@drawable/btn_rounded_corner_6dp"
+        android:clickable="false"
+        android:fontFamily="@font/font_bold"
+        android:text="@string/verify"
+        android:textColor="@color/white"
+        app:cornerRadius="6dp" />
+</RelativeLayout>

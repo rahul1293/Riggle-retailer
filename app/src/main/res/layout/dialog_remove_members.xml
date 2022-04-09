@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="8dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivCross"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="end"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="8dp"
+            android:padding="4dp"
+            app:srcCompat="@drawable/ic_cross" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/font_semibold"
+            android:gravity="center_horizontal"
+            android:text="@string/are_you_sure_you_want_to_remove"
+            android:textColor="@color/black_85"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tvMobile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/font_semibold"
+            android:textColor="@color/colorPrimary"
+            android:textSize="18sp" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            app:srcCompat="@drawable/ic_remove_warning" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/font_regular"
+            android:gravity="center"
+            android:text="@string/remove_user_dialog_subtext"
+            android:textColor="@color/black_85"
+            android:textSize="12sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="24dp"
+            android:background="@color/black_18" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:padding="8dp">
+
+            <TextView
+                android:id="@+id/tvCancel"
+                android:layout_width="match_parent"
+                android:layout_height="32dp"
+                android:layout_toLeftOf="@+id/viewDivider"
+                android:fontFamily="@font/font_semibold"
+                android:gravity="center"
+                android:text="@string/cancel"
+                android:textColor="@color/black_38"
+                android:textSize="16sp" />
+
+            <View
+                android:id="@+id/viewDivider"
+                android:layout_width="1dp"
+                android:layout_height="32dp"
+                android:layout_centerInParent="true"
+                android:background="@color/black_18" />
+
+            <TextView
+                android:id="@+id/tvRemove"
+                android:layout_width="match_parent"
+                android:layout_height="32dp"
+                android:layout_toRightOf="@+id/viewDivider"
+                android:fontFamily="@font/font_semibold"
+                android:gravity="center"
+                android:text="@string/remove"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp" />
+
+
+        </RelativeLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

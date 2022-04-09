@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.riggle.ui.profile.earnings.MyEarningsViewModel" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/layout_toolbar" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/toolbar"
+            android:background="@drawable/shape_gradient_orange"
+            android:gravity="center"
+            android:minHeight="156dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:fontFamily="@font/font_medium"
+                android:letterSpacing="0.03"
+                android:lineSpacingExtra="28sp"
+                android:text="Points Balance"
+                android:textColor="#ffffff"
+                android:textSize="12sp"
+                android:textStyle="normal" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:fontFamily="@font/font_bold"
+                android:gravity="center_vertical"
+                android:includeFontPadding="false"
+                android:letterSpacing="0.03"
+                android:lineSpacingExtra="27sp"
+                android:text="@{viewModel.availableCoins+``}"
+                android:textColor="#ffffff"
+                android:textSize="34sp"
+                android:textStyle="bold"
+                app:drawableEndCompat="@drawable/ic_riggle_coin_34"
+                tools:text="40" />
+
+            <TextView
+                android:id="@+id/tvHowToEarnPoints"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="32dp"
+                android:drawableEnd="@drawable/ic_arrow_right"
+                android:drawableTint="@color/white"
+                android:fontFamily="@font/font_regular"
+                android:gravity="center_vertical"
+                android:letterSpacing="0.03"
+                android:lineSpacingExtra="28sp"
+                android:text="How to earn Points"
+                android:textColor="#ffffff"
+                android:textSize="12sp"
+                android:textStyle="normal" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/toolbar"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="136dp"
+            android:layout_marginEnd="12dp"
+            android:background="@drawable/rounded_4dp_border_white"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/montserrat_semibold"
+                android:letterSpacing="0.01"
+                android:lineSpacingExtra="-2sp"
+                android:text="Points History"
+                android:textColor="#000000"
+                android:textSize="16sp"
+                android:textStyle="normal" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="8dp"
+                android:background="@color/black_18" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                earningsList="@{viewModel.earningsList}"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+</layout>

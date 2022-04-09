@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.riggle.ui.other.search.SearchActivityViewModel" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBar"
+            style="@style/DefaultAppBarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="?actionBarSize">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivBack"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="16dp"
+                    app:srcCompat="@drawable/ic_back" />
+
+                <androidx.appcompat.widget.SearchView
+                    android:id="@+id/etSearch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toStartOf="@id/ivMic"
+                    android:layout_toEndOf="@id/ivBack"
+                    app:iconifiedByDefault="false"
+                    app:queryBackground="@null"
+                    app:queryHint="@string/search_hint"
+                    app:searchIcon="@null" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivMic"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="20dp"
+                    android:alpha="0.7"
+                    android:padding="2dp"
+                    app:srcCompat="@drawable/ic_microphone" />
+
+            </RelativeLayout>
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/appBar">
+
+
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvSearch"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="8dp"
+                tools:visibility="gone" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                tools:visibility="visible">
+
+                <LinearLayout
+                    android:id="@+id/recentSearchesLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone"
+                    tools:visibility="visible">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:letterSpacing="0.02"
+                        android:lineSpacingExtra="0sp"
+                        android:text="@string/recent_searches"
+                        android:textColor="@color/black_38"
+                        android:textSize="14sp"
+                        android:textStyle="normal" />
+
+                    <TextView
+                        android:id="@+id/tvRecentOne"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_marginBottom="16dp"
+                        android:drawablePadding="8dp"
+                        android:fontFamily="@font/font_regular"
+                        android:gravity="center_vertical"
+                        android:letterSpacing="0.02"
+                        android:lineSpacingExtra="0sp"
+                        android:textColor="@color/black_85"
+                        android:textSize="14sp"
+                        android:textStyle="normal"
+                        android:visibility="gone"
+                        app:drawableStartCompat="@drawable/ic_iconmonstr_time_17"
+                        app:drawableTint="@color/black_38"
+                        tools:text="instant popcorn"
+                        tools:visibility="visible" />
+
+                    <TextView
+                        android:id="@+id/tvRecentTwo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_marginBottom="16dp"
+                        android:drawablePadding="8dp"
+                        android:fontFamily="@font/font_regular"
+                        android:gravity="center_vertical"
+                        android:letterSpacing="0.02"
+                        android:lineSpacingExtra="0sp"
+                        android:textColor="@color/black_85"
+                        android:textSize="14sp"
+                        android:textStyle="normal"
+                        android:visibility="gone"
+                        app:drawableStartCompat="@drawable/ic_iconmonstr_time_17"
+                        app:drawableTint="@color/black_38"
+                        tools:text="poppcorn"
+                        tools:visibility="visible" />
+
+                    <TextView
+                        android:id="@+id/tvRecentThree"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_marginBottom="16dp"
+                        android:drawablePadding="8dp"
+                        android:fontFamily="@font/font_regular"
+                        android:gravity="center_vertical"
+                        android:letterSpacing="0.02"
+                        android:lineSpacingExtra="0sp"
+                        android:textColor="@color/black_85"
+                        android:textSize="14sp"
+                        android:textStyle="normal"
+                        android:visibility="gone"
+                        app:drawableStartCompat="@drawable/ic_iconmonstr_time_17"
+                        app:drawableTint="@color/black_38"
+                        tools:text="mineral water"
+                        tools:visibility="visible" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="6dp"
+                        android:background="@color/layout_bg" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/topSearchesLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="16dp"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:letterSpacing="0.02"
+                        android:lineSpacingExtra="0sp"
+                        android:text="@string/top_searches"
+                        android:textColor="@color/black_38"
+                        android:textSize="14sp"
+                        android:textStyle="normal" />
+
+                    <com.google.android.material.chip.ChipGroup
+                        style="@style/Theme.MaterialComponents.Light"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="20dp"
+                        app:singleSelection="true"
+                        android:id="@+id/topSearchesChipGroup"
+                        app:chipEndPadding="16dp"
+                        app:chipSpacingHorizontal="16dp"
+                        app:chipStartPadding="16dp"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/loadingLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="200dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:visibility="gone"
+                tools:visibility="gone">
+
+                <ProgressBar
+                    android:id="@+id/progressBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:progressTint="@color/colorPrimary" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/font_regular"
+                    android:letterSpacing="0.02"
+                    android:lineSpacingExtra="0sp"
+                    android:text="@string/loading"
+                    android:textColor="#000000"
+                    android:textSize="14sp"
+                    android:textStyle="normal" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/noResultFoundLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="200dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:visibility="gone"
+                tools:visibility="visible">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat_semibold"
+                    android:letterSpacing="0.02"
+                    android:lineSpacingExtra="-2sp"
+                    android:text="No results found"
+                    android:textColor="#000000"
+                    android:textSize="16sp"
+                    android:textStyle="normal" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/font_regular"
+                    android:letterSpacing="0.02"
+                    android:lineSpacingExtra="2sp"
+                    android:text="Please search using a more specific name"
+                    android:textColor="#000000"
+                    android:textSize="12sp"
+                    android:textStyle="normal" />
+
+
+                <TextView
+                    android:id="@+id/tryAgainTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="18dp"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:background="@drawable/rounded_4dp_border_transparent"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:letterSpacing="0.02"
+                    android:lineSpacingExtra="-2sp"
+                    android:paddingHorizontal="32dp"
+                    android:paddingVertical="8dp"
+                    android:text="@string/try_again"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="16sp"
+                    android:textStyle="normal" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/font_regular"
+                    android:text="@string/cancel"
+                    android:id="@+id/tvCancel"
+                    android:textColor="@color/colorPrimary"
+                    android:layout_margin="16dp"
+                    android:textSize="12sp"
+                    />
+            </LinearLayout>
+        </FrameLayout>
+
+    </RelativeLayout>
+</layout>

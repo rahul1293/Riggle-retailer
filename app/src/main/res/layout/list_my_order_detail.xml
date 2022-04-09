@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rlOrderProduct"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:paddingStart="16dp"
+    android:paddingEnd="16dp">
+
+    <View
+        android:id="@+id/viewOrder"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="20dp"
+        android:background="@color/seperator_clr" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivImg"
+        android:layout_width="76dp"
+        android:layout_height="76dp"
+        android:layout_below="@id/viewOrder"
+        android:layout_marginBottom="12dp" />
+
+    <TextView
+        android:id="@+id/tvProductName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/viewOrder"
+        android:layout_marginStart="16dp"
+        android:layout_toEndOf="@+id/ivImg"
+        android:fontFamily="@font/font_medium"
+        android:textColor="@color/black_85"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/tvVariant"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvProductName"
+        android:layout_marginStart="16dp"
+        android:layout_toEndOf="@+id/ivImg"
+        android:fontFamily="@font/font_regular"
+        android:textSize="12sp"
+        android:visibility="invisible"
+        tools:text="prduct variant" />
+
+    <TextView
+        android:id="@+id/tvFreeProductName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvProductName"
+        android:layout_marginStart="16dp"
+        android:layout_toEndOf="@+id/ivImg"
+        android:fontFamily="@font/font_regular"
+        android:text="1 Free, Product Name"
+        android:textColor="@color/profit_color"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        tools:text="1 Free, Product Name" />
+
+    <TextView
+        android:id="@+id/tvMoq"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvVariant"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
+        android:layout_toEndOf="@+id/ivImg"
+        android:fontFamily="@font/font_medium"
+        android:text="@string/qty"
+        android:textAllCaps="false"
+        android:textColor="@color/black_38"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/tvProductQuant"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvVariant"
+        android:layout_marginTop="12dp"
+        android:layout_toEndOf="@+id/tvMoq"
+        android:fontFamily="@font/font_medium"
+        android:textColor="@color/black_85"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/tvGrandPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvVariant"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="12dp"
+        android:ellipsize="end"
+        android:fontFamily="@font/font_medium"
+        android:maxLines="1"
+        android:text="@string/rupees_value"
+        android:textColor="@color/black_54"
+        android:textSize="14sp" />
+
+</RelativeLayout>
+
