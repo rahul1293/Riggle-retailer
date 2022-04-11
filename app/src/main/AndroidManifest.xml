@@ -133,6 +133,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             tools:ignore="LockedOrientationActivity"/>
+        <activity android:name=".ui.credit.CreditActivity" />
 
     </application>
 
