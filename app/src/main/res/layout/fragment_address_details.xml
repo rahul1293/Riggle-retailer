@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        android:fillViewport="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tvWelcome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/font_bold"
+                android:text="Address Details"
+                android:textColor="@color/black_85"
+                android:textSize="22sp" />
+
+            <TextView
+                android:id="@+id/tvWelcomeSubtext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvWelcome"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="24dp"
+                android:fontFamily="@font/font_regular"
+                android:text="@string/welcome_subtext"
+                android:textColor="@color/black_85"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/cbAtStore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvWelcomeSubtext"
+                android:layout_marginTop="20dp"
+                android:buttonTint="@color/black_54"
+                android:drawablePadding="6dp"
+                android:fontFamily="@font/font_medium"
+                android:text="Are you at store?"
+                android:textColor="@color/black_85"
+                android:textSize="14sp" />
+
+            <RadioGroup
+                android:id="@+id/rgLocation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_below="@+id/cbAtStore"
+                android:layout_marginTop="5dp"
+                android:weightSum="2">
+
+                <RadioButton
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="@color/black_85"
+                    android:fontFamily="@font/font_regular"
+                    android:buttonTint="@color/colorPrimary"
+                    android:text="Yes"/>
+
+                <RadioButton
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="@color/black_85"
+                    android:fontFamily="@font/font_regular"
+                    android:buttonTint="@color/colorPrimary"
+                    android:text="No"/>
+
+            </RadioGroup>
+
+            <EditText
+                android:id="@+id/etPinCode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rgLocation"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/rounded_4dp_border"
+                android:fontFamily="@font/font_regular"
+                android:hint="@string/enter_pin_code"
+                android:inputType="number"
+                android:padding="12dp"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:drawableRight="@drawable/down_arrow_icon"
+                android:textColor="@color/black_85"
+                android:textColorHint="@color/black_18"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/etStoreName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/etPinCode"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/rounded_4dp_border"
+                android:fontFamily="@font/font_regular"
+                android:hint="Shop No, Building Name, Street Name"
+                android:padding="12dp"
+                android:textColor="@color/black_85"
+                android:textColorHint="@color/black_18"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/etAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/etStoreName"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/rounded_4dp_border"
+                android:fontFamily="@font/font_regular"
+                android:gravity="top"
+                android:hint="Area / Locality"
+                android:inputType="textMultiLine"
+                android:padding="12dp"
+                android:textColor="@color/black_85"
+                android:textColorHint="@color/black_18"
+                android:textSize="16sp" />
+
+            <LinearLayout
+                android:id="@+id/llArea"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/etAddress"
+                android:layout_marginTop="20dp"
+                android:visibility="gone"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvCity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_weight="0.5"
+                    android:background="@drawable/rounded_4dp_border"
+                    android:drawableRight="@drawable/down_arrow_icon"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/font_regular"
+                    android:hint="@string/area"
+                    android:padding="12dp"
+                    android:singleLine="true"
+                    android:textColor="@color/black_85"
+                    android:textColorHint="@color/black_18"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/tvState"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_weight="0.5"
+                    android:background="@drawable/rounded_4dp_border"
+                    android:drawableRight="@drawable/down_arrow_icon"
+                    android:fontFamily="@font/font_regular"
+                    android:hint="@string/sub_area"
+                    android:padding="12dp"
+                    android:singleLine="true"
+                    android:textColor="@color/black_85"
+                    android:textColorHint="@color/black_18"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvSubArea"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"
+                android:layout_below="@+id/llArea"
+                android:visibility="gone" />
+
+            <EditText
+                android:id="@+id/etLandMark"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rvSubArea"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/rounded_4dp_border"
+                android:fontFamily="@font/font_regular"
+                android:hint="Landmark"
+                android:padding="12dp"
+                android:textColor="@color/black_85"
+                android:textColorHint="@color/black_18"
+                android:textSize="16sp" />
+
+        </RelativeLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</RelativeLayout>

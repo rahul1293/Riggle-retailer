@@ -9,11 +9,20 @@
     android:paddingRight="24dp"
     tools:context=".ui.other.registration.WelcomeScreen">
 
+    <ImageView
+        android:id="@+id/ivBack"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:padding="10dp"
+        android:src="@drawable/ic_back" />
+
+
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/btn_submit"
         android:fitsSystemWindows="true"
+        android:visibility="gone"
         android:fillViewport="true">
 
         <RelativeLayout
@@ -187,6 +196,13 @@
         </RelativeLayout>
     </androidx.core.widget.NestedScrollView>
 
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPagerAddress"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/btn_submit"
+        android:layout_below="@+id/ivBack" />
+
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_submit"
         android:layout_width="match_parent"
@@ -201,7 +217,7 @@
         android:background="@drawable/btn_rounded_corner_6dp"
         android:clickable="false"
         android:fontFamily="@font/font_bold"
-        android:text="@string/verify"
+        android:text="@string/next"
         android:textColor="@color/white"
         app:cornerRadius="6dp" />
 

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:fitsSystemWindows="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tvWelcome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/font_bold"
+                android:text="@string/about_store"
+                android:textColor="@color/black_85"
+                android:textSize="22sp" />
+
+            <EditText
+                android:id="@+id/etStoreName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvWelcome"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/rounded_4dp_border"
+                android:fontFamily="@font/font_regular"
+                android:hint="@string/store_name"
+                android:inputType="text"
+                android:padding="12dp"
+                android:textColor="@color/black_85"
+                android:textColorHint="@color/black_18"
+                android:textSize="16sp" />
+
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/storeTypeSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/etStoreName"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/rounded_4dp_border" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/storeTypeSpinner"
+                android:layout_alignBottom="@+id/storeTypeSpinner"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="10dp"
+                android:src="@drawable/down_arrow_icon" />
+
+            <EditText
+                android:id="@+id/etContactPerson"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/storeTypeSpinner"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/rounded_4dp_border"
+                android:fontFamily="@font/font_regular"
+                android:hint="@string/contact_person_name"
+                android:padding="12dp"
+                android:textColor="@color/black_85"
+                android:textColorHint="@color/black_18"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/etContactNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/etContactPerson"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/rounded_4dp_border"
+                android:fontFamily="@font/font_regular"
+                android:gravity="top"
+                android:hint="@string/contact_person_number"
+                android:inputType="textMultiLine"
+                android:padding="12dp"
+                android:textColor="@color/black_85"
+                android:textColorHint="@color/black_18"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/etProof"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/etContactNumber"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/rounded_4dp_border"
+                android:clickable="false"
+                android:drawableRight="@drawable/down_arrow_icon"
+                android:focusableInTouchMode="false"
+                android:fontFamily="@font/font_regular"
+                android:hint="@string/business_proof_document"
+                android:padding="12dp"
+                android:textColor="@color/black_85"
+                android:textColorHint="@color/black_18"
+                android:textSize="16sp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvImageList"
+                android:layout_width="match_parent"
+                android:layout_below="@+id/etProof"
+                android:layout_marginTop="20dp"
+                android:layout_height="64dp" />
+
+        </RelativeLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</RelativeLayout>

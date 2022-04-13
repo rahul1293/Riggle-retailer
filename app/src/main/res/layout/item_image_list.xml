@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="pos"
+            type="Integer" />
+
+        <variable
+            name="bean"
+            type="com.riggle.data.models.MenuBean" />
+
+        <variable
+            name="callback"
+            type="com.riggle.baseClass.SimpleRecyclerViewAdapter.SimpleCallback" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp">
+
+        <ImageView
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:background="@color/black_18"
+            android:onClick="@{v->callback.onItemClick(v,bean,pos)}"
+            android:padding="5dp"
+            android:src="@drawable/ic_plus"
+            android:visibility="@{bean.image==1?View.GONE:View.VISIBLE}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            image_uri="@{bean.name}"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:background="@color/black_18"
+            android:src="@drawable/ic_plus"
+            android:visibility="@{bean.image==1?View.VISIBLE:View.GONE}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

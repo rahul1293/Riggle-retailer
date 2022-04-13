@@ -12,7 +12,10 @@ import android.view.View
 import android.view.View.OnFocusChangeListener
 import android.widget.*
 import android.widget.AdapterView.OnItemSelectedListener
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.viewpager2.adapter.FragmentStateAdapter
 import butterknife.ButterKnife
 import butterknife.OnClick
 import com.google.gson.Gson
@@ -26,10 +29,7 @@ import com.riggle.data.location.LocationHandler
 import com.riggle.data.location.LocationResultListener
 import com.riggle.data.models.APICommonResponse
 import com.riggle.data.models.ApiError
-import com.riggle.data.models.request.StoreInfo
 import com.riggle.data.models.response.RegionsBean
-import com.riggle.data.models.response.RetailerDetails
-import com.riggle.data.models.response.UserData
 import com.riggle.data.models.response.UserDetails
 import com.riggle.data.network.ApiResponseListener
 import com.riggle.data.permission.PermissionHandler
@@ -39,10 +39,11 @@ import com.riggle.ui.base.connector.CustomAppViewConnector
 import com.riggle.ui.dialogs.LoadingDialog
 import com.riggle.ui.home.HomeActivity
 import com.riggle.ui.other.adapter.SubAreaAdapter
+import com.riggle.ui.other.registration.addressdetails.AddressDetailsFragment
+import com.riggle.ui.other.registration.addressdetails.PersonalDetailsFragment
 import com.riggle.utils.UserProfileSingleton
 import com.riggle.utils.hideKeyboard
 import com.riggle.utils.hideKeyboardDialog
-import kotlinx.android.synthetic.main.activity_select_delivery_slot.*
 import kotlinx.android.synthetic.main.activity_welcome_screen.*
 import kotlinx.android.synthetic.main.activity_welcome_screen.etAddress
 import kotlinx.android.synthetic.main.activity_welcome_screen.etPinCode
@@ -50,10 +51,10 @@ import kotlinx.android.synthetic.main.activity_welcome_screen.rvSubArea
 import kotlinx.android.synthetic.main.activity_welcome_screen.tvCity
 import kotlinx.android.synthetic.main.activity_welcome_screen.tvState
 import org.koin.android.ext.android.inject
+import java.util.ArrayList
 
 class WelcomeScreen : CustomAppCompatActivityViewImpl(), CustomAppViewConnector,
     LocationResultListener {
-
 
     private val userPreference: UserProfileSingleton by inject()
 
@@ -85,7 +86,7 @@ class WelcomeScreen : CustomAppCompatActivityViewImpl(), CustomAppViewConnector,
         deactivateBtn()
         setSpinner()
         //setRoleSpinner()
-
+        populateBottomTabs()
 
         tvCity.setOnClickListener {
             getRegionList(1)
@@ -110,6 +111,27 @@ class WelcomeScreen : CustomAppCompatActivityViewImpl(), CustomAppViewConnector,
 
         //getRegionList(1)
 
+    }
+
+    private var welcomePagerAdapter: WelcomeAdapter? = null
+    private var personalFragment: PersonalDetailsFragment? = null
+    private var addressFragment: AddressDetailsFragment? = null
+    private fun populateBottomTabs() {
+        welcomePagerAdapter = WelcomeAdapter(supportFragmentManager, this)
+        if (personalFragment == null) {
+            personalFragment = PersonalDetailsFragment.newInstance()
+            welcomePagerAdapter!!.addFragment(
+                personalFragment!!
+            )
+        }
+        if (addressFragment == null) {
+            addressFragment = AddressDetailsFragment.newInstance()
+            welcomePagerAdapter!!.addFragment(
+                addressFragment!!
+            )
+        }
+        viewPagerAddress!!.adapter = welcomePagerAdapter
+        viewPagerAddress.offscreenPageLimit = 1
     }
 
     private fun getRegionList(type: Int) {
@@ -390,6 +412,25 @@ class WelcomeScreen : CustomAppCompatActivityViewImpl(), CustomAppViewConnector,
 
     override fun getLocation(location: Location) {
         this.mlocation = location
+    }
+
+    inner class WelcomeAdapter internal constructor(
+        fm: FragmentManager?,
+        private val context: Context
+    ) : FragmentStateAdapter(this@WelcomeScreen) {
+        private val mFragmentList: MutableList<Fragment> = ArrayList()
+
+        fun addFragment(fragment: Fragment) {
+            mFragmentList.add(fragment)
+        }
+
+        override fun getItemCount(): Int {
+            return mFragmentList.size
+        }
+
+        override fun createFragment(position: Int): Fragment {
+            return mFragmentList[position]
+        }
     }
 
 }

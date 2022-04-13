@@ -85,3 +85,13 @@ fun time(view: TextView, data: String?) {
         view.text = Utility.convertTime(data)//data.getDateFromUtc()?.time() ?: ""
     }
 }
+
+@BindingAdapter(value = ["image_uri"])
+fun setImageUri(imageView: ImageView, image_url: String?) {
+    image_url?.let {
+        Glide.with(imageView.context)
+            .load(image_url/*.toUri()*/)
+            .placeholder(R.drawable.ic_profile_place_holder)
+            .into(imageView)
+    }
+}

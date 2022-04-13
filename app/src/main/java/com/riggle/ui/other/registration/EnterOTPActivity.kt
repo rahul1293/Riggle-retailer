@@ -5,6 +5,8 @@ import `in`.aabhasjindal.otptextview.OtpTextView
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.os.CountDownTimer
+import android.view.View
 import android.widget.*
 import butterknife.BindView
 import butterknife.ButterKnife
@@ -22,7 +24,9 @@ import com.riggle.ui.base.connector.CustomAppViewConnector
 import com.riggle.ui.home.HomeActivity.Companion.start
 import com.riggle.ui.other.registration.EnterOTPActivity
 import com.riggle.utils.UserProfileSingleton
+import kotlinx.android.synthetic.main.activity_enter_otp.*
 import org.koin.android.ext.android.inject
+
 
 class EnterOTPActivity : CustomAppCompatActivityViewImpl(), CustomAppViewConnector {
     //completed
@@ -57,6 +61,24 @@ class EnterOTPActivity : CustomAppCompatActivityViewImpl(), CustomAppViewConnect
             phoneNo = bundle.getString("phone") ?: ""
             sendOTP()
         }
+
+        startCountDown()
+
+    }
+
+    var countDown: CountDownTimer? = null
+    private fun startCountDown() {
+        countDown = object : CountDownTimer(30000, 1000) {
+            override fun onTick(millisUntilFinished: Long) {
+                tvCountDown.text = "Resend OTP in : " + millisUntilFinished / 1000 + " sec"
+                //here you can have your logic to set text to edittext
+            }
+
+            override fun onFinish() {
+                tvResend.visibility = View.VISIBLE
+                tvCountDown.visibility = View.GONE
+            }
+        }.start()
     }
 
     private fun sendOTP() {
@@ -106,6 +128,16 @@ class EnterOTPActivity : CustomAppCompatActivityViewImpl(), CustomAppViewConnect
     @OnClick(R.id.btn_verify)
     fun verifyOtp() {
         callOtpVerification()
+    }
+
+    @OnClick(R.id.ivBack)
+    fun onBack() {
+        onBackPressed()
+    }
+
+    @OnClick(R.id.tvResend)
+    fun reSendOtp() {
+
     }
 
     private fun callOtpVerification() {
@@ -178,4 +210,10 @@ class EnterOTPActivity : CustomAppCompatActivityViewImpl(), CustomAppViewConnect
             context.startActivity(intent)
         }
     }
+
+    override fun onDestroy() {
+        countDown?.cancel()
+        super.onDestroy()
+    }
+
 }

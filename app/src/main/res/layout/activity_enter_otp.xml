@@ -9,11 +9,19 @@
     android:paddingRight="24dp"
     tools:context=".ui.other.registration.EnterOTPActivity">
 
+    <ImageView
+        android:id="@+id/ivBack"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:padding="10dp"
+        android:src="@drawable/ic_back" />
+
     <TextView
         android:id="@+id/tvOtpSent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="22dp"
+        android:layout_below="@+id/ivBack"
         android:alpha="0.85"
         android:fontFamily="@font/font_bold"
         android:text="@string/otp_sent"
@@ -56,6 +64,31 @@
         app:length="6"
         app:otp_text_size="20dp"
         app:width="40dp" />
+
+    <TextView
+        android:id="@+id/tvCountDown"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/otp_view"
+        android:layout_marginTop="15dp"
+        android:fontFamily="@font/font_regular"
+        android:text=""
+        android:textColor="@color/black_85"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/tvResend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/otp_view"
+        android:layout_marginTop="15dp"
+        android:fontFamily="@font/font_medium"
+        android:text="Resend"
+        android:foreground="?selectableItemBackground"
+        android:padding="10dp"
+        android:visibility="gone"
+        android:textColor="@color/colorPrimary"
+        android:textSize="16sp" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_verify"
