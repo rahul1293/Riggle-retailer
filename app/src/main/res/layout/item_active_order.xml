@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="pos"
+            type="Integer" />
+
+        <variable
+            name="bean"
+            type="com.riggle.data.models.MenuBean" />
+
+        <variable
+            name="callback"
+            type="com.riggle.baseClass.SimpleRecyclerViewAdapter.SimpleCallback" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="6dp"
+            app:cardCornerRadius="5dp"
+            app:cardBackgroundColor="@color/white"
+            app:cardElevation="2dp"
+            app:cardUseCompatPadding="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp">
+
+                <TextView
+                    android:id="@+id/siblingInfoTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/font_medium"
+                    android:maxLines="2"
+                    android:text="Serviced by : Hub Name"
+                    android:textColor="@color/black_68"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:layout_toStartOf="@+id/ivEdit"
+                    tools:text="Serviced by : Hub Name" />
+
+                <ImageView
+                    android:id="@+id/ivEdit"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    app:tint="@color/colorPrimary"
+                    android:layout_alignParentEnd="true"
+                    android:src="@drawable/ic_edit_icon" />
+
+                <TextView
+                    android:id="@+id/tvOrderStatus"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/siblingInfoTextView"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/font_regular"
+                    android:maxLines="2"
+                    android:text="Order Status : Pending"
+                    android:textColor="@color/black_68"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:layout_toStartOf="@+id/ivEdit"
+                    tools:text="Order Status : Pending" />
+
+                <TextView
+                    android:id="@+id/tvOrderId"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tvOrderStatus"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/font_regular"
+                    android:maxLines="2"
+                    android:text="Order ID: RIG7475"
+                    android:textColor="@color/black_68"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:layout_toStartOf="@+id/ivEdit"
+                    tools:text="Order ID: RIG7475" />
+
+                <TextView
+                    android:id="@+id/tvOrderValue"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tvOrderId"
+                    android:layout_marginTop="8dp"
+                    android:layout_toStartOf="@+id/ivEdit"
+                    android:fontFamily="@font/font_regular"
+                    android:maxLines="2"
+                    android:text="Order Value: ₹400.00"
+                    android:textColor="@color/black_68"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    tools:text="Order Value: ₹400.00" />
+
+                <TextView
+                    android:id="@+id/tvDeliveryDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tvOrderValue"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/font_regular"
+                    android:maxLines="2"
+                    android:text="Expected Delivery Date: 15/04/2022"
+                    android:textColor="@color/black_68"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:layout_toStartOf="@+id/ivEdit"
+                    tools:text="Expected Delivery Date: 15/04/2022" />
+
+                <TextView
+                    android:id="@+id/tvPaymentMode"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tvDeliveryDate"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/font_regular"
+                    android:maxLines="2"
+                    android:text="Payment Options:"
+                    android:textColor="@color/black_68"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:layout_toStartOf="@+id/ivEdit"
+                    tools:text="Payment Options:" />
+
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

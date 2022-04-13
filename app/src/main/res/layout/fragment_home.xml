@@ -18,7 +18,7 @@
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp">
 
-            <TextView
+            <!--<TextView
                 android:id="@+id/tvDelivering"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -29,16 +29,15 @@
                 android:maxLines="1"
                 android:text="@string/delivering_to"
                 android:textColor="@color/black_85"
-                android:textSize="12sp" />
+                android:textSize="12sp" />-->
 
             <TextView
                 android:id="@+id/tvStoreName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/tvDelivering"
                 android:layout_marginTop="2dp"
                 android:layout_marginEnd="8dp"
-                android:layout_toStartOf="@+id/tvRiggleCoins"
+                android:layout_toStartOf="@+id/ivSearch"
                 android:ellipsize="end"
                 android:fontFamily="@font/font_bold"
                 android:maxLines="1"
@@ -53,21 +52,20 @@
                 android:layout_centerVertical="true"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
-                android:layout_toStartOf="@+id/tvRiggleCoins"
                 android:alpha="0.7"
+                android:layout_alignParentEnd="true"
                 app:srcCompat="@drawable/ic_search" />
 
             <TextView
                 android:id="@+id/tvRiggleCoins"
                 android:layout_width="wrap_content"
                 android:layout_height="28dp"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
                 android:background="@drawable/home_toolbar_coin_bg"
                 android:drawableEnd="@drawable/ic_riggle_coin"
                 android:drawablePadding="6dp"
                 android:fontFamily="@font/font_bold"
                 android:gravity="center_vertical"
+                android:layout_below="@+id/tvStoreName"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
                 android:text="0"

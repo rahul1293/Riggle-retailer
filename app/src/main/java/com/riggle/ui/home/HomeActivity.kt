@@ -36,7 +36,7 @@ class HomeActivity : CustomAppCompatActivityViewImpl(), CustomAppViewConnector {
 
     private var homePagerAdapter: TabAdapter? = null
     private var homeFragment: HomeFragment? = null
-    private var cartFragment: CartFragment? = null
+    private var cartFragment: ActiveOrderFragment? = null
     private var profileFragment: ProfileFragment? = null
     private var creditFragment: CreditFragment? = null
     private val rewardsFragment: RewardsFragment? = null
@@ -77,10 +77,11 @@ class HomeActivity : CustomAppCompatActivityViewImpl(), CustomAppViewConnector {
         }
 
         if (cartFragment == null) {
-            cartFragment = CartFragment.newInstance()
+            //cartFragment = CartFragment.newInstance()
+            cartFragment = ActiveOrderFragment.newInstance()
             homePagerAdapter!!.addFragment(
                 cartFragment!!,
-                getString(R.string.cart),
+                getString(R.string.active_orders),
                 R.drawable.ic_cart
             )
         }

@@ -37,6 +37,7 @@
 
     <string name="home">Home</string>
     <string name="cart">Cart</string>
+    <string name="active_orders">Active Orders</string>
     <string name="account">Account</string>
     <string name="rewards">Rewards</string>
     <string name="version">Version</string>
