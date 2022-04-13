@@ -1,0 +1,96 @@
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvStoreName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_50sdp"
+            android:gravity="center"
+            android:layout_marginEnd="@dimen/_20sdp"
+            android:ellipsize="end"
+            android:fontFamily="@font/font_bold"
+            android:maxLines="1"
+            android:text="You are almost there!!"
+            android:textColor="@color/black_85"
+            android:textSize="24sp" />
+
+
+        <TextView
+            android:id="@+id/tvPincode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/_50sdp"
+            android:layout_marginEnd="@dimen/_20sdp"
+            android:fontFamily="@font/font_medium"
+            android:text="Place order worth Rs 20000 to activate Riggle Credit"
+            android:textColor="@color/black_54"
+            android:textSize="16sp" />
+
+        <com.riggle.utils.SqureFrameLayout
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginEnd="@dimen/_80sdp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_80sdp">
+
+            <TextView
+                android:id="@+id/tvpercent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/font_bold"
+                android:text="80%"
+                android:textColor="@color/colorPrimary"
+                android:textSize="25sp" />
+
+            <com.riggle.utils.CircularProgressBar
+                android:id="@+id/cv_one"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:cpb_background_progressbar_color="#D1D1D1"
+                app:cpb_background_progressbar_width="@dimen/_10sdp"
+                app:cpb_progress="80"
+                app:cpb_progressbar_color="@color/colorPrimary"
+                app:cpb_progressbar_width="@dimen/_12sdp" />
+
+        </com.riggle.utils.SqureFrameLayout>
+        <TextView
+            android:id="@+id/tvmessage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginBottom="@dimen/_20sdp"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginEnd="@dimen/_20sdp"
+            android:fontFamily="@font/font_medium"
+            android:text="Rs 4000 worth for orders more to go"
+            android:textColor="@color/black_54"
+            android:textSize="16sp" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_35sdp"
+            android:layout_margin="@dimen/_10sdp"
+            android:layout_gravity="center"
+            android:background="@drawable/btn_corner_16dp"
+            android:fontFamily="@font/font_bold"
+            android:text="Let's Go"
+            android:id="@+id/letsGoButton"
+            android:textColor="@color/colorPrimary"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

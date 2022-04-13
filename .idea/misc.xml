@@ -3,13 +3,27 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="app/src/main/res/drawable/ic_profile_place_holder.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/activity_enter_otp.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/activity_home.xml" value="0.19375" />
-        <entry key="app/src/main/res/layout/activity_welcome_screen.xml" value="0.19375" />
-        <entry key="app/src/main/res/layout/fragment_address_details.xml" value="0.22" />
-        <entry key="app/src/main/res/layout/fragment_personal_details.xml" value="0.21" />
-        <entry key="app/src/main/res/layout/item_image_list.xml" value="0.15904232578024796" />
+        <entry key="..\:/practice/dummy/rahul/retailer/Riggle-retailer/app/src/main/res/drawable/et_bg_black.xml" value="0.166" />
+        <entry key="..\:/practice/dummy/rahul/retailer/Riggle-retailer/app/src/main/res/drawable/ic_profile.xml" value="0.1" />
+        <entry key="..\:/practice/dummy/rahul/retailer/Riggle-retailer/app/src/main/res/layout/activity_add_filter.xml" value="0.22" />
+        <entry key="..\:/practice/dummy/rahul/retailer/Riggle-retailer/app/src/main/res/layout/activity_credit.xml" value="0.2" />
+        <entry key="..\:/practice/dummy/rahul/retailer/Riggle-retailer/app/src/main/res/layout/activity_home.xml" value="0.17239583333333333" />
+        <entry key="..\:/practice/dummy/rahul/retailer/Riggle-retailer/app/src/main/res/layout/activity_my_earnings.xml" value="0.17239583333333333" />
+        <entry key="..\:/practice/dummy/rahul/retailer/Riggle-retailer/app/src/main/res/layout/activity_my_orders.xml" value="0.17239583333333333" />
+        <entry key="..\:/practice/dummy/rahul/retailer/Riggle-retailer/app/src/main/res/layout/fragment_brand_category_detail.xml" value="0.18802083333333333" />
+        <entry key="..\:/practice/dummy/rahul/retailer/Riggle-retailer/app/src/main/res/layout/fragment_cart.xml" value="0.18802083333333333" />
+        <entry key="..\:/practice/dummy/rahul/retailer/Riggle-retailer/app/src/main/res/layout/fragment_credit.xml" value="0.16" />
+        <entry key="..\:/practice/dummy/rahul/retailer/Riggle-retailer/app/src/main/res/layout/fragment_home.xml" value="0.18802083333333333" />
+        <entry key="..\:/practice/dummy/rahul/retailer/Riggle-retailer/app/src/main/res/layout/fragment_profile.xml" value="0.18802083333333333" />
+        <entry key="..\:/practice/dummy/rahul/retailer/Riggle-retailer/app/src/main/res/layout/fragment_reward.xml" value="0.18802083333333333" />
+        <entry key="..\:/practice/dummy/rahul/retailer/Riggle-retailer/app/src/main/res/layout/layout_toolbar.xml" value="0.17239583333333333" />
+        <entry key="..\:/practice/dummy/rahul/retailer/Riggle-retailer/app/src/main/res/layout/list_cart_items.xml" value="0.25" />
+        <entry key="..\:/practice/dummy/rahul/retailer/Riggle-retailer/app/src/main/res/layout/list_home_brand.xml" value="0.17239583333333333" />
+        <entry key="..\:/practice/dummy/rahul/retailer/Riggle-retailer/app/src/main/res/layout/list_home_products.xml" value="0.17239583333333333" />
+        <entry key="..\:/practice/dummy/rahul/retailer/Riggle-retailer/app/src/main/res/layout/list_my_order_detail.xml" value="0.17239583333333333" />
+        <entry key="..\:/practice/dummy/rahul/retailer/Riggle-retailer/app/src/main/res/layout/list_my_orders.xml" value="0.17239583333333333" />
+        <entry key="..\:/practice/dummy/rahul/retailer/Riggle-retailer/app/src/main/res/layout/list_paylater_items.xml" value="0.33" />
+        <entry key="..\:/practice/dummy/rahul/retailer/Riggle-retailer/app/src/main/res/menu/menu_member_list.xml" value="0.17239583333333333" />
       </map>
     </option>
   </component>

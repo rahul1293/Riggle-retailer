@@ -22,10 +22,7 @@ import com.riggle.services.eventbus.EventBusEvents.*
 import com.riggle.services.eventbus.GlobalBus
 import com.riggle.ui.base.activity.CustomAppCompatActivityViewImpl
 import com.riggle.ui.base.connector.CustomAppViewConnector
-import com.riggle.ui.home.fragment.CartFragment
-import com.riggle.ui.home.fragment.HomeFragment
-import com.riggle.ui.home.fragment.ProfileFragment
-import com.riggle.ui.home.fragment.RewardsFragment
+import com.riggle.ui.home.fragment.*
 import com.riggle.utils.LogoutUserUtil
 import com.riggle.utils.UserProfileSingleton
 import kotlinx.android.synthetic.main.activity_home.*
@@ -41,6 +38,7 @@ class HomeActivity : CustomAppCompatActivityViewImpl(), CustomAppViewConnector {
     private var homeFragment: HomeFragment? = null
     private var cartFragment: CartFragment? = null
     private var profileFragment: ProfileFragment? = null
+    private var creditFragment: CreditFragment? = null
     private val rewardsFragment: RewardsFragment? = null
     private var tabPosOnNewActivity = 0
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -68,6 +66,16 @@ class HomeActivity : CustomAppCompatActivityViewImpl(), CustomAppViewConnector {
                 R.drawable.ic_home
             )
         }
+
+        if (creditFragment == null) {
+            creditFragment = CreditFragment.newInstance()
+            homePagerAdapter!!.addFragment(
+                creditFragment!!,
+                getString(R.string.credit),
+                R.drawable.credit_card
+            )
+        }
+
         if (cartFragment == null) {
             cartFragment = CartFragment.newInstance()
             homePagerAdapter!!.addFragment(
@@ -84,6 +92,7 @@ class HomeActivity : CustomAppCompatActivityViewImpl(), CustomAppViewConnector {
                 R.drawable.ic_profile
             )
         }
+
 
         /*if (rewardsFragment == null) {
             rewardsFragment = RewardsFragment.newInstance();

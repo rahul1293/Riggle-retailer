@@ -160,8 +160,6 @@
     <string name="riggle_coin_earned">Riggle Coins Earned</string>
     <string name="_919930286991">+919930286991</string>
     <string name="we_are_working_hard_to_be_serviceable">We are working hard to be serviceable in area soon.\nThank you for your patience.</string>
-    <string name="contact_person_name">Contact Person Name</string>
-    <string name="contact_person_number">Contact Person Number</string>
-    <string name="business_proof_document">Business Proof Document</string>
+    <string name="credit">Credit</string>
 
 </resources>
