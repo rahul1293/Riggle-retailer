@@ -143,6 +143,10 @@ interface DataManager {
         id: Int,
         expand: String
     )
+    fun creditStatus(
+        apiResponseListener: ApiResponseListener<CreditResponse>,
+        id: Int
+    )
 
     fun placeOrder(
         apiResponseListener: ApiResponseListener<JsonElement>,
