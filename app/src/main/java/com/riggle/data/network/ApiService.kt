@@ -25,7 +25,7 @@ interface ApiService {
     fun editProfile(@Body storeInfo: StoreInfo): Call<APICommonResponse<UserData>>
 
     @GET(APIUrlConstants.GET_MEMBER_LIST)
-    fun getMemberList(@Query("retailer") retailer : String): Call<APICommonResponse<ArrayList<MemberList>>>
+    fun getMemberList(@Query("retailer") retailer: String): Call<APICommonResponse<ArrayList<MemberList>>>
 
     @GET(APIUrlConstants.REMOVE_MEMBER)
     fun removeMember(@Query("user_id") id: Int): Call<APICommonResponse<String>>
@@ -62,7 +62,12 @@ interface ApiService {
     fun addCart(@Body data: RequestCartData): Call<APICommonResponse<ProductsData>>
 
     @GET(APIUrlConstants.FETCH_CART)
-    fun fetchCart(@Path("id") id: Int,@Query("expand") expand: String): Call<ResponseCartData>
+    fun fetchCart(@Path("id") id: Int, @Query("expand") expand: String): Call<ResponseCartData>
+
+    @GET(APIUrlConstants.creditLineStatus)
+    fun creditLineStatus(
+        @Path("id") id: Int
+    ): Call<CreditResponse>
 
     @POST(APIUrlConstants.EDIT_CART)
     fun editCart(@Body cartData: RequestCartData): Call<APICommonResponse<EditCartResponse>>
@@ -74,10 +79,17 @@ interface ApiService {
     fun addOrder(@Body details: OrderDetailsUpload): Call<APICommonResponse<String>>
 
     @GET(APIUrlConstants.PRODUCT_DETAIL)
-    fun getProductDetail(@Path("id") id: Int, @Query("expand") schemes: String, @Query("retailer") retailer_id : String): Call<JsonElement>
+    fun getProductDetail(
+        @Path("id") id: Int,
+        @Query("expand") schemes: String,
+        @Query("retailer") retailer_id: String
+    ): Call<JsonElement>
 
     @GET(APIUrlConstants.MY_ORDERS)
-    fun getMyOrders(@Query("retailer") page: Int, @Query("expand") expand: String): Call<APICommonResponse<List<MyOrderDataOuter>>>
+    fun getMyOrders(
+        @Query("retailer") page: Int,
+        @Query("expand") expand: String
+    ): Call<APICommonResponse<List<MyOrderDataOuter>>>
 
     @GET(APIUrlConstants.ORDER_DETAIL)
     fun getOrderDetail(@Query("cart_id") cart_id: Int): Call<APICommonResponse<OrderDetail>>
@@ -150,10 +162,13 @@ interface ApiService {
     ): Call<JsonElement>
 
     @GET(APIUrlConstants.MY_ORDERS)
-    fun getMyOrdersOne(@Query("retailer") page: Int, @Query("expand") expand: String): Call<JsonElement>
+    fun getMyOrdersOne(
+        @Query("retailer") page: Int,
+        @Query("expand") expand: String
+    ): Call<JsonElement>
 
     @POST(APIUrlConstants.addUser)
-    fun addUsers( @Body request: AddMembers): Call<JsonElement>
+    fun addUsers(@Body request: AddMembers): Call<JsonElement>
 
     @GET(APIUrlConstants.coreConstants)
     fun getCoreConstants(): Call<CoreConstantsResponse>

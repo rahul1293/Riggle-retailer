@@ -7,6 +7,10 @@ class Constants {
         val PICK_IMAGE_GALLERY: Int = 1001
         const val DATE_TIME_TIMEZONE = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
         const val DATE_TIME = "yyyy-MM-dd'T'HH:mm:ss"
+        const val CREDIT_PENDING = "pending"
+        const val CREDIT_INITIATED = "initiated"
+        const val CREDIT_ACTIVE = "active"
+
     }
 
     enum class PageTypes(private val stringValue: String) {

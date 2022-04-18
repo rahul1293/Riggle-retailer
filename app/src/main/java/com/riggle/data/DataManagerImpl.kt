@@ -462,6 +462,14 @@ class DataManagerImpl(
         )
     }
 
+    override fun creditStatus(apiResponseListener: ApiResponseListener<CreditResponse>, id: Int) {
+        executeApiCallOne(
+            apiInterface.creditLineStatus(id),
+            apiResponseListener,
+            Calendar.getInstance().timeInMillis
+        )
+    }
+
     override fun placeOrder(
         apiResponseListener: ApiResponseListener<JsonElement>,
         orderBean: UploadOrder
