@@ -6,16 +6,17 @@ import com.riggle.data.models.request.*
 import com.riggle.data.models.response.*
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
-import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.http.*
-import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.collections.HashMap
 
 interface ApiService {
     @POST(APIUrlConstants.LOGIN_PHONE)
     fun loginPhone(@Body phone: Login): Call<APICommonResponse<LoginResponse>>
+
+    @POST(APIUrlConstants.RE_SEND_OTP)
+    fun reSendOtp(@Body phone: Login): Call<APICommonResponse<LoginResponse>>
 
     @POST(APIUrlConstants.VERIFY_OTP)
     fun verifyOtp(@Body otp: OTPVerification): Call<APICommonResponse<UserData>>
@@ -137,15 +138,25 @@ interface ApiService {
     @PATCH(APIUrlConstants.updateRetails)
     fun updateRetailerOne(
         @Path("id") id: Int?,
-        @FieldMap data: HashMap<String, String>
+        @FieldMap data: HashMap<String, String>,
     ): Call<JsonElement>
 
+    @Multipart
+    @PATCH(APIUrlConstants.updateRetails)
+    fun updateRetailerDetails(
+        @Path("id") id: Int?,
+        @PartMap data: HashMap<String, RequestBody>,
+        @Part file: MultipartBody.Part
+    ): Call<JsonElement>
 
     @GET(APIUrlConstants.MY_ORDERS)
     fun getMyOrdersOne(@Query("retailer") page: Int, @Query("expand") expand: String): Call<JsonElement>
 
     @POST(APIUrlConstants.addUser)
     fun addUsers( @Body request: AddMembers): Call<JsonElement>
+
+    @GET(APIUrlConstants.coreConstants)
+    fun getCoreConstants(): Call<CoreConstantsResponse>
 
 
 }

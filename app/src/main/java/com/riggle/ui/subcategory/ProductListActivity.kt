@@ -23,6 +23,7 @@ import com.riggle.ui.bottomsheets.SchemeBottomSheet
 import com.riggle.ui.dialogs.LoadingDialog
 import com.riggle.ui.home.HomeActivity
 import com.riggle.ui.home.adapters.ShopByBrandsProductsAdapter
+import com.riggle.ui.home.fragment.CartFragment
 import com.riggle.ui.listener.ProductChooseListener
 import com.riggle.ui.other.AddFilterActivity
 import com.riggle.ui.other.BrandCategoryDetailActivity
@@ -153,7 +154,9 @@ class ProductListActivity : CustomAppCompatActivityViewImpl(), CustomAppViewConn
 
     private fun setUpListener() {
         ivCartView.setOnClickListener {
-            HomeActivity.start(this, true)
+            //HomeActivity.start(this, true)
+            val intent = CartFragment.newIntent(this)
+            startActivity(intent)
         }
         llFilter.setOnClickListener {
             AddFilterActivity.start(this)

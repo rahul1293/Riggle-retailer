@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import butterknife.ButterKnife
 import com.denzcoskun.imageslider.constants.ScaleTypes
+import com.denzcoskun.imageslider.interfaces.ItemClickListener
 import com.denzcoskun.imageslider.models.SlideModel
 import com.google.gson.Gson
 import com.google.gson.JsonElement
@@ -30,6 +31,7 @@ import com.riggle.ui.base.connector.CustomAppViewConnector
 import com.riggle.ui.bottomsheets.ComboBottomSheet
 import com.riggle.ui.dialogs.LoadingDialog
 import com.riggle.ui.home.HomeActivity
+import com.riggle.ui.home.fragment.CartFragment
 import com.riggle.ui.listener.ProductChooseListener
 import com.riggle.ui.other.adapter.ProductDetailUnitsAdapter
 import com.riggle.ui.other.adapter.ProductDetailUnitsAdapter.ProductUnitListener
@@ -71,7 +73,9 @@ class ProductDetailPage : CustomAppCompatActivityViewImpl(), CustomAppViewConnec
         supportActionBar?.title = resources.getString(R.string.product)
 
         ivCartView.setOnClickListener {
-            HomeActivity.start(this, true)
+            //HomeActivity.start(this, true)
+            val intent = CartFragment.newIntent(this)
+            startActivity(intent)
         }
 
         val bundle = intent.extras
@@ -382,14 +386,28 @@ class ProductDetailPage : CustomAppCompatActivityViewImpl(), CustomAppViewConnec
          }, cartData)*/
     }
 
+    val imageData = ArrayList<SlideModel>()
     private fun createImageSlider(image_url: ArrayList<BannerImage>) {
+        if (imageData != null) {
+            imageData.clear()
+        }
         image_url?.let {
-            val imageData = ArrayList<SlideModel>()
+            /* val imageData = ArrayList<SlideModel>()*/
             for (i in it.indices) {
                 imageData.add(SlideModel(image_url[i]?.image, "", ScaleTypes.CENTER_INSIDE))
             }
             isProduct?.setImageList(imageData)
         }
+
+        isProduct.setItemClickListener(object : ItemClickListener {
+            override fun onItemSelected(position: Int) {
+                // You can listen here
+                val intent = ImageDetailsActivity.newIntent(this@ProductDetailPage)
+                intent.putExtra("image_list",Gson().toJson(imageData))
+                intent.putExtra("position",position)
+                startActivity(intent)
+            }
+        })
 
     }
 

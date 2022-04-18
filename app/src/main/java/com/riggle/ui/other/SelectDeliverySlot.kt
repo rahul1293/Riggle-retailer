@@ -272,7 +272,7 @@ class SelectDeliverySlot : CustomAppCompatActivityViewImpl(), CustomAppViewConne
         data.put("store_type", "")
         data.put("store_location", ""/*"23.82781,74.484839"*/)//lat,lon
 
-        dataManager.updateRetailerOne(
+        /*dataManager.updateRetailerOne(
             object : ApiResponseListener<JsonElement> {
                 override fun onSuccess(response: JsonElement) {
                     if (response != null) {
@@ -280,13 +280,13 @@ class SelectDeliverySlot : CustomAppCompatActivityViewImpl(), CustomAppViewConne
                         var retailerDetails =
                             Gson().fromJson(response.toString(), RetailerDetails::class.java)
 
-                        /*var usrData = userPreference.userData
+                        *//*var usrData = userPreference.userData
                         usrData?.session_key?.let {
                             response.session_key = it
                             response.retailer = usrData.retailer
                         }
                         userPreference
-                            .updateUserData(response)*/
+                            .updateUserData(response)*//*
 
                         val details = userPreference.userData?.retailer?.id?.let {
                             UploadOrder(
@@ -307,7 +307,7 @@ class SelectDeliverySlot : CustomAppCompatActivityViewImpl(), CustomAppViewConne
                 }
             },
             userPreference.userData?.retailer?.id, data
-        )
+        )*/
 
         /*storeInfo?.apply {
 

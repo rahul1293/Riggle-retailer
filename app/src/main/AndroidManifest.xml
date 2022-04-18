@@ -132,8 +132,18 @@
             android:name=".data.permission.PermissionsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
-            tools:ignore="LockedOrientationActivity"/>
+            tools:ignore="LockedOrientationActivity" />
         <activity android:name=".ui.credit.CreditActivity" />
+        <activity
+            android:name=".ui.home.fragment.CartFragment"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".ui.other.ImageDetailsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            tools:ignore="LockedOrientationActivity" />
 
     </application>
 

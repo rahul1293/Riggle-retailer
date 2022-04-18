@@ -39,6 +39,8 @@ import com.riggle.data.permission.PermissionHandler
 import com.riggle.data.permission.Permissions
 import com.riggle.databinding.ActivityEditProfileBinding
 import com.riggle.ui.dialogs.ContactUsDialog
+import com.riggle.ui.dialogs.FileUploaderChooserDialog
+import com.riggle.ui.listener.FileChooserListener
 import com.riggle.ui.other.adapter.SubAreaAdapter
 import com.riggle.utils.Constants.DataKeys.PICK_IMAGE_GALLERY
 import com.riggle.utils.UserProfileSingleton

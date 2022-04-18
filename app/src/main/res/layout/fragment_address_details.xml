@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fitsSystemWindows="true"
-        android:fillViewport="true">
+        android:fillViewport="true"
+        android:fitsSystemWindows="true">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -53,28 +52,30 @@
                 android:id="@+id/rgLocation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 android:layout_below="@+id/cbAtStore"
                 android:layout_marginTop="5dp"
+                android:orientation="horizontal"
                 android:weightSum="2">
 
                 <RadioButton
+                    android:id="@+id/rbYes"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:textColor="@color/black_85"
-                    android:fontFamily="@font/font_regular"
                     android:buttonTint="@color/colorPrimary"
-                    android:text="Yes"/>
+                    android:fontFamily="@font/font_regular"
+                    android:text="Yes"
+                    android:textColor="@color/black_85" />
 
                 <RadioButton
+                    android:id="@+id/rbNo"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:textColor="@color/black_85"
-                    android:fontFamily="@font/font_regular"
                     android:buttonTint="@color/colorPrimary"
-                    android:text="No"/>
+                    android:fontFamily="@font/font_regular"
+                    android:text="No"
+                    android:textColor="@color/black_85" />
 
             </RadioGroup>
 
@@ -89,9 +90,6 @@
                 android:hint="@string/enter_pin_code"
                 android:inputType="number"
                 android:padding="12dp"
-                android:focusable="false"
-                android:focusableInTouchMode="false"
-                android:drawableRight="@drawable/down_arrow_icon"
                 android:textColor="@color/black_85"
                 android:textColorHint="@color/black_18"
                 android:textSize="16sp" />
@@ -126,63 +124,43 @@
                 android:textColorHint="@color/black_18"
                 android:textSize="16sp" />
 
-            <LinearLayout
-                android:id="@+id/llArea"
+            <EditText
+                android:id="@+id/etCity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/etAddress"
+                android:layout_below="@id/etAddress"
                 android:layout_marginTop="20dp"
-                android:visibility="gone"
-                android:orientation="horizontal">
+                android:background="@drawable/rounded_4dp_border"
+                android:fontFamily="@font/font_regular"
+                android:gravity="top"
+                android:hint="City"
+                android:inputType="textMultiLine"
+                android:padding="12dp"
+                android:textColor="@color/black_85"
+                android:textColorHint="@color/black_18"
+                android:textSize="16sp" />
 
-                <TextView
-                    android:id="@+id/tvCity"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:layout_weight="0.5"
-                    android:background="@drawable/rounded_4dp_border"
-                    android:drawableRight="@drawable/down_arrow_icon"
-                    android:ellipsize="end"
-                    android:fontFamily="@font/font_regular"
-                    android:hint="@string/area"
-                    android:padding="12dp"
-                    android:singleLine="true"
-                    android:textColor="@color/black_85"
-                    android:textColorHint="@color/black_18"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:id="@+id/tvState"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_weight="0.5"
-                    android:background="@drawable/rounded_4dp_border"
-                    android:drawableRight="@drawable/down_arrow_icon"
-                    android:fontFamily="@font/font_regular"
-                    android:hint="@string/sub_area"
-                    android:padding="12dp"
-                    android:singleLine="true"
-                    android:textColor="@color/black_85"
-                    android:textColorHint="@color/black_18"
-                    android:textSize="16sp" />
-
-            </LinearLayout>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvSubArea"
+            <EditText
+                android:id="@+id/etState"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:nestedScrollingEnabled="false"
-                android:layout_below="@+id/llArea"
-                android:visibility="gone" />
+                android:layout_below="@id/etCity"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/rounded_4dp_border"
+                android:fontFamily="@font/font_regular"
+                android:gravity="top"
+                android:hint="State"
+                android:inputType="textMultiLine"
+                android:padding="12dp"
+                android:textColor="@color/black_85"
+                android:textColorHint="@color/black_18"
+                android:textSize="16sp" />
 
             <EditText
                 android:id="@+id/etLandMark"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/rvSubArea"
+                android:layout_below="@id/etState"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/rounded_4dp_border"
                 android:fontFamily="@font/font_regular"

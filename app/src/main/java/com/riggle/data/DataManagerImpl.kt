@@ -14,7 +14,6 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
-import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -32,6 +31,17 @@ class DataManagerImpl(
     ) {
         executeApiCall(
             apiInterface.loginPhone(phone),
+            apiResponseListener,
+            Calendar.getInstance().timeInMillis
+        )
+    }
+
+    override fun reSend(
+        apiResponseListener: ApiResponseListener<APICommonResponse<LoginResponse>>,
+        phone: Login
+    ) {
+        executeApiCall(
+            apiInterface.reSendOtp(phone),
             apiResponseListener,
             Calendar.getInstance().timeInMillis
         )
@@ -59,7 +69,10 @@ class DataManagerImpl(
         )
     }
 
-    override fun getMemberList(apiResponseListener: ApiResponseListener<APICommonResponse<ArrayList<MemberList>>>, retailer : String) {
+    override fun getMemberList(
+        apiResponseListener: ApiResponseListener<APICommonResponse<ArrayList<MemberList>>>,
+        retailer: String
+    ) {
         executeApiCall(
             apiInterface.getMemberList(retailer),
             apiResponseListener,
@@ -412,6 +425,19 @@ class DataManagerImpl(
         )
     }
 
+    override fun updateRetailerDetails(
+        apiResponseListener: ApiResponseListener<JsonElement>,
+        id: Int?,
+        data: HashMap<String, RequestBody>,
+        file: MultipartBody.Part
+    ) {
+        executeApiCallOne(
+            apiInterface.updateRetailerDetails(id, data,file),
+            apiResponseListener,
+            Calendar.getInstance().timeInMillis
+        )
+    }
+
     override fun getMyOrdersOne(
         apiResponseListener: ApiResponseListener<JsonElement>,
         page: Int,
@@ -509,6 +535,14 @@ class DataManagerImpl(
     ) {
         executeApiCallOne(
             apiInterface.addUsers(request),
+            apiResponseListener,
+            Calendar.getInstance().timeInMillis
+        )
+    }
+
+    override fun getCoreConstants(apiResponseListener: ApiResponseListener<CoreConstantsResponse>) {
+        executeApiCallOne(
+            apiInterface.getCoreConstants(),
             apiResponseListener,
             Calendar.getInstance().timeInMillis
         )

@@ -137,7 +137,31 @@ class EnterOTPActivity : CustomAppCompatActivityViewImpl(), CustomAppViewConnect
 
     @OnClick(R.id.tvResend)
     fun reSendOtp() {
+        if (phoneNo.isNotEmpty())
+            reSendOTPApi()
+    }
 
+    private fun reSendOTPApi() {
+        val phone = Login(phoneNo, true)
+        dataManager.reSend(object : ApiResponseListener<APICommonResponse<LoginResponse>> {
+            override fun onSuccess(response: APICommonResponse<LoginResponse>) {
+                if (!response.isSuccess) Toast.makeText(
+                    this@EnterOTPActivity,
+                    response.message,
+                    Toast.LENGTH_SHORT
+                ).show()
+                startCountDown()
+                //sharedPreferencesUtil.saveSupportNumber(response.data?.contact_support ?: "")
+            }
+
+            override fun onError(apiError: ApiError?) {
+                Toast.makeText(
+                    this@EnterOTPActivity,
+                    apiError?.message ?: "Server error, please contact support.",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        }, phone)
     }
 
     private fun callOtpVerification() {

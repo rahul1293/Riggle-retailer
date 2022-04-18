@@ -194,4 +194,10 @@ dependencies {
 
     //debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.7'
     implementation 'com.intuit.sdp:sdp-android:1.0.6'
+
+    // image picker
+    implementation 'com.github.Drjacky:ImagePicker:2.1.14'
+
+    // zoomable image
+    implementation 'com.jsibbold:zoomage:1.3.1'
 }

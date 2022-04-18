@@ -45,11 +45,11 @@ internal constructor(private val mContext: Context, var productsData: ArrayList<
         val data: ProductsData? = productsData[position].product
 
         if (data != null) {
-            Glide.with(mContext)
+            /*Glide.with(mContext)
                 .load(data.banner_image?.image)
                 .placeholder(R.drawable.placeholder)
                 .apply(RequestOptions().diskCacheStrategy(DiskCacheStrategy.AUTOMATIC))
-                .into(holder.ivImg)
+                .into(holder.ivImg)*/
 
             holder.tvName.text = data.name
             //holder.itemView.tvCategory.text = data.description
@@ -65,11 +65,11 @@ internal constructor(private val mContext: Context, var productsData: ArrayList<
             } else
                 holder.tvStrikePrice.visibility = View.GONE
         } else {
-            Glide.with(mContext)
+            /*Glide.with(mContext)
                 .load(productsData[position].banner_image?.image)
                 .placeholder(R.drawable.placeholder)
                 .apply(RequestOptions().diskCacheStrategy(DiskCacheStrategy.AUTOMATIC))
-                .into(holder.ivImg)
+                .into(holder.ivImg)*/
 
             holder.tvName.text = productsData[position].name
             //holder.itemView.siblingInfoTextView.text = productsData[position].productSize
@@ -128,20 +128,20 @@ internal constructor(private val mContext: Context, var productsData: ArrayList<
         if (profit != null && profit > 0f) {
             holder.tvProfit.text =
                 String.format(mContext.getString(R.string.rupees_value_profits), profit)
-            holder.llMargin.visibility = View.VISIBLE
+            //holder.llMargin.visibility = View.VISIBLE
         } else {
-            holder.llMargin.visibility = View.INVISIBLE
+            //holder.llMargin.visibility = View.INVISIBLE
         }
 
         val discount: Int? = if (data != null) data.discount else {
             productsData[position].discount
         }
-        if (discount != null) {
+        /*if (discount != null) {
             holder.tvOff.text =
                 String.format(mContext.getString(R.string.value_off), discount)
             holder.tvOff.visibility = View.VISIBLE
         } else
-            holder.tvOff.visibility = View.GONE
+            holder.tvOff.visibility = View.GONE*/
 
         //if due to some calculation quantity value was coming in negative, reset it to 0
         productsData[position].quantity?.let { item_cart ->
@@ -298,7 +298,7 @@ internal constructor(private val mContext: Context, var productsData: ArrayList<
     inner class ViewHolder internal constructor(itemView: View) :
         RecyclerView.ViewHolder(itemView) {
         var view: View = itemView.findViewById(R.id.view)
-        var ivImg: AppCompatImageView = itemView.findViewById(R.id.ivImg)
+        //var ivImg: AppCompatImageView = itemView.findViewById(R.id.ivImg)
         var tvName: TextView = itemView.findViewById(R.id.tvName)
         var tvPrice: TextView = itemView.findViewById(R.id.tvPrice)
         var tvProfit: TextView = itemView.findViewById(R.id.tvProfit)
@@ -309,7 +309,7 @@ internal constructor(private val mContext: Context, var productsData: ArrayList<
         var ivPlus: AppCompatImageView = itemView.findViewById(R.id.ivPlus)
         var ivRemove: AppCompatImageView = itemView.findViewById(R.id.ivRemove);
         var tvStrikePrice: TextView = itemView.findViewById(R.id.tvStrikePrice);
-        var tvOff: TextView = itemView.findViewById(R.id.tvOff);
+        //var tvOff: TextView = itemView.findViewById(R.id.tvOff);
         var tvGrandPrice: TextView = itemView.findViewById(R.id.tvGrandPrice)
         var tvServiceHub: TextView = itemView.findViewById(R.id.tvServiceHub)
         var tvFreeProductName: TextView = itemView.findViewById(R.id.tvFreeProductName)

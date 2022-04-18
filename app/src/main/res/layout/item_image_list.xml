@@ -41,6 +41,7 @@
             android:layout_height="56dp"
             android:background="@color/black_18"
             android:src="@drawable/ic_plus"
+            android:scaleType="centerCrop"
             android:visibility="@{bean.image==1?View.VISIBLE:View.GONE}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

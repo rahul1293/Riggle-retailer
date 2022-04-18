@@ -10,14 +10,16 @@ import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import org.json.JSONObject
 import retrofit2.Call
-import retrofit2.http.Body
-import retrofit2.http.FieldMap
-import retrofit2.http.Path
-import retrofit2.http.Query
+import retrofit2.http.*
 import java.util.*
 
 interface DataManager {
     fun loginPhone(
+        apiResponseListener: ApiResponseListener<APICommonResponse<LoginResponse>>,
+        phone: Login
+    )
+
+    fun reSend(
         apiResponseListener: ApiResponseListener<APICommonResponse<LoginResponse>>,
         phone: Login
     )
@@ -132,6 +134,13 @@ interface DataManager {
         data: HashMap<String, String>
     )
 
+    fun updateRetailerDetails(
+        apiResponseListener: ApiResponseListener<JsonElement>,
+        id: Int?,
+        data: HashMap<String, RequestBody>,
+        file: MultipartBody.Part
+    )
+
     fun getMyOrdersOne(
         apiResponseListener: ApiResponseListener<JsonElement>,
         page: Int,
@@ -170,5 +179,7 @@ interface DataManager {
     )
 
     fun addUsers(apiResponseListener: ApiResponseListener<JsonElement>, request: AddMembers)
+
+    fun getCoreConstants(apiResponseListener: ApiResponseListener<CoreConstantsResponse>)
 
 }

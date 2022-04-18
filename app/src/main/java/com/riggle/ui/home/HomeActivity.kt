@@ -131,8 +131,8 @@ class HomeActivity : CustomAppCompatActivityViewImpl(), CustomAppViewConnector {
             override fun onTabReselected(tab: TabLayout.Tab) {}
         })
         if (intent.getBooleanExtra("is_cart", false)) {
-            viewPager.currentItem = 1
-            highLightCurrentTab(1)
+            /*viewPager.currentItem = 1
+            highLightCurrentTab(1)*/
         }
     }
 

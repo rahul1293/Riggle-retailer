@@ -6,6 +6,8 @@ class APIUrlConstants {
     companion object {
         const val LOGIN_PHONE: String = BuildConfig.BASE_URL + "user/auth/send_otp/"
 
+        const val RE_SEND_OTP: String = BuildConfig.BASE_URL + "user/auth/resend_otp/"
+
         const val VERIFY_OTP: String = BuildConfig.BASE_URL + "user/auth/verify_otp/"
 
         const val EDIT_PROFILE: String = BuildConfig.BASE_URL + "/users/editProfile"
@@ -62,6 +64,7 @@ class APIUrlConstants {
 
         const val placeOrder:String = BuildConfig.BASE_URL + "core/orders/"
         const val addUser:String = BuildConfig.BASE_URL + "user/users/"
+        const val coreConstants:String = BuildConfig.BASE_URL + "user/constants/"
 
     }
 }

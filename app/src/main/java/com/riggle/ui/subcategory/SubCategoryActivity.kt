@@ -16,6 +16,7 @@ import com.riggle.ui.base.connector.CustomAppViewConnector
 import com.riggle.ui.dialogs.LoadingDialog
 import com.riggle.ui.home.HomeActivity
 import com.riggle.ui.home.adapters.HomeCategoryAdapter
+import com.riggle.ui.home.fragment.CartFragment
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.layout_appbar.*
 import kotlin.collections.ArrayList
@@ -110,7 +111,9 @@ class SubCategoryActivity : CustomAppCompatActivityViewImpl(), CustomAppViewConn
         }*/
 
         ivCartView.setOnClickListener {
-            HomeActivity.start(this,true)
+            //HomeActivity.start(this,true)
+            val intent = CartFragment.newIntent(this)
+            startActivity(intent)
         }
 
     }

@@ -29,6 +29,7 @@ import com.riggle.data.location.LocationHandler
 import com.riggle.data.location.LocationResultListener
 import com.riggle.data.models.APICommonResponse
 import com.riggle.data.models.ApiError
+import com.riggle.data.models.request.RetailerDetailsRequest
 import com.riggle.data.models.response.RegionsBean
 import com.riggle.data.models.response.UserDetails
 import com.riggle.data.network.ApiResponseListener
@@ -50,7 +51,14 @@ import kotlinx.android.synthetic.main.activity_welcome_screen.etPinCode
 import kotlinx.android.synthetic.main.activity_welcome_screen.rvSubArea
 import kotlinx.android.synthetic.main.activity_welcome_screen.tvCity
 import kotlinx.android.synthetic.main.activity_welcome_screen.tvState
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.asRequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
 import org.koin.android.ext.android.inject
+import java.io.File
 import java.util.ArrayList
 
 class WelcomeScreen : CustomAppCompatActivityViewImpl(), CustomAppViewConnector,
@@ -83,7 +91,7 @@ class WelcomeScreen : CustomAppCompatActivityViewImpl(), CustomAppViewConnector,
         if (firebaseConfig == null) {
             firebaseConfig = FirebaseRemoteConfigUtil.instance?.fireBaseConfigValues
         }
-        deactivateBtn()
+        //deactivateBtn()
         setSpinner()
         //setRoleSpinner()
         populateBottomTabs()
@@ -266,12 +274,119 @@ class WelcomeScreen : CustomAppCompatActivityViewImpl(), CustomAppViewConnector,
 
     @OnClick(R.id.btn_submit)
     fun submit() {
-        /*val storeInfo = StoreInfo()
-        storeInfo.pin_code = etPinCode?.text.toString()
-        storeInfo.store_name = etStoreName?.text.toString()
-        storeInfo.store_type = "" + selectedStoreKey
-        storeIn fo.role_type = selectedRoleKey*/
+
+        if (viewPagerAddress.currentItem == 0) {
+            viewPagerAddress.currentItem = 1
+            return
+        }
+
         if (isEmptyField()) {
+            val requestBody: RequestBody
+            var body: MultipartBody.Part? = null
+            uploadFile?.let { file ->
+                requestBody = file.asRequestBody("multipart/form-data".toMediaTypeOrNull())
+                body =
+                    MultipartBody.Part.createFormData("proof_document_file", file.name, requestBody)
+            }
+
+            val data = HashMap<String, RequestBody>()
+            data.put(
+                "name",
+                retailerRequest.name.toString().toRequestBody("text/plain".toMediaType())
+            )
+            data.put(
+                "username",
+                retailerRequest.username.toString().toRequestBody("text/plain".toMediaType())
+            )
+            data.put(
+                "proof_document_type",
+                retailerRequest.proof_document_type.toString()
+                    .toRequestBody("text/plain".toMediaType())
+            )
+            data.put(
+                "store_type",
+                retailerRequest.store_type.toString().toRequestBody("text/plain".toMediaType())
+            )
+            data.put(
+                "pincode",
+                retailerRequest.pincode.toString().toRequestBody("text/plain".toMediaType())
+            )
+            data.put(
+                "address",
+                retailerRequest.address.toString().toRequestBody("text/plain".toMediaType())
+            )
+            data.put(
+                "landmark",
+                retailerRequest.landmark.toString().toRequestBody("text/plain".toMediaType())
+            )
+            try {
+                if (isAtStore) {
+                    if (mlocation != null) {
+                        mlocation?.let {
+                            data.put(
+                                "store_location",
+                                (it.latitude.toString() + "," + it.longitude.toString()).toRequestBody(
+                                    "text/plain".toMediaType()
+                                )
+                            )//lat,lon
+                        }
+                    } else {
+                        data.put(
+                            "store_location",
+                            "".toRequestBody("text/plain".toMediaType())
+                        )//lat,lon
+                    }
+                } else {
+                    data.put(
+                        "store_location",
+                        "".toRequestBody("text/plain".toMediaType())
+                    )//lat,lon
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+                data.put("store_location", "".toRequestBody("text/plain".toMediaType()))//lat,lon
+            }
+            showHideLoader(true)
+            userPreference.userData?.retailer?.id?.let { id ->
+                body?.let {
+                    dataManager.updateRetailerDetails(
+                        object : ApiResponseListener<JsonElement> {
+                            override fun onSuccess(response: JsonElement) {
+                                showHideLoader(false)
+                                if (response != null) {
+                                    var retailerDetails =
+                                        Gson().fromJson(
+                                            response.toString(),
+                                            UserDetails::class.java
+                                        )
+                                    var usrData = userPreference.userData
+
+                                    usrData?.retailer = retailerDetails
+                                    userPreference
+                                        .updateUserData(usrData)
+                                    userPreference
+                                        .saveRetailerDetails(retailerDetails)
+                                    HomeActivity.start(applicationContext, false)
+                                    finish()
+                                } else Toast.makeText(this@WelcomeScreen, "", Toast.LENGTH_SHORT)
+                                    .show()
+                            }
+
+                            override fun onError(apiError: ApiError?) {
+                                showHideLoader(false)
+                                Toast.makeText(
+                                    this@WelcomeScreen,
+                                    apiError?.message ?: "Server error, please contact support.",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+                        }, id, data, it
+                    )
+                }
+            }
+        }
+
+        /*if (isEmptyField()) {
 
             val data = HashMap<String, String>()
             data.put("name", etStoreName?.text.toString())
@@ -290,14 +405,14 @@ class WelcomeScreen : CustomAppCompatActivityViewImpl(), CustomAppViewConnector,
                             )//lat,lon
                         }
                     } else {
-                        data.put("store_location", ""/*"23.82781,74.484839"*/)//lat,lon
+                        data.put("store_location", ""*//*"23.82781,74.484839"*//*)//lat,lon
                     }
                 } else {
-                    data.put("store_location", ""/*"23.82781,74.484839"*/)//lat,lon
+                    data.put("store_location", ""*//*"23.82781,74.484839"*//*)//lat,lon
                 }
             } catch (e: Exception) {
                 e.printStackTrace()
-                data.put("store_location", ""/*"23.82781,74.484839"*/)//lat,lon
+                data.put("store_location", ""*//*"23.82781,74.484839"*//*)//lat,lon
             }
             userPreference.userData?.retailer?.id?.let { id ->
                 dataManager.updateRetailerOne(
@@ -307,10 +422,10 @@ class WelcomeScreen : CustomAppCompatActivityViewImpl(), CustomAppViewConnector,
                                 var retailerDetails =
                                     Gson().fromJson(response.toString(), UserDetails::class.java)
                                 var usrData = userPreference.userData
-                                /*usrData?.session_key?.let {
+                                *//*usrData?.session_key?.let {
                                     response.session_key = it
                                     response.retailer = usrData.retailer
-                                }*/
+                                }*//*
                                 usrData?.retailer = retailerDetails
                                 userPreference
                                     .updateUserData(usrData)
@@ -332,49 +447,73 @@ class WelcomeScreen : CustomAppCompatActivityViewImpl(), CustomAppViewConnector,
                     }, id, data
                 )
             }
-        }
+        }*/
 
-        /*dataManager.editProfile(object : ApiResponseListener<APICommonResponse<UserData>> {
-            override fun onSuccess(response: APICommonResponse<UserData>) {
-                if (response.isSuccess) {
-                    userPreference
-                        .updateUserData(response.data)
-                    HomeActivity.start(applicationContext)
-                    finish()
-                } else Toast.makeText(this@WelcomeScreen, "" + response.message, Toast.LENGTH_SHORT)
-                    .show()
-            }
-
-            override fun onError(apiError: ApiError?) {}
-        }, storeInfo)*/
-//        HomeActivity.start(applicationContext, false)
-//        finish()
     }
 
     private fun isEmptyField(): Boolean {
-        if (TextUtils.isEmpty(etAddress.text.toString().trim())) {
-            etAddress.error = "Enter Valid Address"
+        if (TextUtils.isEmpty(retailerRequest.address)) {
+            Toast.makeText(this, "Enter Valid Address", Toast.LENGTH_SHORT).show()
             return false
         }
 
-        /*if (TextUtils.isEmpty(tvCity.text.toString().trim())) {
-            tvCity.error = "Choose Area"
+        if (TextUtils.isEmpty(retailerRequest.username)) {
+            Toast.makeText(this, "Enter Retailer Name", Toast.LENGTH_SHORT).show()
             return false
         }
 
-        if (TextUtils.isEmpty(tvState.text.toString().trim())) {
-            tvState.error = "Choose Sub Area"
-            return false
-        }*/
-
-        if (TextUtils.isEmpty(etLandMark.text.toString().trim())) {
-            etLandMark.error = "Enter Valid Landmark"
+        if (TextUtils.isEmpty(retailerRequest.name)) {
+            Toast.makeText(this, "Enter Store Name", Toast.LENGTH_SHORT).show()
             return false
         }
+
+        if (TextUtils.isEmpty(retailerRequest.store_type)) {
+            Toast.makeText(this, "Select Store Type", Toast.LENGTH_SHORT).show()
+            return false
+        }
+
+        if (TextUtils.isEmpty(retailerRequest.proof_document_type)) {
+            Toast.makeText(this, "Select Document Type", Toast.LENGTH_SHORT).show()
+            return false
+        }
+
+        if (TextUtils.isEmpty(retailerRequest.pincode)) {
+            Toast.makeText(this, "Add Valid Pin code", Toast.LENGTH_SHORT).show()
+            return false
+        }
+
+        if (uploadFile == null) {
+            Toast.makeText(this, "Select document image", Toast.LENGTH_SHORT).show()
+            return false
+        }
+
+
+//        if (TextUtils.isEmpty(etAddress.text.toString().trim())) {
+//            etAddress.error = "Enter Valid Address"
+//            return false
+//        }
+//        if (TextUtils.isEmpty(tvCity.text.toString().trim())) {
+//            tvCity.error = "Choose Area"
+//            return false
+//        }
+//        if (TextUtils.isEmpty(tvState.text.toString().trim())) {
+//            tvState.error = "Choose Sub Area"
+//            return false
+//        }
+//        if (TextUtils.isEmpty(etLandMark.text.toString().trim())) {
+//            etLandMark.error = "Enter Valid Landmark"
+//            return false
+//        }
         return true
     }
 
     companion object {
+
+        var uploadFile: File? = null
+        var isImageSelected = ""
+        var isAtStore = false
+        var retailerRequest = RetailerDetailsRequest()
+
         fun start(context: Context) {
             val intent = Intent(context, WelcomeScreen::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)

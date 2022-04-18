@@ -2,6 +2,7 @@ package com.riggle.ui.home.fragment
 
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
@@ -23,6 +24,7 @@ import com.riggle.data.models.response.ProductsData
 import com.riggle.data.models.response.ResponseCartData
 import com.riggle.data.models.response.UserDetails
 import com.riggle.data.network.ApiResponseListener
+import com.riggle.ui.base.activity.CustomAppCompatActivityViewImpl
 import com.riggle.ui.base.connector.CustomAppViewConnector
 import com.riggle.ui.base.fragment.CustomAppFragmentViewImpl
 import com.riggle.ui.dialogs.LoadingDialog
@@ -34,7 +36,8 @@ import org.koin.android.ext.android.inject
 import java.util.*
 
 
-class CartFragment : CustomAppFragmentViewImpl(), CustomAppViewConnector,
+class CartFragment : CustomAppCompatActivityViewImpl(),/*CustomAppFragmentViewImpl(),*/
+    CustomAppViewConnector,
     CartAdapter.HomeProductsListener {
 
     private val userPreference: UserProfileSingleton by inject()
@@ -44,18 +47,20 @@ class CartFragment : CustomAppFragmentViewImpl(), CustomAppViewConnector,
     private var isRiggleCoinApplied = false
     private var loaderDialog: LoadingDialog? = null
     private var avail_riggle_coin = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
+        connectViewToParent(this)
         super.onCreate(savedInstanceState)
     }
 
-    override fun onCreateView(
+    /*override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         connectViewToParent(this)
         super.onCreateView(inflater, container, savedInstanceState)
         return view
-    }
+    }*/
 
     override fun setView(): Int {
         return R.layout.fragment_cart
@@ -63,6 +68,10 @@ class CartFragment : CustomAppFragmentViewImpl(), CustomAppViewConnector,
 
     override fun initializeViews(savedInstanceState: Bundle?) {
         cbRiggleCoins?.setOnCheckedChangeListener { compoundButton, b -> if (b) applyRiggleCoin() else removeRiggleCoin() }
+
+        ivBack.setOnClickListener {
+            onBackPressed()
+        }
 
         tvProceed.setOnClickListener {
             activity?.let {
@@ -104,6 +113,7 @@ class CartFragment : CustomAppFragmentViewImpl(), CustomAppViewConnector,
                 }
             }
         }
+        loadTab()
     }
 
     fun loadTab() {
@@ -196,8 +206,8 @@ class CartFragment : CustomAppFragmentViewImpl(), CustomAppViewConnector,
                     activity?.getString(R.string.rupees_value_double) ?: "",
                     Math.round((cartDetails?.amount - cartDetails?.final_amount)).toFloat()
                 )
-                tvDiscountValue?.visibility = View.GONE
-                tvDiscount?.visibility = View.GONE
+                //tvDiscountValue?.visibility = View.GONE
+                //tvDiscount?.visibility = View.GONE
             } else {
                 tvDiscountValue?.text = getString(R.string.minus_with_space) + String.format(
                     activity?.getString(R.string.rupees_value) ?: "",
@@ -239,8 +249,8 @@ class CartFragment : CustomAppFragmentViewImpl(), CustomAppViewConnector,
                 )
             }
 
-            if (cartDetails.margin != null) tvCartProfit?.text =
-                "Grand profit ₹" + Math.round(cartDetails.margin)
+            if (cartDetails.margin != null) tvDiscountValue?.text =
+                "₹" + Math.round(cartDetails.margin)
             //Html.fromHtml(cartDetails.total_profit) else tvCartProfit?.visibility = View.GONE
 
             tvCheckoutPrice?.text = tvTotalAmountValue?.text.toString()
@@ -260,8 +270,8 @@ class CartFragment : CustomAppFragmentViewImpl(), CustomAppViewConnector,
     }
 
     private fun showAvailableCoinsView() {
-        tvAvailableCoins.visibility = View.VISIBLE
-        cbRiggleCoins.visibility = View.VISIBLE
+        //tvAvailableCoins.visibility = View.VISIBLE
+        //cbRiggleCoins.visibility = View.VISIBLE
     }
 
     @SuppressLint("SetTextI18n")
@@ -487,8 +497,14 @@ class CartFragment : CustomAppFragmentViewImpl(), CustomAppViewConnector,
         fun newInstance(): CartFragment {
             val fragment = CartFragment()
             val args = Bundle()
-            fragment.arguments = args
+            //fragment.arguments = args
             return fragment
+        }
+
+        @JvmStatic
+        fun newIntent(activity: Activity): Intent {
+            val intent = Intent(activity, CartFragment::class.java)
+            return intent
         }
     }
 }
