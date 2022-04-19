@@ -3,35 +3,19 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="../../../../../../layout/custom_preview.xml" value="0.20885416666666667" />
-        <entry key="app/src/main/res/drawable/ic_cart.xml" value="0.1705" />
-        <entry key="app/src/main/res/drawable/ic_profile_place_holder.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/activity_enter_otp.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/activity_home.xml" value="0.19375" />
-        <entry key="app/src/main/res/layout/activity_image_details.xml" value="0.1483539974348012" />
-        <entry key="app/src/main/res/layout/activity_product_detail.xml" value="0.14647530603630224" />
-        <entry key="app/src/main/res/layout/activity_product_list.xml" value="0.1483539974348012" />
-        <entry key="app/src/main/res/layout/activity_sub_category.xml" value="0.1483539974348012" />
-        <entry key="app/src/main/res/layout/activity_welcome_screen.xml" value="0.19375" />
-        <entry key="app/src/main/res/layout/dialog_photo_chooser.xml" value="0.14647530603630224" />
-        <entry key="app/src/main/res/layout/fragment_active_order.xml" value="0.15904232578024796" />
-        <entry key="app/src/main/res/layout/fragment_address_details.xml" value="0.22" />
-        <entry key="app/src/main/res/layout/fragment_cart.xml" value="0.1570282819755171" />
-        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.1570282819755171" />
-        <entry key="app/src/main/res/layout/fragment_personal_details.xml" value="0.21" />
-        <entry key="app/src/main/res/layout/holder_image_item.xml" value="0.1483539974348012" />
-        <entry key="app/src/main/res/layout/home_custom_tab.xml" value="0.15904232578024796" />
-        <entry key="app/src/main/res/layout/item_active_order.xml" value="0.15904232578024796" />
-        <entry key="app/src/main/res/layout/item_image_list.xml" value="0.15904232578024796" />
-        <entry key="app/src/main/res/layout/layout_appbar.xml" value="0.22" />
-        <entry key="app/src/main/res/layout/list_cart_items.xml" value="0.2" />
+        <entry key="..\:/practice/dummy/rahul/retailer/19april/app/src/main/res/layout/activity_credit.xml" value="0.17239583333333333" />
+        <entry key="..\:/practice/dummy/rahul/retailer/19april/app/src/main/res/layout/activity_edit_profile.xml" value="0.25" />
+        <entry key="..\:/practice/dummy/rahul/retailer/19april/app/src/main/res/layout/activity_enter_otp.xml" value="0.17239583333333333" />
+        <entry key="..\:/practice/dummy/rahul/retailer/19april/app/src/main/res/layout/activity_enter_phone.xml" value="0.17239583333333333" />
+        <entry key="..\:/practice/dummy/rahul/retailer/19april/app/src/main/res/layout/activity_promo.xml" value="0.25" />
+        <entry key="..\:/practice/dummy/rahul/retailer/19april/app/src/main/res/layout/activity_search.xml" value="0.17239583333333333" />
+        <entry key="..\:/practice/dummy/rahul/retailer/19april/app/src/main/res/layout/list_coupon_items.xml" value="0.5" />
+        <entry key="..\:/practice/dummy/rahul/retailer/19april/app/src/main/res/layout/list_paylater_items.xml" value="0.17239583333333333" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
-    <output url="file://$PROJECT_DIR$/build/classes" />
-  </component>
-  <component name="ProjectType">
-    <option name="id" value="Android" />
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="11" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
   </component>
 </project>

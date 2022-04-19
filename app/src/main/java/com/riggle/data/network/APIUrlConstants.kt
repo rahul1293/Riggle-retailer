@@ -33,6 +33,7 @@ class APIUrlConstants {
         const val ADD_CARTS: String = BuildConfig.BASE_URL + "/cart/addCart"
 
         const val FETCH_CART: String = BuildConfig.BASE_URL + "user/retailers/{id}/cart/"
+        const val creditLineStatus: String = BuildConfig.BASE_URL + "user/retailers/{id}/credit_line_status/"
 
         const val EDIT_CART: String = BuildConfig.BASE_URL + "/cart/editCart"
 
