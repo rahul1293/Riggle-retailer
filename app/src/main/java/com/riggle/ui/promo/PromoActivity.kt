@@ -71,6 +71,15 @@ class PromoActivity : BaseActivity() {
     private val viewModel: PromoViewModel by viewModel()
     private lateinit var binding: ActivityPromoBinding
 
+    companion object {
+        fun newIntent(active: Activity): Intent {
+            val intent = Intent(active, PromoActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            return intent
+        }
+
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView<ActivityPromoBinding>(

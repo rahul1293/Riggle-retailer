@@ -33,7 +33,8 @@ class APIUrlConstants {
         const val ADD_CARTS: String = BuildConfig.BASE_URL + "/cart/addCart"
 
         const val FETCH_CART: String = BuildConfig.BASE_URL + "user/retailers/{id}/cart/"
-        const val creditLineStatus: String = BuildConfig.BASE_URL + "user/retailers/{id}/credit_line_status/"
+        const val creditLineStatus: String =
+            BuildConfig.BASE_URL + "user/retailers/{id}/credit_line_status/"
 
         const val EDIT_CART: String = BuildConfig.BASE_URL + "/cart/editCart"
 
@@ -43,29 +44,33 @@ class APIUrlConstants {
 
         const val PRODUCT_DETAIL: String = BuildConfig.BASE_URL + "core/products/{id}/"
 
-        const val MY_ORDERS:String = BuildConfig.BASE_URL + "core/orders"
+        const val MY_ORDERS: String = BuildConfig.BASE_URL + "core/orders"
 
-        const val ORDER_DETAIL:String = BuildConfig.BASE_URL + "/cart/orderDetail"
+        const val ORDER_DETAIL: String = BuildConfig.BASE_URL + "/cart/orderDetail"
 
-        const val SEARCH:String = BuildConfig.BASE_URL + "/product/search"
+        const val SEARCH: String = BuildConfig.BASE_URL + "/product/search"
 
-        const val userDetails:String = BuildConfig.BASE_URL + "/users/user_details"
+        const val userDetails: String = BuildConfig.BASE_URL + "/users/user_details"
 
-        const val myEarnings:String = BuildConfig.BASE_URL + "user/retailers/{id}/riggle_coin_statement"/*"/cart/myEarnings"*/
-        const val topSearches:String = BuildConfig.BASE_URL + "/product/topSearches"
+        const val myEarnings: String =
+            BuildConfig.BASE_URL + "user/retailers/{id}/riggle_coin_statement"/*"/cart/myEarnings"*/
+        const val topSearches: String = BuildConfig.BASE_URL + "/product/topSearches"
 
-        const val uploadFile:String = BuildConfig.BASE_URL + "/users/uploadDocs"
+        const val uploadFile: String = BuildConfig.BASE_URL + "/users/uploadDocs"
 
-        const val getRegion:String = BuildConfig.BASE_URL + "core/regions"
-        const val updateRetails:String = BuildConfig.BASE_URL + "user/retailers/{id}/"
-        const val getCategoryList:String = BuildConfig.BASE_URL + "core/categories"
-        const val pingDetails:String = BuildConfig.BASE_URL + "user/retailers/{id}/"
+        const val getRegion: String = BuildConfig.BASE_URL + "core/regions"
+        const val updateRetails: String = BuildConfig.BASE_URL + "user/retailers/{id}/"
+        const val getCategoryList: String = BuildConfig.BASE_URL + "core/categories"
+        const val pingDetails: String = BuildConfig.BASE_URL + "user/retailers/{id}/"
+
         //const val pingDetails:String = BuildConfig.BASE_URL + "user/auth/ping"
-        const val addToCart:String = BuildConfig.BASE_URL + "user/retailers/{id}/cart/"
+        const val addToCart: String = BuildConfig.BASE_URL + "user/retailers/{id}/cart/"
 
-        const val placeOrder:String = BuildConfig.BASE_URL + "core/orders/"
-        const val addUser:String = BuildConfig.BASE_URL + "user/users/"
-        const val coreConstants:String = BuildConfig.BASE_URL + "user/constants/"
+        const val placeOrder: String = BuildConfig.BASE_URL + "core/orders/"
+        const val addUser: String = BuildConfig.BASE_URL + "user/users/"
+        const val coreConstants: String = BuildConfig.BASE_URL + "user/constants/"
+
+        const val pinLookup: String = BuildConfig.BASE_URL + "service/pincode-lookup/"
 
     }
 }

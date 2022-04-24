@@ -16,6 +16,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import androidx.viewpager2.widget.ViewPager2
 import butterknife.ButterKnife
 import butterknife.OnClick
 import com.google.gson.Gson
@@ -96,6 +97,14 @@ class WelcomeScreen : CustomAppCompatActivityViewImpl(), CustomAppViewConnector,
         //setRoleSpinner()
         populateBottomTabs()
 
+        ivBack.setOnClickListener {
+            if (viewPagerAddress.currentItem == 0) {
+                onBackPressed()
+            } else {
+                viewPagerAddress.currentItem = 0
+            }
+        }
+
         tvCity.setOnClickListener {
             getRegionList(1)
             rvSubArea?.visibility = View.VISIBLE
@@ -140,6 +149,19 @@ class WelcomeScreen : CustomAppCompatActivityViewImpl(), CustomAppViewConnector,
         }
         viewPagerAddress!!.adapter = welcomePagerAdapter
         viewPagerAddress.offscreenPageLimit = 1
+        viewPagerAddress.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
+                when (position) {
+                    0 -> {
+                        progress.progress = 50
+                    }
+                    1 -> {
+                        progress.progress = 100
+                    }
+                }
+            }
+        })
     }
 
     private fun getRegionList(type: Int) {
@@ -524,7 +546,7 @@ class WelcomeScreen : CustomAppCompatActivityViewImpl(), CustomAppViewConnector,
     private var loadingDialog: LoadingDialog? = null
     private fun showHideLoader(state: Boolean) {
         if (loadingDialog != null) {
-            if (state) loadingDialog?.show() else loadingDialog?.hide()
+            if (state) loadingDialog?.show() else loadingDialog?.dismiss()
         } else {
             loadingDialog = LoadingDialog(activity)
             showHideLoader(state)

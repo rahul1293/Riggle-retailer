@@ -186,4 +186,6 @@ interface DataManager {
 
     fun getCoreConstants(apiResponseListener: ApiResponseListener<CoreConstantsResponse>)
 
+    fun pinCodeLookup(apiResponseListener: ApiResponseListener<PinCodeLookupResponse>, pinCode: String)
+
 }

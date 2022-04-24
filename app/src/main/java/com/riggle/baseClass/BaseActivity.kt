@@ -20,7 +20,7 @@ open class BaseActivity : AppCompatActivity() {
 
      fun showHideLoader(state: Boolean) {
         if (loaderDialog != null) {
-            if (state) loaderDialog?.show() else loaderDialog?.hide()
+            if (state) loaderDialog?.show() else loaderDialog?.dismiss()
         } else {
             this?.let {
                 loaderDialog = LoadingDialog(this)

@@ -122,6 +122,7 @@
                     app:cardUseCompatPadding="true">
 
                     <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/llOffer"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="#4A4aff3b"

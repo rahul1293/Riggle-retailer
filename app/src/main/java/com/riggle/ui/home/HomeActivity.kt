@@ -122,9 +122,9 @@ class HomeActivity : CustomAppCompatActivityViewImpl(), CustomAppViewConnector {
             override fun onTabSelected(tab: TabLayout.Tab) {
                 highLightCurrentTab(tab.position)
                 tabPosOnNewActivity = tab.position
-                if (tab.position == 1) {
+                /*if (tab.position == 1) {
                     cartFragment!!.loadTab()
-                }
+                }*/
             }
 
             override fun onTabUnselected(tab: TabLayout.Tab) {}
@@ -249,7 +249,7 @@ class HomeActivity : CustomAppCompatActivityViewImpl(), CustomAppViewConnector {
     }
 
     fun onLetsAddClicked(view: View?) {
-        viewPager!!.setCurrentItem(0, true)
+        //viewPager!!.setCurrentItem(0, true)
     }
 
     companion object {

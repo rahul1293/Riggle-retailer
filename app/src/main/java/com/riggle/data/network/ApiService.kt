@@ -173,5 +173,8 @@ interface ApiService {
     @GET(APIUrlConstants.coreConstants)
     fun getCoreConstants(): Call<CoreConstantsResponse>
 
+    @GET(APIUrlConstants.pinLookup)
+    fun pinCodeLookup(@Query("code") expand: String): Call<PinCodeLookupResponse>
+
 
 }

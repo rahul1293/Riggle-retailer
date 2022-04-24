@@ -14,16 +14,39 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:padding="10dp"
+        android:foreground="?selectableItemBackground"
         android:src="@drawable/ic_back" />
 
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/ivBack"
+        android:layout_alignBottom="@+id/ivBack"
+        android:layout_toRightOf="@+id/ivBack"
+        android:gravity="center">
+
+        <com.google.android.material.progressindicator.LinearProgressIndicator
+            android:id="@+id/progress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="50dp"
+            android:indeterminate="false"
+            android:max="100"
+            android:progress="50"
+            app:showAnimationBehavior="inward"
+            app:indicatorColor="@color/colorPrimary"
+            app:trackColor="@color/grey" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/btn_submit"
+        android:fillViewport="true"
         android:fitsSystemWindows="true"
-        android:visibility="gone"
-        android:fillViewport="true">
+        android:visibility="gone">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -120,8 +143,8 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/etAddress"
                 android:layout_marginTop="20dp"
-                android:visibility="gone"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:visibility="gone">
 
                 <TextView
                     android:id="@+id/tvCity"
@@ -162,8 +185,8 @@
                 android:id="@+id/rvSubArea"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:nestedScrollingEnabled="false"
                 android:layout_below="@+id/llArea"
+                android:nestedScrollingEnabled="false"
                 android:visibility="gone" />
 
             <EditText

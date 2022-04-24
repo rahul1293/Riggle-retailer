@@ -30,6 +30,7 @@ import com.riggle.ui.base.fragment.CustomAppFragmentViewImpl
 import com.riggle.ui.dialogs.LoadingDialog
 import com.riggle.ui.home.adapters.CartAdapter
 import com.riggle.ui.other.SelectDeliverySlot
+import com.riggle.ui.promo.PromoActivity
 import com.riggle.utils.UserProfileSingleton
 import kotlinx.android.synthetic.main.fragment_cart.*
 import org.koin.android.ext.android.inject
@@ -71,6 +72,11 @@ class CartFragment : CustomAppCompatActivityViewImpl(),/*CustomAppFragmentViewIm
 
         ivBack.setOnClickListener {
             onBackPressed()
+        }
+
+        llOffer.setOnClickListener {
+            val intent = PromoActivity.newIntent(this)
+            startActivity(intent)
         }
 
         tvProceed.setOnClickListener {

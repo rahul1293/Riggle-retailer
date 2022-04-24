@@ -31,7 +31,7 @@ class SplashActivity : CustomAppCompatActivityViewImpl(), CustomAppViewConnector
 
     private fun proceedForLoginCheck() {
         if (userPreference.isLogin) {
-            if (userPreference.userData?.retailer != null && userPreference.userData?.retailer?.account_status.equals("completed")) {
+            if (userPreference.userData?.retailer != null && (userPreference.userData?.retailer?.account_status.equals("completed") || (userPreference.userData?.retailer?.store_type!=null && !userPreference.userData?.retailer?.store_type.equals("")))) {
                 start(this@SplashActivity, false)
             } else {
                 WelcomeScreen.Companion.start(applicationContext)

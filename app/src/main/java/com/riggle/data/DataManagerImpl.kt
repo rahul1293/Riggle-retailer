@@ -18,6 +18,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
+import retrofit2.http.Query
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -432,7 +433,7 @@ class DataManagerImpl(
         file: MultipartBody.Part
     ) {
         executeApiCallOne(
-            apiInterface.updateRetailerDetails(id, data,file),
+            apiInterface.updateRetailerDetails(id, data, file),
             apiResponseListener,
             Calendar.getInstance().timeInMillis
         )
@@ -551,6 +552,17 @@ class DataManagerImpl(
     override fun getCoreConstants(apiResponseListener: ApiResponseListener<CoreConstantsResponse>) {
         executeApiCallOne(
             apiInterface.getCoreConstants(),
+            apiResponseListener,
+            Calendar.getInstance().timeInMillis
+        )
+    }
+
+    override fun pinCodeLookup(
+        apiResponseListener: ApiResponseListener<PinCodeLookupResponse>,
+        pinCode: String
+    ) {
+        executeApiCallOne(
+            apiInterface.pinCodeLookup(pinCode),
             apiResponseListener,
             Calendar.getInstance().timeInMillis
         )
