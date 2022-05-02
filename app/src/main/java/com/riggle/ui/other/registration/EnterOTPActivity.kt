@@ -6,11 +6,14 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.util.Log
 import android.view.View
 import android.widget.*
 import butterknife.BindView
 import butterknife.ButterKnife
 import butterknife.OnClick
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.messaging.FirebaseMessaging
 import com.riggle.R
 import com.riggle.data.models.APICommonResponse
 import com.riggle.data.models.ApiError
@@ -31,6 +34,7 @@ import org.koin.android.ext.android.inject
 class EnterOTPActivity : CustomAppCompatActivityViewImpl(), CustomAppViewConnector {
     //completed
 
+    private var token: String = ""
     private val userPreference: UserProfileSingleton by inject()
 
     @JvmField
@@ -61,9 +65,16 @@ class EnterOTPActivity : CustomAppCompatActivityViewImpl(), CustomAppViewConnect
             phoneNo = bundle.getString("phone") ?: ""
             sendOTP()
         }
-
         startCountDown()
+        FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
+            if (!task.isSuccessful) {
+                Log.w(TAG, "Fetching FCM registration token failed", task.exception)
+                return@OnCompleteListener
+            }
 
+            // Get new FCM registration token
+            token = task.result
+        })
     }
 
     var countDown: CountDownTimer? = null
@@ -93,7 +104,7 @@ class EnterOTPActivity : CustomAppCompatActivityViewImpl(), CustomAppViewConnect
     }
 
     private fun callOTPApi() {
-        val phone = Login(phoneNo, true)
+        val phone = Login(phoneNo, token, true)
         dataManager.loginPhone(object : ApiResponseListener<APICommonResponse<LoginResponse>> {
             override fun onSuccess(response: APICommonResponse<LoginResponse>) {
                 if (!response.isSuccess) Toast.makeText(
@@ -142,7 +153,7 @@ class EnterOTPActivity : CustomAppCompatActivityViewImpl(), CustomAppViewConnect
     }
 
     private fun reSendOTPApi() {
-        val phone = Login(phoneNo, true)
+        val phone = Login(phoneNo, token,true)
         dataManager.reSend(object : ApiResponseListener<APICommonResponse<LoginResponse>> {
             override fun onSuccess(response: APICommonResponse<LoginResponse>) {
                 if (!response.isSuccess) Toast.makeText(

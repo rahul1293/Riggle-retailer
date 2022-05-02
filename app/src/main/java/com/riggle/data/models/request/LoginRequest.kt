@@ -6,6 +6,7 @@ import com.riggle.data.models.response.ProductsData
 data class Login(
     //val mobile_no: String
     val mobile: String,
+    val token: String,
     val bypass: Boolean
 )
 
