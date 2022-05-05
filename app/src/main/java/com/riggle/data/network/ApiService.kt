@@ -176,5 +176,8 @@ interface ApiService {
     @GET(APIUrlConstants.pinLookup)
     fun pinCodeLookup(@Query("code") expand: String): Call<PinCodeLookupResponse>
 
+    @GET(APIUrlConstants.coupons)
+    fun getCoupons(): Call<List<CouponBean>>
+
 
 }

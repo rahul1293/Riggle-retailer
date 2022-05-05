@@ -9,7 +9,9 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.riggle.R
 import com.riggle.data.models.response.CoinsEarning
+import kotlinx.android.synthetic.main.fragment_cart.*
 import java.io.File
+import kotlin.math.roundToInt
 
 @BindingAdapter("file")
 fun setUriImage(view: ImageView, uri: File?) {
@@ -20,6 +22,14 @@ fun setUriImage(view: ImageView, uri: File?) {
         Glide.with(view.context).load(R.drawable.placeholder).into(view)
 
     }
+
+}
+@BindingAdapter("currency")
+fun currency(view: TextView, amount:Double?) {
+    view.text = String.format(
+        view.context.getString(R.string.rupees_value_double) ?: "",
+        amount?.roundToInt()?.toFloat()
+    )
 
 }
 

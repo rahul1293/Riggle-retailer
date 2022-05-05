@@ -71,6 +71,7 @@ class APIUrlConstants {
         const val coreConstants: String = BuildConfig.BASE_URL + "user/constants/"
 
         const val pinLookup: String = BuildConfig.BASE_URL + "service/pincode-lookup/"
+        const val coupons: String = BuildConfig.BASE_URL + "core/coupon_codes/"
 
     }
 }
