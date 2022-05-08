@@ -8,11 +8,14 @@ import com.riggle.data.models.ApiError;
 import com.riggle.services.eventbus.EventBusEvents;
 import com.riggle.services.eventbus.GlobalBus;
 
+import org.json.JSONObject;
+
 import java.net.ConnectException;
 import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
 import java.util.HashMap;
 import java.util.Map;
+
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
@@ -40,8 +43,15 @@ public final class ErrorUtils {
 //
 //            } else {
 //            MyloLogger.e("error:body", response.errorBody().string());
-
-            error = new ApiError(response.code(), response.message(), response.isSuccessful(), response.errorBody().string());
+            JSONObject jsonObject = null;
+            if (response.errorBody() != null) {
+                jsonObject = new JSONObject(response.errorBody().string());
+            }
+            if (!jsonObject.getString("message").isEmpty()) {
+                error = new ApiError(response.code(), jsonObject.getString("message"), response.isSuccessful(), response.errorBody().string(), jsonObject.getString("message"));
+            } else {
+                error = new ApiError(response.code(), response.message(), response.isSuccessful(), response.errorBody().string(), response.message());
+            }
 //            }
         } catch (final Exception e) {
             e.printStackTrace();
@@ -54,7 +64,7 @@ public final class ErrorUtils {
             if (response.message() != null && !response.message().isEmpty()) {
                 message = response.message();
             }
-            error = new ApiError(statusCode, message, response.isSuccessful(), ExceptionUtil.convertStackTraceToString(e.getStackTrace()));
+            error = new ApiError(statusCode, message, response.isSuccessful(), ExceptionUtil.convertStackTraceToString(e.getStackTrace()), message);
         }
         return error;
     }

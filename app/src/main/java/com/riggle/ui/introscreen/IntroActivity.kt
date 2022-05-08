@@ -50,21 +50,21 @@ class IntroActivity : AppCompatActivity() {
             ScreenItem(
                 R.string.new_onboarding_title1,
                 R.string.new_onboarding_text1,
-                R.drawable.intro_img2
+                R.drawable.ic_image_one
             )
         )
         mList.add(
             ScreenItem(
                 R.string.new_onboarding_title2,
                 R.string.new_onboarding_text2,
-                R.drawable.intro_img2
+                R.drawable.ic_image_three
             )
         )
         mList.add(
             ScreenItem(
                 R.string.new_onboarding_title3,
                 R.string.new_onboarding_text3,
-                R.drawable.intro_img3
+                R.drawable.ic_image_two
             )
         )
 

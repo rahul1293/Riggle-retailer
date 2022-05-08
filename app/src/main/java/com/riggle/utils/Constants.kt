@@ -10,7 +10,7 @@ class Constants {
         const val CREDIT_PENDING = "pending"
         const val CREDIT_INITIATED = "initiated"
         const val CREDIT_ACTIVE = "active"
-
+        var isDeliver: Boolean = true
     }
 
     enum class PageTypes(private val stringValue: String) {

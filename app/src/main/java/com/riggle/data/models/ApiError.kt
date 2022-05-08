@@ -15,6 +15,9 @@ class ApiError {
     @SerializedName("body")
     var body: String? = null
 
+    @SerializedName("message")
+    var msg: String? = ""
+
     constructor() {}
 
     /**
@@ -23,10 +26,11 @@ class ApiError {
      * @param statusCode status code of api error response
      * @param message    message of api error response
      */
-    constructor(statusCode: Int, message: String?, success: Boolean, body: String?) {
+    constructor(statusCode: Int, message: String?, success: Boolean, body: String?,msg:String?) {
         this.message = message
         this.body = body
         this.statusCode = statusCode
+        this.msg = msg
         isSuccess = success
     }
 

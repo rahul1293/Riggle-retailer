@@ -17,5 +17,6 @@
         android:textColor="@color/black_38"
         android:singleLine="true"
         android:ellipsize="end"
-        android:textSize="14sp" />
+        android:includeFontPadding="false"
+        android:textSize="13sp" />
 </LinearLayout>

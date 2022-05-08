@@ -140,7 +140,7 @@ object Utility {
         return false
     }
 
-    fun convertDate(date: String?): String {
+   open fun convertDate(date: String?): String {
         var nwDate = ""
         //val oldFormat = "yyyy-MM-dd'T'HH:mm:ssz"
         val oldFormat = "yyyy-MM-dd'T'HH:mm:ss"

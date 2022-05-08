@@ -14,16 +14,20 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
+import com.google.gson.Gson
 import com.riggle.R
+import com.riggle.data.models.response.BrandResponse
 import com.riggle.data.models.response.ProductsData
 import kotlinx.android.synthetic.main.list_cart_items.view.*
 import java.util.*
+import kotlin.collections.ArrayList
 
 class CartAdapter  // data is passed into the constructor
 internal constructor(private val mContext: Context, var productsData: ArrayList<ProductsData>) :
     RecyclerView.Adapter<CartAdapter.ViewHolder>() {
 
     private var listener: HomeProductsListener? = null
+    private var total = 0.0
 
     fun setListener(listener: HomeProductsListener) {
         this.listener = listener
@@ -51,7 +55,22 @@ internal constructor(private val mContext: Context, var productsData: ArrayList<
                 .apply(RequestOptions().diskCacheStrategy(DiskCacheStrategy.AUTOMATIC))
                 .into(holder.ivImg)*/
 
-            holder.tvName.text = data.name
+            if (position > 0) {
+                if (productsData[position - 1].brand_id == productsData[position].brand_id) {
+                    holder.tvName.visibility = View.GONE
+                } else {
+                    holder.tvName.visibility = View.VISIBLE
+                }
+            }
+
+            val brandBean: BrandResponse =
+                Gson().fromJson(
+                    Gson().toJson(productsData[position].product?.brand),
+                    BrandResponse::class.java
+                )
+
+            holder.tvName.text = brandBean.name
+            holder.itemView.siblingInfoTextView.text = data.name
             //holder.itemView.tvCategory.text = data.description
             holder.tvMOQ.text = data.moq.toString()
 
@@ -70,7 +89,6 @@ internal constructor(private val mContext: Context, var productsData: ArrayList<
                 .placeholder(R.drawable.placeholder)
                 .apply(RequestOptions().diskCacheStrategy(DiskCacheStrategy.AUTOMATIC))
                 .into(holder.ivImg)*/
-
             holder.tvName.text = productsData[position].name
             //holder.itemView.siblingInfoTextView.text = productsData[position].productSize
             //holder.itemView.tvCategory.text = data.description
@@ -298,6 +316,7 @@ internal constructor(private val mContext: Context, var productsData: ArrayList<
     inner class ViewHolder internal constructor(itemView: View) :
         RecyclerView.ViewHolder(itemView) {
         var view: View = itemView.findViewById(R.id.view)
+
         //var ivImg: AppCompatImageView = itemView.findViewById(R.id.ivImg)
         var tvName: TextView = itemView.findViewById(R.id.tvName)
         var tvPrice: TextView = itemView.findViewById(R.id.tvPrice)
@@ -309,6 +328,7 @@ internal constructor(private val mContext: Context, var productsData: ArrayList<
         var ivPlus: AppCompatImageView = itemView.findViewById(R.id.ivPlus)
         var ivRemove: AppCompatImageView = itemView.findViewById(R.id.ivRemove);
         var tvStrikePrice: TextView = itemView.findViewById(R.id.tvStrikePrice);
+
         //var tvOff: TextView = itemView.findViewById(R.id.tvOff);
         var tvGrandPrice: TextView = itemView.findViewById(R.id.tvGrandPrice)
         var tvServiceHub: TextView = itemView.findViewById(R.id.tvServiceHub)

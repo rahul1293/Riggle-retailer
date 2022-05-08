@@ -40,7 +40,7 @@ class OrderDetailActivity : CustomAppCompatActivityViewImpl(), CustomAppViewConn
     override fun onCreate(savedInstanceState: Bundle?) {
         connectViewToParent(this)
         super.onCreate(savedInstanceState)
-
+        rlCartIcon.visibility = View.GONE
         addOnClickListeners()
     }
 

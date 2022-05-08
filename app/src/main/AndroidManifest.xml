@@ -144,6 +144,11 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".ui.home.pendingDetails.PendingOrderDetails"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            tools:ignore="LockedOrientationActivity" />
         <activity android:name=".ui.promo.PromoActivity" />
 
     </application>

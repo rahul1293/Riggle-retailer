@@ -6,9 +6,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.SimpleItemAnimator
@@ -28,6 +26,7 @@ import com.riggle.ui.base.activity.CustomAppCompatActivityViewImpl
 import com.riggle.ui.base.connector.CustomAppViewConnector
 import com.riggle.ui.base.fragment.CustomAppFragmentViewImpl
 import com.riggle.ui.dialogs.LoadingDialog
+import com.riggle.ui.home.HomeActivity
 import com.riggle.ui.home.adapters.CartAdapter
 import com.riggle.ui.other.SelectDeliverySlot
 import com.riggle.ui.promo.PromoActivity
@@ -77,6 +76,10 @@ class CartFragment : CustomAppCompatActivityViewImpl(),/*CustomAppFragmentViewIm
         llOffer.setOnClickListener {
             val intent = PromoActivity.newIntent(this)
             startActivity(intent)
+        }
+
+        tvLetAdd.setOnClickListener {
+            HomeActivity.start(this, true)
         }
 
         tvProceed.setOnClickListener {
@@ -156,6 +159,8 @@ class CartFragment : CustomAppCompatActivityViewImpl(),/*CustomAppFragmentViewIm
                 response?.let {
                     if (response != null && response.products_in_cart != null && !response.products_in_cart.isEmpty()) {
                         hideEmptyCartView()
+                        /*val cartData : BrandResponse =
+                            Gson().fromJson(response.toString(), BrandResponse::class.java)*/
                         cartData = response
                         populateCartView()
                         populateCartDetails(response)
@@ -170,7 +175,7 @@ class CartFragment : CustomAppCompatActivityViewImpl(),/*CustomAppFragmentViewIm
             override fun onError(apiError: ApiError?) {
                 showHideLoader(false)
             }
-        }, userPreference.userData?.retailer?.id ?: 0, "banner_image,service_hub")
+        }, userPreference.userData?.retailer?.id ?: 0, "banner_image,service_hub,brand")
         /*schemes.free_product,*/
     }
 
@@ -186,7 +191,14 @@ class CartFragment : CustomAppCompatActivityViewImpl(),/*CustomAppFragmentViewIm
 
         activity?.let {
             cartData?.let { cartData ->
-                cartAdapter = CartAdapter(it, cartData.products_in_cart)
+                val sortedList =
+                    cartData.products_in_cart.sortedWith(compareByDescending() { it.brand_id })
+                val productsData = ArrayList<ProductsData>()
+                productsData.addAll(sortedList)
+                cartAdapter = CartAdapter(
+                    it,
+                    productsData/*cartData.products_in_cart*/
+                )
                 rvCart?.layoutManager = LinearLayoutManager(activity)
                 (Objects.requireNonNull(rvCart?.itemAnimator) as SimpleItemAnimator).supportsChangeAnimations =
                     false
@@ -446,7 +458,7 @@ class CartFragment : CustomAppCompatActivityViewImpl(),/*CustomAppFragmentViewIm
         }
     }
 
-    fun clearCart() {
+    /*fun clearCart() {
         activity?.let { activity ->
             cartAdapter = CartAdapter(activity, ArrayList())
             tvCartPrice?.text = String.format(activity.getString(R.string.rupees_value_double), 0.0)
@@ -459,7 +471,7 @@ class CartFragment : CustomAppCompatActivityViewImpl(),/*CustomAppFragmentViewIm
 
             showEmptyCartView()
         }
-    }
+    }*/
 
     override fun onResume() {
         super.onResume()

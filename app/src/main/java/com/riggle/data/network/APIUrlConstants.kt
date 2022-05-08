@@ -72,5 +72,10 @@ class APIUrlConstants {
 
         const val pinLookup: String = BuildConfig.BASE_URL + "service/pincode-lookup/"
 
+        const val pendingOrderDetails: String = BuildConfig.BASE_URL + "core/orders/{id}/"
+        const val editPendingOrders: String = BuildConfig.BASE_URL + "core/orders/{id}/products/{pId}/"
+        const val constants: String = BuildConfig.BASE_URL + "core/constants/"
+        const val cancelOrder: String = BuildConfig.BASE_URL + "core/orders/{id}/cancel/"
+
     }
 }

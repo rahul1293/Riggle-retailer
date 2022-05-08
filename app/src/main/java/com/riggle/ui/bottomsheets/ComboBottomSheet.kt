@@ -157,7 +157,7 @@ class ComboBottomSheet : BottomSheetDialogFragment(),
 
     private fun showHideLoader(state: Boolean) {
         if (loadingDialog != null) {
-            if (state) loadingDialog?.show() else loadingDialog?.hide()
+            if (state) loadingDialog?.show() else loadingDialog?.dismiss()
         } else {
             loadingDialog = LoadingDialog(activity)
             showHideLoader(state)
@@ -291,7 +291,7 @@ class ComboBottomSheet : BottomSheetDialogFragment(),
                         if (!apiError?.message.equals("Parsing error", false))
                             Toast.makeText(
                                 activity,
-                                apiError?.body,
+                                apiError?.msg,
                                 Toast.LENGTH_SHORT
                             ).show()
                         else {
@@ -309,7 +309,10 @@ class ComboBottomSheet : BottomSheetDialogFragment(),
             if (data.size > 0) {
                 view?.rootView?.let { rootView ->
                     activity?.let { activity ->
-                        adapter = ProductsComboAdapter(requireActivity(), data[0].products)
+                        adapter = ProductsComboAdapter(
+                            requireActivity(),
+                            data[0].products as ArrayList<ProductsData>
+                        )
                         rootView.rvVariants?.layoutManager = LinearLayoutManager(activity)
                         rootView.rvVariants?.adapter = adapter
                         adapter?.setListener(this)

@@ -71,7 +71,7 @@
     <string name="rupees_value_profits">₹%.2f Profit</string>
     <string name="mrp">MRP:</string>
     <string name="earn_value">Earn %d</string>
-    <string name="points_on_this_purchase">coins on this purchase</string>
+    <string name="points_on_this_purchase">coins/piece on this purchase</string>
     <string name="points_on_every_value_packs">points on every %d packs</string>
     <string name="value_off">₹%d off</string>
     <string name="moq">MOQ:</string>
@@ -167,5 +167,8 @@
     <string name="cart_total">Cart Total</string>
     <string name="offer_discount">Offer Discount</string>
     <string name="offers_for_you">Offers for you:</string>
+    <string name="order_history">Order History</string>
+    <string name="live_orders">Live Orders</string>
+    <string name="update_mix">Update Mix</string>
 
 </resources>

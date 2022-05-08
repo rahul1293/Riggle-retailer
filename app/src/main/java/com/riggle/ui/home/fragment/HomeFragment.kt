@@ -34,6 +34,8 @@ import com.riggle.ui.other.ShopByBrandCategory
 import com.riggle.ui.other.registration.WelcomeScreen
 import com.riggle.utils.UserProfileSingleton
 import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.fragment_home.ivCartView
+import kotlinx.android.synthetic.main.layout_appbar.*
 import org.koin.android.ext.android.inject
 import java.util.*
 import kotlin.collections.ArrayList
@@ -121,6 +123,12 @@ class HomeFragment : CustomAppFragmentViewImpl(), CustomAppViewConnector,
             activity?.let {
                 SearchActivity.start(it)
             }
+        }
+
+        ivCartView.setOnClickListener {
+            //HomeActivity.start(this,true)
+            val intent = CartFragment.newIntent(requireActivity())
+            startActivity(intent)
         }
 
     }

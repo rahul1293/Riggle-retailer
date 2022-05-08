@@ -310,7 +310,6 @@
         android:textStyle="bold"
         tools:text="1000ml + 5 more varients" />
 
-
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/ivRemove"
         android:layout_width="28dp"
@@ -319,6 +318,7 @@
         android:layout_marginEnd="8dp"
         android:alpha="0.5"
         android:padding="4dp"
+        android:visibility="gone"
         app:srcCompat="@drawable/ic_dustbin" />
 
     <TextView
@@ -462,7 +462,7 @@
         android:layout_below="@+id/llMargin"
         android:layout_marginStart="16dp"
         android:layout_marginTop="10dp"
-        android:layout_marginEnd="150dp"
+        android:layout_marginEnd="16dp"
         android:orientation="vertical">
 
         <TextView
@@ -471,6 +471,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/font_regular"
             android:text="1 Free, Product Name"
+            android:singleLine="true"
             android:textColor="@color/profit_color"
             android:textSize="11sp"
             android:textStyle="bold"

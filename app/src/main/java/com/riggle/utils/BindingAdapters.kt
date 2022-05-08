@@ -1,5 +1,6 @@
 package com.riggle.utils
 
+import android.view.View
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
@@ -10,6 +11,9 @@ import com.bumptech.glide.request.RequestOptions
 import com.riggle.R
 import com.riggle.data.models.response.CoinsEarning
 import java.io.File
+import java.text.ParseException
+import java.text.SimpleDateFormat
+import java.util.*
 
 @BindingAdapter("file")
 fun setUriImage(view: ImageView, uri: File?) {
@@ -92,6 +96,54 @@ fun setImageUri(imageView: ImageView, image_url: String?) {
         Glide.with(imageView.context)
             .load(image_url/*.toUri()*/)
             .placeholder(R.drawable.ic_profile_place_holder)
+            .into(imageView)
+    }
+}
+
+@BindingAdapter(value = ["set_date_name"])
+fun setDateName(textView: TextView, date: String?) {
+    date?.let {
+        var nwDate = ""
+        //val oldFormat = "yyyy-MM-dd'T'HH:mm:ssz"
+        val oldFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        val newFormat = "dd/MM/yyyy"
+        val sdf = SimpleDateFormat(oldFormat)
+        try {
+            val newDate: Date = sdf.parse(date)
+            sdf.applyPattern(newFormat)
+            nwDate = sdf.format(newDate)
+            textView.text = "Date : $nwDate"
+        } catch (e: ParseException) {
+            e.printStackTrace()
+        }
+    }
+}
+
+@BindingAdapter(value = ["set_visibility"])
+fun setVisibility(view: View, empty: String?) {
+    if (Constants.DataKeys.isDeliver) {
+        view.visibility = View.VISIBLE
+    } else {
+        view.visibility = View.GONE
+    }
+}
+
+@BindingAdapter(value = ["set_visibility_two"])
+fun setVisibilityTwo(view: View, empty: String?) {
+    if (Constants.DataKeys.isDeliver) {
+        view.visibility = View.GONE
+    } else {
+        view.visibility = View.VISIBLE
+    }
+}
+
+@BindingAdapter(value = ["logo_images"])
+fun setLogoImages(imageView: ImageView, image_url: String?) {
+    image_url?.let {
+        Glide.with(imageView.context)
+            .load(it)
+            /*.override(imageView.width, imageView.height)*/
+            .placeholder(R.mipmap.ic_launcher)
             .into(imageView)
     }
 }

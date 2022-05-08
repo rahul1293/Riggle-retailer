@@ -387,9 +387,9 @@
 
                 <ImageView
                     android:layout_width="wrap_content"
-                    android:layout_height="150dp"
+                    android:layout_height="200dp"
                     android:layout_marginTop="120dp"
-                    android:src="@drawable/img_empty_cart" />
+                    android:src="@drawable/ic_empty_cart" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -415,6 +415,7 @@
                     android:textSize="14sp" />
 
                 <TextView
+                    android:id="@+id/tvLetAdd"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
@@ -426,12 +427,11 @@
                     android:foreground="?android:attr/selectableItemBackgroundBorderless"
                     android:gravity="center"
                     android:minWidth="150dp"
-                    android:onClick="onLetsAddClicked"
                     android:padding="8dp"
                     android:text="Let's Add"
                     android:textAllCaps="false"
                     android:textColor="@color/white" />
-
+                <!--android:onClick="onLetsAddClicked"-->
 
             </LinearLayout>
 

@@ -124,7 +124,7 @@ class ProductListActivity : CustomAppCompatActivityViewImpl(), CustomAppViewConn
                         showHideLoader(false)
                         Toast.makeText(
                             this@ProductListActivity,
-                            apiError?.body.toString(),
+                            apiError?.msg.toString(),
                             Toast.LENGTH_SHORT
                         ).show()
                     }

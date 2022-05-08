@@ -8,9 +8,6 @@ import com.riggle.data.network.ApiResponseListener
 import kotlinx.coroutines.flow.Flow
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
-import org.json.JSONObject
-import retrofit2.Call
-import retrofit2.http.*
 import java.util.*
 
 interface DataManager {
@@ -143,8 +140,9 @@ interface DataManager {
 
     fun getMyOrdersOne(
         apiResponseListener: ApiResponseListener<JsonElement>,
-        page: Int,
-        expand: String
+        /*page: Int,
+        expand: String*/
+        params: HashMap<String, String>
     )
 
     fun fetchCart(
@@ -152,6 +150,7 @@ interface DataManager {
         id: Int,
         expand: String
     )
+
     fun creditStatus(
         apiResponseListener: ApiResponseListener<CreditResponse>,
         id: Int
@@ -186,6 +185,33 @@ interface DataManager {
 
     fun getCoreConstants(apiResponseListener: ApiResponseListener<CoreConstantsResponse>)
 
-    fun pinCodeLookup(apiResponseListener: ApiResponseListener<PinCodeLookupResponse>, pinCode: String)
+    fun pinCodeLookup(
+        apiResponseListener: ApiResponseListener<PinCodeLookupResponse>,
+        pinCode: String
+    )
+
+    fun getOrderDetails(
+        apiResponseListener: ApiResponseListener<OrderDetailsResponse>,
+        header: String,
+        page: Int,
+        query: Map<String, String>
+    )
+
+    fun editProductItem(
+        apiResponseListener: ApiResponseListener<ProductResponse>,
+        header: String,
+        orderId: Int,
+        productId: Int,
+        query: Map<String, String>
+    )
+
+    fun getConstants(
+        apiResponseListener: ApiResponseListener<ConstantsResponse>
+    )
+
+    fun cancelOrder(
+        apiResponseListener: ApiResponseListener<CancelOrderResponse>,
+        header: String, page: Int, data: Map<String, String>
+    )
 
 }

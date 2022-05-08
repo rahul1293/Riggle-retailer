@@ -7,13 +7,15 @@
 
         <import type="android.view.View" />
 
+        <import type="com.riggle.utils.Utility" />
+
         <variable
             name="pos"
             type="Integer" />
 
         <variable
             name="bean"
-            type="com.riggle.data.models.MenuBean" />
+            type="com.riggle.data.models.response.MyOrderDataOuter" />
 
         <variable
             name="callback"
@@ -28,8 +30,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="6dp"
-            app:cardCornerRadius="5dp"
             app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="5dp"
             app:cardElevation="2dp"
             app:cardUseCompatPadding="true"
             app:layout_constraintEnd_toEndOf="parent"
@@ -37,31 +39,34 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <RelativeLayout
+                android:id="@+id/rlMain"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:onClick="@{v->callback.onItemClick(v,bean,pos)}"
                 android:padding="10dp">
 
                 <TextView
                     android:id="@+id/siblingInfoTextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_toStartOf="@+id/ivEdit"
                     android:ellipsize="end"
                     android:fontFamily="@font/font_medium"
                     android:maxLines="2"
-                    android:text="Serviced by : Hub Name"
+                    android:text='@{"Serviced by : "+bean.serviceHub.name}'
                     android:textColor="@color/black_68"
                     android:textSize="12sp"
                     android:textStyle="bold"
-                    android:layout_toStartOf="@+id/ivEdit"
                     tools:text="Serviced by : Hub Name" />
 
                 <ImageView
                     android:id="@+id/ivEdit"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    app:tint="@color/colorPrimary"
                     android:layout_alignParentEnd="true"
-                    android:src="@drawable/ic_edit_icon" />
+                    android:src="@drawable/ic_edit_icon"
+                    android:visibility='@{bean.status.equalsIgnoreCase("pending")?View.VISIBLE:View.GONE}'
+                    app:tint="@color/colorPrimary" />
 
                 <TextView
                     android:id="@+id/tvOrderStatus"
@@ -69,13 +74,13 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/siblingInfoTextView"
                     android:layout_marginTop="8dp"
+                    android:layout_toStartOf="@+id/ivEdit"
                     android:fontFamily="@font/font_regular"
                     android:maxLines="2"
-                    android:text="Order Status : Pending"
+                    android:text='@{"Order Status : "+bean.status}'
                     android:textColor="@color/black_68"
                     android:textSize="12sp"
                     android:textStyle="bold"
-                    android:layout_toStartOf="@+id/ivEdit"
                     tools:text="Order Status : Pending" />
 
                 <TextView
@@ -84,13 +89,13 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/tvOrderStatus"
                     android:layout_marginTop="8dp"
+                    android:layout_toStartOf="@+id/ivEdit"
                     android:fontFamily="@font/font_regular"
                     android:maxLines="2"
-                    android:text="Order ID: RIG7475"
+                    android:text='@{"Order ID : "+bean.code}'
                     android:textColor="@color/black_68"
                     android:textSize="12sp"
                     android:textStyle="bold"
-                    android:layout_toStartOf="@+id/ivEdit"
                     tools:text="Order ID: RIG7475" />
 
                 <TextView
@@ -102,7 +107,7 @@
                     android:layout_toStartOf="@+id/ivEdit"
                     android:fontFamily="@font/font_regular"
                     android:maxLines="2"
-                    android:text="Order Value: ₹400.00"
+                    android:text='@{"Order Value : ₹"+bean.amount}'
                     android:textColor="@color/black_68"
                     android:textSize="12sp"
                     android:textStyle="bold"
@@ -114,13 +119,13 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/tvOrderValue"
                     android:layout_marginTop="8dp"
+                    android:layout_toStartOf="@+id/ivEdit"
                     android:fontFamily="@font/font_regular"
                     android:maxLines="2"
-                    android:text="Expected Delivery Date: 15/04/2022"
+                    android:text='@{"Expected Delivery Date: "+Utility.INSTANCE.convertDate(bean.deliveryDate)}'
                     android:textColor="@color/black_68"
                     android:textSize="12sp"
                     android:textStyle="bold"
-                    android:layout_toStartOf="@+id/ivEdit"
                     tools:text="Expected Delivery Date: 15/04/2022" />
 
                 <TextView
@@ -129,14 +134,15 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/tvDeliveryDate"
                     android:layout_marginTop="8dp"
+                    android:layout_toStartOf="@+id/ivEdit"
                     android:fontFamily="@font/font_regular"
                     android:maxLines="2"
-                    android:text="Payment Options:"
+                    android:text="Payment Options: Cash"
                     android:textColor="@color/black_68"
                     android:textSize="12sp"
                     android:textStyle="bold"
-                    android:layout_toStartOf="@+id/ivEdit"
-                    tools:text="Payment Options:" />
+                    android:visibility="gone"
+                    tools:text="Payment Options: Cash" />
 
             </RelativeLayout>
 

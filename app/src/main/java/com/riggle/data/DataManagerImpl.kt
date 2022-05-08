@@ -18,7 +18,10 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
+import retrofit2.http.Header
+import retrofit2.http.Path
 import retrofit2.http.Query
+import retrofit2.http.QueryMap
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -441,11 +444,12 @@ class DataManagerImpl(
 
     override fun getMyOrdersOne(
         apiResponseListener: ApiResponseListener<JsonElement>,
-        page: Int,
-        expand: String
+        /*page: Int,
+        expand: String*/
+        params: HashMap<String, String>
     ) {
         executeApiCallOne(
-            apiInterface.getMyOrdersOne(page, expand),
+            apiInterface.getMyOrdersOne(params/*page, expand*/),
             apiResponseListener,
             Calendar.getInstance().timeInMillis
         )
@@ -563,6 +567,56 @@ class DataManagerImpl(
     ) {
         executeApiCallOne(
             apiInterface.pinCodeLookup(pinCode),
+            apiResponseListener,
+            Calendar.getInstance().timeInMillis
+        )
+    }
+
+    override fun getOrderDetails(
+        apiResponseListener: ApiResponseListener<OrderDetailsResponse>,
+        header: String,
+        page: Int,
+        query: Map<String, String>
+    ) {
+        executeApiCallOne(
+            apiInterface.getOrderDetails(header, page, query),
+            apiResponseListener,
+            Calendar.getInstance().timeInMillis
+        )
+    }
+
+    override fun editProductItem(
+        apiResponseListener: ApiResponseListener<ProductResponse>,
+        header: String,
+        orderId: Int,
+        productId: Int,
+        query: Map<String, String>
+    ) {
+        executeApiCallOne(
+            apiInterface.editProductItem(
+                header, orderId, productId, query
+            ),
+            apiResponseListener,
+            Calendar.getInstance().timeInMillis
+        )
+    }
+
+    override fun getConstants(apiResponseListener: ApiResponseListener<ConstantsResponse>) {
+        executeApiCallOne(
+            apiInterface.getConstants(),
+            apiResponseListener,
+            Calendar.getInstance().timeInMillis
+        )
+    }
+
+    override fun cancelOrder(
+        apiResponseListener: ApiResponseListener<CancelOrderResponse>,
+        header: String,
+        page: Int,
+        data: Map<String, String>
+    ) {
+        executeApiCallOne(
+            apiInterface.cancelOrder(header, page, data),
             apiResponseListener,
             Calendar.getInstance().timeInMillis
         )

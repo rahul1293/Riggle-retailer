@@ -199,7 +199,7 @@ class EnterOTPActivity : CustomAppCompatActivityViewImpl(), CustomAppViewConnect
                     usrData.session_key = response.session_id.toString()
                     /*End Addition Work*/
 
-                    if (response.user != null && response.user?.retailer?.account_status.equals("completed")) {
+                    if (response.user != null && (userPreference.userData?.retailer?.account_status.equals("completed") || (userPreference.userData?.retailer?.store_type!=null && !userPreference.userData?.retailer?.store_type.equals("")))/*response.user?.retailer?.account_status.equals("completed")*/) {
                         userPreference
                             .updateUserData(usrData/*response.user*/)
                         start(applicationContext, false)

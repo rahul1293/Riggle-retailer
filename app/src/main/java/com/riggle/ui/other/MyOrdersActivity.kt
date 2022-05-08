@@ -25,6 +25,7 @@ import kotlinx.android.synthetic.main.layout_appbar.*
 import org.json.JSONObject
 import org.koin.android.ext.android.inject
 import java.util.*
+import kotlin.collections.HashMap
 
 class MyOrdersActivity : CustomAppCompatActivityViewImpl(), CustomAppViewConnector {
 
@@ -57,12 +58,13 @@ class MyOrdersActivity : CustomAppCompatActivityViewImpl(), CustomAppViewConnect
         supportActionBar?.title = resources.getString(R.string.my_orders)
         loaderDialog = LoadingDialog(activity)
         //populateLoaderRecyclerView(rvOrders);
+        rlCartIcon.visibility = View.GONE
         fetchData()
         addOnClickListeners()
     }
 
     private fun showHideLoader(state: Boolean) {
-        if (loaderDialog != null) if (state) loaderDialog?.show() else loaderDialog?.hide()
+        if (loaderDialog != null) if (state) loaderDialog?.show() else loaderDialog?.dismiss()
     }
 
     private fun addOnClickListeners() {
@@ -77,6 +79,10 @@ class MyOrdersActivity : CustomAppCompatActivityViewImpl(), CustomAppViewConnect
         showHideLoader(true)
         isApiCallRunning = true
         userPreference.userData?.retailer?.id?.let {
+
+            val params = HashMap<String, String>()
+            params["retailer"] = it.toString()
+            params["expand"] = "products.free_product,products.product.banner_image,service_hub"
 
             dataManager.getMyOrdersOne(object :
                 ApiResponseListener<JsonElement> {
@@ -116,7 +122,7 @@ class MyOrdersActivity : CustomAppCompatActivityViewImpl(), CustomAppViewConnect
                     isApiCallRunning = false
                     emptyOrdersLinearLayout?.visibility = View.GONE
                 }
-            }, it, "products.free_product,products.product.banner_image")
+            }, params/*it, "products.free_product,products.product.banner_image"*/)
 
 
             /*dataManager.getMyOrders(object :
@@ -206,7 +212,6 @@ class MyOrdersActivity : CustomAppCompatActivityViewImpl(), CustomAppViewConnect
             context.startActivity(intent)
         }
     }
-
 
 
     /*{

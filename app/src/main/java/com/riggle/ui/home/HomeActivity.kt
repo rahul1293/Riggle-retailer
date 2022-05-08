@@ -81,8 +81,8 @@ class HomeActivity : CustomAppCompatActivityViewImpl(), CustomAppViewConnector {
             cartFragment = ActiveOrderFragment.newInstance()
             homePagerAdapter!!.addFragment(
                 cartFragment!!,
-                getString(R.string.active_orders),
-                R.drawable.ic_cart
+                getString(R.string.live_orders),
+                R.drawable.ic_active_order
             )
         }
         if (profileFragment == null) {

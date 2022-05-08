@@ -7,6 +7,7 @@ import com.riggle.data.models.response.*
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
+import retrofit2.Response
 import retrofit2.http.*
 import kotlin.collections.ArrayList
 import kotlin.collections.HashMap
@@ -163,8 +164,9 @@ interface ApiService {
 
     @GET(APIUrlConstants.MY_ORDERS)
     fun getMyOrdersOne(
-        @Query("retailer") page: Int,
-        @Query("expand") expand: String
+        @QueryMap params: HashMap<String, String>
+        /* @Query("retailer") page: Int,
+         @Query("expand") expand: String*/
     ): Call<JsonElement>
 
     @POST(APIUrlConstants.addUser)
@@ -176,5 +178,31 @@ interface ApiService {
     @GET(APIUrlConstants.pinLookup)
     fun pinCodeLookup(@Query("code") expand: String): Call<PinCodeLookupResponse>
 
+    @GET(APIUrlConstants.pendingOrderDetails)
+    fun getOrderDetails(
+        @Header("Authorization") header: String,
+        @Path("id") page: Int,
+        @QueryMap query: Map<String, String>
+    ): Call<OrderDetailsResponse>
+
+    @FormUrlEncoded
+    @PATCH(APIUrlConstants.editPendingOrders)
+    fun editProductItem(
+        @Header("Authorization") header: String,
+        @Path("id") orderId: Int?,
+        @Path("pId") productId: Int?,
+        @FieldMap data: Map<String, String>
+    ): Call<ProductResponse>
+
+    @GET(APIUrlConstants.constants)
+    fun getConstants(): Call<ConstantsResponse>
+
+    @FormUrlEncoded
+    @POST(APIUrlConstants.cancelOrder)
+    fun cancelOrder(
+        @Header("Authorization") header: String,
+        @Path("id") page: Int,
+        @FieldMap data: Map<String, String>
+    ): Call<CancelOrderResponse>
 
 }

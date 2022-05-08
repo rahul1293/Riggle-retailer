@@ -396,7 +396,7 @@ class SelectDeliverySlot : CustomAppCompatActivityViewImpl(), CustomAppViewConne
 
     private fun showHideLoader(state: Boolean) {
         if (loadingDialog != null) {
-            if (state) loadingDialog?.show() else loadingDialog?.hide()
+            if (state) loadingDialog?.show() else loadingDialog?.dismiss()
         } else {
             loadingDialog = LoadingDialog(activity)
             showHideLoader(state)
@@ -427,7 +427,7 @@ class SelectDeliverySlot : CustomAppCompatActivityViewImpl(), CustomAppViewConne
                     MyOrdersActivity.Companion.start(this@SelectDeliverySlot)
                     finish()
                 } else {
-                    Toast.makeText(this@SelectDeliverySlot, apiError?.body, Toast.LENGTH_SHORT)
+                    Toast.makeText(this@SelectDeliverySlot, apiError?.msg, Toast.LENGTH_SHORT)
                         .show()
                 }
             }

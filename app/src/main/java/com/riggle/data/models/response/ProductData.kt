@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 import kotlin.collections.ArrayList
 
 data class ProductsData(
-    val brand_id: Int,
+    val brand_id: Int = 0,
     /*val code: String,*/
     /*val name: String,*/
     @SerializedName("primary_unit") val primaryUnit: String,
@@ -68,7 +68,8 @@ data class ProductsData(
     /*val expiry_in_days: Int,*/
     val riggle_coins: Int,
     val free_product_quantity: Int,
-    val brand: Int,
+    @SerializedName("brand")
+    val brand: Any,
     val category: Int,
     val schemes: ArrayList<SchemesBean>,
     //for cart
@@ -141,7 +142,7 @@ data class BannerImage(
 )
 
 data class ComboProducts(
-    val id: Int,
+    /*val id: Int,
     val update_url: String,
     val created_at: String,
     val updated_at: String,
@@ -149,8 +150,30 @@ data class ComboProducts(
     val name: String,
     val is_active: Boolean,
     val step: Int,
-    val products: ArrayList<ProductsData>
+    val products: ArrayList<ProductsData>*/
+    val code: String,
+    val created_at: String,
+    val id: Int,
+    val is_active: Boolean,
+    val name: String,
+    val products: List<ProductsData>,
+    val step: Int,
+    val update_url: String,
+    val updated_at: String
 )
 
 data class SearchData(val products: ArrayList<ProductsData>)
+
+data class BrandResponse(
+    val code: String,
+    val company: Int,
+    val created_at: String,
+    val doc_id: String,
+    val id: Int,
+    val image: String,
+    val is_active: Boolean,
+    val name: String,
+    val update_url: String,
+    val updated_at: String
+)
 

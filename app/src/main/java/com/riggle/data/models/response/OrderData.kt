@@ -27,7 +27,7 @@ data class MyOrderDataOuter(
     @SerializedName("cancelled_at") var cancelledAt: String? = null,
     @SerializedName("confirmed_at") var confirmedAt: String? = null,
     @SerializedName("retailer") var retailer: Int? = null,
-    @SerializedName("service_hub") var serviceHub: Int? = null,
+    @SerializedName("service_hub") var serviceHub: ServiceHub?/*Int?*/ = null,
     @SerializedName("products") var products: ArrayList<Products> = arrayListOf()
 
 )
@@ -131,7 +131,7 @@ data class FreeProduct(
     @SerializedName("retailer_step") var retailerStep: Int? = null,
     @SerializedName("expiry_in_days") var expiryInDays: Int? = null,
     @SerializedName("riggle_coins") var riggleCoins: Int? = null,
-    @SerializedName("brand") var brand: Int? = null,
+    @SerializedName("brand") var brand: Any? = null,
     @SerializedName("free_quantity") var free_quantity: Int? = null,
     @SerializedName("category") var category: String? = null,
     @SerializedName("inactive_regions") var inactiveRegions: ArrayList<String> = arrayListOf(),
@@ -157,5 +157,33 @@ data class ServiceHub(
     @SerializedName("area") var area: Int? = null,
     @SerializedName("city") var city: String? = null,
     @SerializedName("brands") var brands: ArrayList<Int> = arrayListOf()
+)
+
+data class ActiveOrderData(
+    @SerializedName("id") var id: Int? = null,
+    @SerializedName("update_url") var updateUrl: String? = null,
+    @SerializedName("created_at") var createdAt: String? = null,
+    @SerializedName("updated_at") var updatedAt: String? = null,
+    @SerializedName("code") var code: String? = null,
+    @SerializedName("doc_id") var docId: String? = null,
+    @SerializedName("delivery_date") var deliveryDate: String? = null,
+    @SerializedName("final_amount") var finalAmount: Float? = null,
+    @SerializedName("amount") var amount: Float? = null,
+    @SerializedName("riggle_coins") var riggleCoins: Int? = null,
+    @SerializedName("redeemed_riggle_coins") var redeemedRiggleCoins: Int? = null,
+    @SerializedName("paid_amount") var paidAmount: Float? = null,
+    @SerializedName("pending_amount") var pendingAmount: Float? = null,
+    @SerializedName("payment_mode") var paymentMode: String? = null,
+    @SerializedName("challan_file") var challanFile: String? = null,
+    @SerializedName("cancellation_reason") var cancellationReason: String? = null,
+    @SerializedName("status") var status: String? = null,
+    @SerializedName("placed_at") var placedAt: String? = null,
+    @SerializedName("delivered_at") var deliveredAt: String? = null,
+    @SerializedName("cancelled_at") var cancelledAt: String? = null,
+    @SerializedName("confirmed_at") var confirmedAt: String? = null,
+    @SerializedName("retailer") var retailer: Int? = null,
+    @SerializedName("service_hub") var serviceHub: ServiceHub? = null,
+    @SerializedName("products") var products: ArrayList<Products> = arrayListOf()
+
 )
 
