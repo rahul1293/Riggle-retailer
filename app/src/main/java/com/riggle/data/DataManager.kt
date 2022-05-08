@@ -214,4 +214,6 @@ interface DataManager {
         header: String, page: Int, data: Map<String, String>
     )
 
+    fun getCoupons(apiResponseListener: ApiResponseListener<List<CouponBean>>)
+
 }

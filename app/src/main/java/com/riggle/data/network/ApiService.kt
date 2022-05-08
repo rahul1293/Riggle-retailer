@@ -205,4 +205,7 @@ interface ApiService {
         @FieldMap data: Map<String, String>
     ): Call<CancelOrderResponse>
 
+    @GET(APIUrlConstants.coupons)
+    fun getCoupons(): Call<List<CouponBean>>
+
 }

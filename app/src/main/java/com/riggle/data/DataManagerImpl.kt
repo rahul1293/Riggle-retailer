@@ -622,4 +622,12 @@ class DataManagerImpl(
         )
     }
 
+    override fun getCoupons(apiResponseListener: ApiResponseListener<List<CouponBean>>) {
+        executeApiCallOne(
+            apiInterface.getCoupons(),
+            apiResponseListener,
+            Calendar.getInstance().timeInMillis
+        )
+    }
+
 }

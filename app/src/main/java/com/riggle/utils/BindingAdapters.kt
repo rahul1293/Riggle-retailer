@@ -14,6 +14,7 @@ import java.io.File
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.math.roundToInt
 
 @BindingAdapter("file")
 fun setUriImage(view: ImageView, uri: File?) {
@@ -146,4 +147,13 @@ fun setLogoImages(imageView: ImageView, image_url: String?) {
             .placeholder(R.mipmap.ic_launcher)
             .into(imageView)
     }
+}
+
+@BindingAdapter("currency")
+fun currency(view: TextView, amount:Double?) {
+    view.text = String.format(
+        view.context.getString(R.string.rupees_value_double) ?: "",
+        amount?.roundToInt()?.toFloat()
+    )
+
 }
