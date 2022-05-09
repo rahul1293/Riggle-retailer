@@ -77,6 +77,7 @@ class APIUrlConstants {
         const val editPendingOrders: String = BuildConfig.BASE_URL + "core/orders/{id}/products/{pId}/"
         const val constants: String = BuildConfig.BASE_URL + "core/constants/"
         const val cancelOrder: String = BuildConfig.BASE_URL + "core/orders/{id}/cancel/"
+        const val updateCombo: String = BuildConfig.BASE_URL + "core/orders/{id}/products/combo_update/"
 
     }
 }

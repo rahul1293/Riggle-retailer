@@ -17,9 +17,12 @@ class AuthInterceptor(var userData: UserProfileSingleton) : Interceptor {
                 .method(original.method, original.body);
             if (userData.isLogin) {
                 builder.removeHeader("Authorization")
-                val loginToken = userData.bearerToken
+                //val loginToken = userData.bearerToken
+                val loginToken = userData.userData?.session_key
                 Log.i("AuthInterceptor", "TOKEN :: >> $loginToken")
                 //builder.addHeader("Authorization", "Bearer " + loginToken)
+                builder.addHeader("Authorization", loginToken.toString())
+            } else {
                 builder.addHeader("Authorization", "Basic OTU5OTk3NjY5MjphaW5hYTAwNw==")
             }
             builder.addHeader("Connection", "close")

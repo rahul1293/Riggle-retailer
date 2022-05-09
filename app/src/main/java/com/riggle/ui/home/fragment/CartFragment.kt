@@ -8,6 +8,8 @@ import android.text.TextUtils
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.SimpleItemAnimator
 import com.google.gson.Gson
@@ -47,6 +49,7 @@ class CartFragment : CustomAppCompatActivityViewImpl(),/*CustomAppFragmentViewIm
     private var isRiggleCoinApplied = false
     private var loaderDialog: LoadingDialog? = null
     private var avail_riggle_coin = 0
+    private var coupleCode = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         connectViewToParent(this)
@@ -75,7 +78,8 @@ class CartFragment : CustomAppCompatActivityViewImpl(),/*CustomAppFragmentViewIm
 
         llOffer.setOnClickListener {
             val intent = PromoActivity.newIntent(this)
-            startActivity(intent)
+            startForResult.launch(intent)
+            //startActivity(intent)
         }
 
         tvLetAdd.setOnClickListener {
@@ -103,7 +107,7 @@ class CartFragment : CustomAppCompatActivityViewImpl(),/*CustomAppFragmentViewIm
                         isRiggleCoinApplied,
                         tvTotalAmountValue?.text.toString(),
                         tvAvailableCoins.text.toString()
-                            .toDouble()
+                            .toDouble(),coupleCode
                     )
                     /*} else {
                         Toast.makeText(
@@ -117,13 +121,22 @@ class CartFragment : CustomAppCompatActivityViewImpl(),/*CustomAppFragmentViewIm
                         it,
                         isRiggleCoinApplied,
                         tvTotalAmountValue?.text.toString(),
-                        0.0
+                        0.0,coupleCode
                     )
                 }
             }
         }
-        loadTab()
     }
+
+    private val startForResult =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                //do your stuff here
+                result.data?.getStringExtra("code")?.let {
+                    coupleCode = it
+                }
+            }
+        }
 
     fun loadTab() {
         fetchCart()
@@ -475,6 +488,7 @@ class CartFragment : CustomAppCompatActivityViewImpl(),/*CustomAppFragmentViewIm
 
     override fun onResume() {
         super.onResume()
+        loadTab()
         getDetails()
     }
 

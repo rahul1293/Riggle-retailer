@@ -7,3 +7,7 @@ data class VariantUpdate(val /*product_id*/product: Int?, val quantity: Int, val
 data class RequestToAddCart(var retailer: Int, var products: ArrayList<VariantUpdate>)
 
 data class ProductCartRequest(var products: ArrayList<VariantUpdate>)
+
+data class RequestComboUpdate(
+    val products: List<VariantUpdate>
+)

@@ -131,6 +131,7 @@ interface ApiService {
 
     @POST(APIUrlConstants.placeOrder)
     fun placeOrder(
+        @Header("Authorization") header: String,
         @Body orderBean: UploadOrder
     ): Call<JsonElement>
 
@@ -207,5 +208,12 @@ interface ApiService {
 
     @GET(APIUrlConstants.coupons)
     fun getCoupons(): Call<List<CouponBean>>
+
+    //@Headers("x-app-name:delivery_boy")
+    @POST(APIUrlConstants.updateCombo)
+    fun editComboProductItem(
+        @Path("id") orderId: Int?,
+        @Body request: RequestComboUpdate
+    ): Call<List<ComboUpdateResponse>>
 
 }

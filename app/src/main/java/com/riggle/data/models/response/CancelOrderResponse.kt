@@ -35,3 +35,21 @@ data class CancelOrderResponse(
     val update_url: String,
     val updated_at: String
 )
+
+data class ComboUpdateResponse(
+    val amount: Double,
+    val created_at: String,
+    val free_product: Any,
+    val free_product_quantity: Int,
+    val id: Int,
+    val order: Int,
+    val ordered_quantity: Int,
+    val original_rate: Double,
+    val product: Int,
+    val product_combo: Int,
+    val quantity: Int,
+    val rate: Double,
+    val riggle_coins: Int,
+    val update_url: String,
+    val updated_at: String
+)

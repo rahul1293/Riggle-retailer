@@ -405,48 +405,54 @@ class SelectDeliverySlot : CustomAppCompatActivityViewImpl(), CustomAppViewConne
 
     private fun placeOrder(details: UploadOrder) {
         showHideLoader(true)
-        dataManager.placeOrder(object : ApiResponseListener<JsonElement> {
-            override fun onSuccess(response: JsonElement) {
-                showHideLoader(false)
-                sharedPreferencesUtil.isOrderPlaced = true
-                Toast.makeText(this@SelectDeliverySlot, "Order placed", Toast.LENGTH_SHORT).show()
+        userPreference.userData?.let { data ->
+            dataManager.placeOrder(object : ApiResponseListener<JsonElement> {
+                override fun onSuccess(response: JsonElement) {
+                    showHideLoader(false)
+                    sharedPreferencesUtil.isOrderPlaced = true
+                    Toast.makeText(this@SelectDeliverySlot, "Order placed", Toast.LENGTH_SHORT)
+                        .show()
 
-                //notify cart screen to update it's cart
-                val orderConfirmed = OnOrderConfirmed(true)
-                GlobalBus.bus?.post(orderConfirmed)
-                MyOrdersActivity.Companion.start(this@SelectDeliverySlot)
-                finish()
-            }
-
-            override fun onError(apiError: ApiError?) {
-                showHideLoader(false)
-                if (apiError?.statusCode == 201) {
                     //notify cart screen to update it's cart
                     val orderConfirmed = OnOrderConfirmed(true)
                     GlobalBus.bus?.post(orderConfirmed)
                     MyOrdersActivity.Companion.start(this@SelectDeliverySlot)
                     finish()
-                } else {
-                    Toast.makeText(this@SelectDeliverySlot, apiError?.msg, Toast.LENGTH_SHORT)
-                        .show()
                 }
-            }
-        }, details)
+
+                override fun onError(apiError: ApiError?) {
+                    showHideLoader(false)
+                    if (apiError?.statusCode == 201) {
+                        //notify cart screen to update it's cart
+                        val orderConfirmed = OnOrderConfirmed(true)
+                        GlobalBus.bus?.post(orderConfirmed)
+                        MyOrdersActivity.Companion.start(this@SelectDeliverySlot)
+                        finish()
+                    } else {
+                        Toast.makeText(this@SelectDeliverySlot, apiError?.msg, Toast.LENGTH_SHORT)
+                            .show()
+                    }
+                }
+            }, data.session_key, details)
+        }
     }
 
     companion object {
         const val KEY_RIGGLE_COINS = "riggle_coins"
         const val KEY_FINAL_AMOUNT = "final_amount"
         const val KEY_REDEEM_RIGGLE = "redeem_riggle"
+        const val COPOUN_CODE = "copound_code"
         fun start(
             context: Context,
             riggle_coins: Boolean,
             final_amount: String?,
-            redeem_coin: Double?
+            redeem_coin: Double?,
+            couponCode : String
         ) {
             val bundle = Bundle()
             bundle.putBoolean(KEY_RIGGLE_COINS, riggle_coins)
             bundle.putString(KEY_FINAL_AMOUNT, final_amount)
+            bundle.putString(COPOUN_CODE, couponCode)
             redeem_coin?.let { bundle.putDouble(KEY_REDEEM_RIGGLE, it) }
             val intent = Intent(context, SelectDeliverySlot::class.java)
             intent.putExtras(bundle)

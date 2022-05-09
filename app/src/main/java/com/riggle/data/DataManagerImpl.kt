@@ -477,10 +477,11 @@ class DataManagerImpl(
 
     override fun placeOrder(
         apiResponseListener: ApiResponseListener<JsonElement>,
+        header: String,
         orderBean: UploadOrder
     ) {
         executeApiCallOne(
-            apiInterface.placeOrder(orderBean),
+            apiInterface.placeOrder(header, orderBean),
             apiResponseListener,
             Calendar.getInstance().timeInMillis
         )
@@ -625,6 +626,18 @@ class DataManagerImpl(
     override fun getCoupons(apiResponseListener: ApiResponseListener<List<CouponBean>>) {
         executeApiCallOne(
             apiInterface.getCoupons(),
+            apiResponseListener,
+            Calendar.getInstance().timeInMillis
+        )
+    }
+
+    override fun editComboProductItem(
+        apiResponseListener: ApiResponseListener<List<ComboUpdateResponse>>,
+        orderId: Int?,
+        request: RequestComboUpdate
+    ) {
+        executeApiCallOne(
+            apiInterface.editComboProductItem(orderId, request),
             apiResponseListener,
             Calendar.getInstance().timeInMillis
         )

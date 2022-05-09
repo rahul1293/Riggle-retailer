@@ -17,7 +17,6 @@ import com.riggle.data.DataManager
 import com.riggle.data.models.APICommonResponse
 import com.riggle.data.models.ApiError
 import com.riggle.data.models.request.ProductCartRequest
-import com.riggle.data.models.request.RequestToAddCart
 import com.riggle.data.models.request.VariantUpdate
 import com.riggle.data.models.response.ComboProducts
 import com.riggle.data.models.response.ProductsData

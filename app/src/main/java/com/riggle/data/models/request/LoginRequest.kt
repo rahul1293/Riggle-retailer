@@ -25,7 +25,6 @@ data class UploadOrder(
     val retailer: Int
 )
 
-
 data class UpdateRetailerOne(
 
     @SerializedName("id") var id: Int? = null,

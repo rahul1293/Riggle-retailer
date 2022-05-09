@@ -13,19 +13,21 @@ import com.riggle.BR
 import com.riggle.R
 import com.riggle.baseClass.SimpleRecyclerViewAdapter
 import com.riggle.data.models.ApiError
-import com.riggle.data.models.response.ComboProducts
-import com.riggle.data.models.response.OrderDetailsResponse
-import com.riggle.data.models.response.ProductResponse
-import com.riggle.data.models.response.ProductsData
+import com.riggle.data.models.request.RequestComboUpdate
+import com.riggle.data.models.request.VariantUpdate
+import com.riggle.data.models.response.*
 import com.riggle.data.network.ApiResponseListener
 import com.riggle.databinding.ListPendingOrderDetailBinding
 import com.riggle.ui.base.activity.CustomAppCompatActivityViewImpl
 import com.riggle.ui.base.connector.CustomAppViewConnector
 import com.riggle.ui.bottomsheets.CancelBottomSheet
 import com.riggle.ui.bottomsheets.ComboBottomSheet
+import com.riggle.ui.bottomsheets.UpdateComboSheet
 import com.riggle.ui.dialogs.LoadingDialog
 import com.riggle.utils.Constants
 import com.riggle.utils.UserProfileSingleton
+import com.riggle.utils.events.SingleRequestEvent
+import com.riggle.utils.events.Status
 import kotlinx.android.synthetic.main.activity_pending_details.*
 import kotlinx.android.synthetic.main.activity_pending_details.tvCartPrice
 import kotlinx.android.synthetic.main.activity_pending_details.tvDiscountValue
@@ -50,7 +52,7 @@ class PendingOrderDetails : CustomAppCompatActivityViewImpl(), CustomAppViewConn
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             return intent
         }
-
+        var obrComboSelect = SingleRequestEvent<ArrayList<VariantUpdate>>()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -72,9 +74,38 @@ class PendingOrderDetails : CustomAppCompatActivityViewImpl(), CustomAppViewConn
         }
 
         loaderDialog = LoadingDialog(activity)
+
+        obrComboSelect.observe(this, androidx.lifecycle.Observer {
+            when (it?.status) {
+                Status.SUCCESS -> {
+                    it.data?.let { data -> apiUpdateCalls(data) }
+                }
+            }
+        })
+
         setListener()
         setUpOrderProductList()
         fetchData()
+    }
+
+    private fun apiUpdateCalls(data: ArrayList<VariantUpdate>) {
+        dataManager.editComboProductItem(object :
+            ApiResponseListener<List<ComboUpdateResponse>> {
+            override fun onSuccess(response: List<ComboUpdateResponse>) {
+                if (response != null) {
+                    fetchData()
+                }
+            }
+
+            override fun onError(apiError: ApiError?) {
+                Toast.makeText(
+                    activity,
+                    apiError?.message,
+                    Toast.LENGTH_SHORT
+                )
+                    .show()
+            }
+        }, orderId,RequestComboUpdate(data))
     }
 
     private fun setListener() {
@@ -220,7 +251,7 @@ class PendingOrderDetails : CustomAppCompatActivityViewImpl(), CustomAppViewConn
 
     private fun showComboSheet(m: ProductsData?) {
         m?.let { m ->
-            val sheet = ComboBottomSheet()
+            val sheet = UpdateComboSheet()
             sheet.show(supportFragmentManager, sheet.tag)
             val bundle = Bundle()
             bundle.putBoolean("is_update", true)
