@@ -49,6 +49,7 @@ class ImageDetailsActivity : CustomAppCompatActivityViewImpl(), CustomAppViewCon
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.title = resources.getString(R.string.product_image)
+        rlCartIcon.visibility = View.GONE
         intent?.getIntExtra("position", 0)?.let {
             pos = it
         }

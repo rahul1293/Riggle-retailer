@@ -107,7 +107,7 @@ class CartFragment : CustomAppCompatActivityViewImpl(),/*CustomAppFragmentViewIm
                         isRiggleCoinApplied,
                         tvTotalAmountValue?.text.toString(),
                         tvAvailableCoins.text.toString()
-                            .toDouble(),coupleCode
+                            .toDouble(), coupleCode
                     )
                     /*} else {
                         Toast.makeText(
@@ -121,7 +121,7 @@ class CartFragment : CustomAppCompatActivityViewImpl(),/*CustomAppFragmentViewIm
                         it,
                         isRiggleCoinApplied,
                         tvTotalAmountValue?.text.toString(),
-                        0.0,coupleCode
+                        0.0, coupleCode
                     )
                 }
             }
@@ -170,8 +170,10 @@ class CartFragment : CustomAppCompatActivityViewImpl(),/*CustomAppFragmentViewIm
             override fun onSuccess(response: ResponseCartData) {
                 showHideLoader(false)
                 response?.let {
-                    if (response != null && response.products_in_cart != null && !response.products_in_cart.isEmpty()) {
+                    if (it.products_in_cart != null && !it.products_in_cart.isEmpty()) {
                         hideEmptyCartView()
+                        userPreference.sharedPreferencesUtil.cartCount =
+                            response.products_in_cart.size
                         /*val cartData : BrandResponse =
                             Gson().fromJson(response.toString(), BrandResponse::class.java)*/
                         cartData = response
@@ -193,6 +195,7 @@ class CartFragment : CustomAppCompatActivityViewImpl(),/*CustomAppFragmentViewIm
     }
 
     private fun showEmptyCartView() {
+        userPreference.sharedPreferencesUtil.cartCount = 0
         emptyCartLinearLayout?.visibility = View.VISIBLE
     }
 

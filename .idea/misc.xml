@@ -3,9 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/layout/activity_image_details.xml" value="0.14647530603630224" />
         <entry key="app/src/main/res/layout/activity_promo.xml" value="0.14647530603630224" />
         <entry key="app/src/main/res/layout/bottom_sheet_combo.xml" value="0.14647530603630224" />
         <entry key="app/src/main/res/layout/bottom_sheet_combo_update.xml" value="0.1483539974348012" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.14647530603630224" />
+        <entry key="app/src/main/res/layout/layout_appbar.xml" value="0.1" />
         <entry key="app/src/main/res/layout/list_combo_products.xml" value="0.14647530603630224" />
         <entry key="app/src/main/res/layout/list_coupon_items.xml" value="0.14647530603630224" />
         <entry key="app/src/main/res/layout/list_update_combo_products.xml" value="0.1483539974348012" />

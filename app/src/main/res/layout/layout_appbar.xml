@@ -30,9 +30,11 @@
                     android:src="@drawable/ic_cart" />
 
                 <TextView
+                    android:id="@+id/tvCartCount"
                     android:layout_width="10dp"
                     android:layout_height="10dp"
                     android:layout_marginStart="10dp"
+                    android:visibility="gone"
                     android:background="@drawable/shape_circle_white"
                     android:backgroundTint="@color/colorPrimary"
                     android:gravity="center"

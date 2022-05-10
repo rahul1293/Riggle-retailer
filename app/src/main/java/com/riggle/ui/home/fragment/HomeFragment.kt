@@ -33,8 +33,10 @@ import com.riggle.ui.other.SearchActivity
 import com.riggle.ui.other.ShopByBrandCategory
 import com.riggle.ui.other.registration.WelcomeScreen
 import com.riggle.utils.UserProfileSingleton
+import kotlinx.android.synthetic.main.fragment_cart.*
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_home.ivCartView
+import kotlinx.android.synthetic.main.fragment_home.tvRiggleCoins
 import kotlinx.android.synthetic.main.layout_appbar.*
 import org.koin.android.ext.android.inject
 import java.util.*
@@ -149,6 +151,33 @@ class HomeFragment : CustomAppFragmentViewImpl(), CustomAppViewConnector,
                 tvEmpty?.visibility = View.VISIBLE
             }
         }
+
+        if (userPreference.sharedPreferencesUtil.cartCount > 0) {
+            tvCartBadge.visibility = View.VISIBLE
+        } else {
+            getCartData()
+        }
+
+    }
+
+    private fun getCartData() {
+        dataManager.fetchCart(object : ApiResponseListener<ResponseCartData> {
+            override fun onSuccess(response: ResponseCartData) {
+                showHideLoader(false)
+                response.let {
+                    if (it.products_in_cart.isNotEmpty()) {
+                        tvCartBadge.visibility = View.VISIBLE
+                        userPreference.sharedPreferencesUtil.cartCount = it.products_in_cart.size
+                    } else {
+                        tvCartBadge.visibility = View.GONE
+                    }
+                }
+            }
+
+            override fun onError(apiError: ApiError?) {
+
+            }
+        }, userPreference.userData?.retailer?.id ?: 0, "banner_image,service_hub,brand")
     }
 
     private fun getProductsAPI(type: String) {

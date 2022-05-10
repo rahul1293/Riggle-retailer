@@ -3,6 +3,7 @@ package com.riggle.ui.subcategory
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.Gson
@@ -79,6 +80,11 @@ class ProductListActivity : CustomAppCompatActivityViewImpl(), CustomAppViewConn
 
     override fun onResume() {
         super.onResume()
+        if (userPreference.sharedPreferencesUtil.cartCount > 0) {
+            tvCartCount.visibility = View.VISIBLE
+        } else {
+            tvCartCount.visibility = View.GONE
+        }
         fetchData()
     }
 
@@ -219,6 +225,8 @@ class ProductListActivity : CustomAppCompatActivityViewImpl(), CustomAppViewConn
                     if (response != null) {
                         if (response.isNotEmpty()) {
                             response[0].product?.let { it ->
+                                /*it.item_cart?.let { cart ->
+                                }*/
                                 itemUpdatedItem(id, productQuant)
                             }
                         } else {

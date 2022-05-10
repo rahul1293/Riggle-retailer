@@ -11,3 +11,9 @@ data class ProductCartRequest(var products: ArrayList<VariantUpdate>)
 data class RequestComboUpdate(
     val products: List<VariantUpdate>
 )
+
+data class PostCartRequest(
+    val coupon_code: Int,
+    val products: List<VariantUpdate>,
+    val redeemed_riggle_coins: Int
+)

@@ -5,7 +5,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.riggle.R
 import com.riggle.data.models.APICommonResponse
 import com.riggle.data.models.ApiError
@@ -14,15 +13,19 @@ import com.riggle.data.network.ApiResponseListener
 import com.riggle.ui.base.activity.CustomAppCompatActivityViewImpl
 import com.riggle.ui.base.connector.CustomAppViewConnector
 import com.riggle.ui.dialogs.LoadingDialog
-import com.riggle.ui.home.HomeActivity
 import com.riggle.ui.home.adapters.HomeCategoryAdapter
 import com.riggle.ui.home.fragment.CartFragment
+import com.riggle.utils.UserProfileSingleton
 import kotlinx.android.synthetic.main.activity_sub_category.*
+import kotlinx.android.synthetic.main.activity_sub_category.rlCategories
+import kotlinx.android.synthetic.main.activity_sub_category.rvCategories
 import kotlinx.android.synthetic.main.layout_appbar.*
+import kotlinx.android.synthetic.main.layout_appbar.ivCartView
+import org.koin.android.ext.android.inject
 import kotlin.collections.ArrayList
 
 class SubCategoryActivity : CustomAppCompatActivityViewImpl(), CustomAppViewConnector {
-
+    private val userPreference: UserProfileSingleton by inject()
     override fun onCreate(savedInstanceState: Bundle?) {
         connectViewToParent(this)
         super.onCreate(savedInstanceState)
@@ -116,6 +119,15 @@ class SubCategoryActivity : CustomAppCompatActivityViewImpl(), CustomAppViewConn
             startActivity(intent)
         }
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (userPreference.sharedPreferencesUtil.cartCount > 0) {
+            tvCartCount.visibility = View.VISIBLE
+        } else {
+            tvCartCount.visibility = View.GONE
+        }
     }
 
     companion object {

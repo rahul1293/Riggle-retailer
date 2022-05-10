@@ -84,9 +84,10 @@ class SharedPreferencesUtilImpl(private val context: Context) : SharedPreference
     }
 
     override fun getRetailerDetails(): UserDetails? {
-        pref?.getString("retailer_details","")
+        pref?.getString("retailer_details", "")
         try {
-            val objUser = Gson().fromJson(pref?.getString("retailer_details",""), UserDetails::class.java)
+            val objUser =
+                Gson().fromJson(pref?.getString("retailer_details", ""), UserDetails::class.java)
             if (objUser != null) {
                 return objUser
             }
@@ -97,7 +98,7 @@ class SharedPreferencesUtilImpl(private val context: Context) : SharedPreference
     }
 
     override fun isOrderPlaced(): Boolean {
-        return contextPref?.getBoolean("order_placed", false)?:false
+        return contextPref?.getBoolean("order_placed", false) ?: false
     }
 
     override fun saveRecentSearchesList(list: ArrayList<String>) {
@@ -119,9 +120,7 @@ class SharedPreferencesUtilImpl(private val context: Context) : SharedPreference
             return ArrayList<String>()
         }
 
-
     }
-
 
     override fun setOrderPlaced(value: Boolean) {
         contextPrefEditor?.putBoolean("order_placed", value)
@@ -131,10 +130,19 @@ class SharedPreferencesUtilImpl(private val context: Context) : SharedPreference
     override fun saveSupportNumber(value: String?) {
         contextPrefEditor?.putString("support_number", value)
         contextPrefEditor?.apply()
-    }  
-    
+    }
+
     override fun getSupportNumber(): String? {
-       return  pref?.getString("support_number","")
+        return pref?.getString("support_number", "")
+    }
+
+    override fun setCartCount(count: Int) {
+        contextPrefEditor?.putInt("cart_count", count)
+        contextPrefEditor?.apply()
+    }
+
+    override fun getCartCount(): Int? {
+        return pref?.getInt("cart_count", 0)
     }
 
     companion object {

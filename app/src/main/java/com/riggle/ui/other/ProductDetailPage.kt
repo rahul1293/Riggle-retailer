@@ -448,6 +448,15 @@ class ProductDetailPage : CustomAppCompatActivityViewImpl(), CustomAppViewConnec
         fetchData()
     }
 
+    override fun onResume() {
+        super.onResume()
+        if (userPreference.sharedPreferencesUtil.cartCount > 0) {
+            tvCartCount.visibility = View.VISIBLE
+        } else {
+            tvCartCount.visibility = View.GONE
+        }
+    }
+
     override fun itemUpdated(scheme: SchemesBean, pos: Int) {
 
     }

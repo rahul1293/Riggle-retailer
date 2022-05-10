@@ -20,11 +20,17 @@ public interface SharedPreferencesUtil {
     boolean isOrderPlaced();
 
     void saveRecentSearchesList(ArrayList<String> list);
-    ArrayList<String> getRecentSearchesList( );
+
+    ArrayList<String> getRecentSearchesList();
 
     void setOrderPlaced(boolean value);
-    void saveSupportNumber(String value);
-    String getSupportNumber( );
 
+    void saveSupportNumber(String value);
+
+    String getSupportNumber();
+
+    void setCartCount(int count);
+
+    Integer getCartCount();
 
 }
