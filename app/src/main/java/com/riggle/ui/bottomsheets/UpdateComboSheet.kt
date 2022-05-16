@@ -18,6 +18,7 @@ import com.riggle.data.models.request.VariantUpdate
 import com.riggle.data.models.response.ComboProducts
 import com.riggle.data.models.response.ProductsData
 import com.riggle.ui.dialogs.LoadingDialog
+import com.riggle.ui.home.fragment.CartFragment
 import com.riggle.ui.home.pendingDetails.PendingOrderDetails
 import com.riggle.ui.listener.ProductChooseListener
 import com.riggle.utils.UserProfileSingleton
@@ -80,6 +81,7 @@ class UpdateComboSheet : BottomSheetDialogFragment(),
     }
 
     private var product_id = 0
+    private var isFrom = 0
     var schemeList: ArrayList<ComboProducts>? = null
     private var listener: ProductChooseListener? = null
     fun setListener(listener: ProductChooseListener?) {
@@ -129,6 +131,7 @@ class UpdateComboSheet : BottomSheetDialogFragment(),
         val bundle = arguments
         if (bundle != null) {
             product_id = bundle.getInt("product_id", 0)
+            isFrom = bundle.getInt("is_from", 0)
             schemeList = Gson().fromJson(
                 bundle.getString("scheme"),
                 object : TypeToken<ArrayList<ComboProducts>>() {}.type
@@ -142,7 +145,7 @@ class UpdateComboSheet : BottomSheetDialogFragment(),
         }
         schemeList?.let {
             if (it.size > 0) {
-                product_id = it[0].id
+                //product_id = it[0].id
                 tvName.text = it[0].name
                 tvMOQ.text = it[0].step.toString()
                 tvMoqCount.text = "MOQ : 0/" + it[0].step.toString()
@@ -170,15 +173,27 @@ class UpdateComboSheet : BottomSheetDialogFragment(),
         adapter?.getList()?.let {
             for (index in it.indices) {
                 if (it[index].quantity > 0) {
-                    val update = VariantUpdate(
-                        it[index].id,
-                        it[index].quantity,
-                        product_id
-                    )
+                    val update = if (isFrom == 0) {
+                        VariantUpdate(
+                            it[index].id,
+                            it[index].quantity,
+                            product_id
+                        )
+                    } else {
+                        VariantUpdate(
+                            it[index].product?.id,
+                            it[index].quantity,
+                            product_id
+                        )
+                    }
                     products.add(update)
                 }
             }
-            PendingOrderDetails.obrComboSelect.value = Resource.success(products, "")
+            if (isFrom == 0)
+                PendingOrderDetails.obrComboSelect.value = Resource.success(products, "")
+            else
+                CartFragment.obrComboList.value = Resource.success(products, "")
+            dismiss()
         }
     }
 

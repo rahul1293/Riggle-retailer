@@ -20,6 +20,7 @@ data class ConstantsResponse(
     val category_types: List<CategoryType>,
     val dispatch_plan_statuses: List<DispatchPlanStatuse>,
     val order_cancellation_reasons: List<OrderCancellationReason>,
+    val retailer_order_cancellation_reasons: List<OrderCancellationReason>,
     val order_statuses: List<OrderStatuse>,
     val pack_units: List<PackUnit>,
     val payment_modes: List<PaymentMode>,

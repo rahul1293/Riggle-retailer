@@ -255,11 +255,12 @@ class PendingOrderDetails : CustomAppCompatActivityViewImpl(), CustomAppViewConn
             sheet.show(supportFragmentManager, sheet.tag)
             val bundle = Bundle()
             bundle.putBoolean("is_update", true)
+            bundle.putInt("is_from",0)
             m.banner_image?.image?.let {
                 bundle.putString("banner_img", it)
             }
             m.units?.let { products ->
-                bundle.putInt("product_id", products[0].id!!)
+                bundle.putInt("product_id", m.id!!)
                 bundle.putString(
                     "scheme",
                     Gson().toJson(ArrayList<ComboProducts>().apply {

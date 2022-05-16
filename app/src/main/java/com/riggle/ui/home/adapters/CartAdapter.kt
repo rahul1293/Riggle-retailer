@@ -181,7 +181,7 @@ internal constructor(private val mContext: Context, var productsData: ArrayList<
                 (holder.tvQuantSet.text.toString().toInt() + (1 * data.moq))
             } else {
                 (holder.tvQuantSet.text.toString()
-                    .toInt() + (1 * productsData[holder.adapterPosition].step))
+                    .toInt() /*+ (1 * productsData[holder.adapterPosition].step)*/)
             }
 
             productsData[holder.adapterPosition].item_cart = quantity
@@ -217,7 +217,7 @@ internal constructor(private val mContext: Context, var productsData: ArrayList<
                     (holder.tvQuantSet.text.toString().toInt() - (1 * data.moq))
                 } else {
                     (holder.tvQuantSet.text.toString()
-                        .toInt() - (1 * productsData[holder.adapterPosition].step))
+                        .toInt() /*- (1 * productsData[holder.adapterPosition].step)*/)
                 }
                 productsData[holder.adapterPosition].item_cart = quantity
                 holder.tvQuantSet.text = quantity.toString()

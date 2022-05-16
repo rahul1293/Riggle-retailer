@@ -643,4 +643,16 @@ class DataManagerImpl(
         )
     }
 
+    override fun postCartApi(
+        apiResponseListener: ApiResponseListener<ResponseCartData>,
+        orderId: Int?,
+        request: RequestCouponApply
+    ) {
+        executeApiCallOne(
+            apiInterface.postCartApi(orderId, request),
+            apiResponseListener,
+            Calendar.getInstance().timeInMillis
+        )
+    }
+
 }

@@ -18,21 +18,24 @@ import com.riggle.R
 import com.riggle.data.models.APICommonResponse
 import com.riggle.data.models.ApiError
 import com.riggle.data.models.request.ProductCartRequest
+import com.riggle.data.models.request.RequestCouponApply
 import com.riggle.data.models.request.VariantUpdate
-import com.riggle.data.models.response.EditCartResponse
-import com.riggle.data.models.response.ProductsData
-import com.riggle.data.models.response.ResponseCartData
-import com.riggle.data.models.response.UserDetails
+import com.riggle.data.models.response.*
 import com.riggle.data.network.ApiResponseListener
 import com.riggle.ui.base.activity.CustomAppCompatActivityViewImpl
 import com.riggle.ui.base.connector.CustomAppViewConnector
 import com.riggle.ui.base.fragment.CustomAppFragmentViewImpl
+import com.riggle.ui.bottomsheets.ComboBottomSheet
+import com.riggle.ui.bottomsheets.UpdateComboSheet
 import com.riggle.ui.dialogs.LoadingDialog
 import com.riggle.ui.home.HomeActivity
 import com.riggle.ui.home.adapters.CartAdapter
+import com.riggle.ui.home.pendingDetails.PendingOrderDetails
 import com.riggle.ui.other.SelectDeliverySlot
 import com.riggle.ui.promo.PromoActivity
 import com.riggle.utils.UserProfileSingleton
+import com.riggle.utils.events.SingleRequestEvent
+import com.riggle.utils.events.Status
 import kotlinx.android.synthetic.main.fragment_cart.*
 import org.koin.android.ext.android.inject
 import java.util.*
@@ -49,7 +52,7 @@ class CartFragment : CustomAppCompatActivityViewImpl(),/*CustomAppFragmentViewIm
     private var isRiggleCoinApplied = false
     private var loaderDialog: LoadingDialog? = null
     private var avail_riggle_coin = 0
-    private var coupleCode = ""
+    private var cuponCode = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         connectViewToParent(this)
@@ -75,6 +78,17 @@ class CartFragment : CustomAppCompatActivityViewImpl(),/*CustomAppFragmentViewIm
         ivBack.setOnClickListener {
             onBackPressed()
         }
+
+        obrComboList.observe(this, androidx.lifecycle.Observer {
+            when (it?.status) {
+                Status.SUCCESS -> {
+                    it.data?.let { list ->
+                        val cartRequest = ProductCartRequest(list)
+                        updateCartData(cartRequest)
+                    }
+                }
+            }
+        })
 
         llOffer.setOnClickListener {
             val intent = PromoActivity.newIntent(this)
@@ -107,7 +121,7 @@ class CartFragment : CustomAppCompatActivityViewImpl(),/*CustomAppFragmentViewIm
                         isRiggleCoinApplied,
                         tvTotalAmountValue?.text.toString(),
                         tvAvailableCoins.text.toString()
-                            .toDouble(), coupleCode
+                            .toDouble(), cuponCode
                     )
                     /*} else {
                         Toast.makeText(
@@ -121,7 +135,7 @@ class CartFragment : CustomAppCompatActivityViewImpl(),/*CustomAppFragmentViewIm
                         it,
                         isRiggleCoinApplied,
                         tvTotalAmountValue?.text.toString(),
-                        0.0, coupleCode
+                        0.0, cuponCode
                     )
                 }
             }
@@ -133,10 +147,30 @@ class CartFragment : CustomAppCompatActivityViewImpl(),/*CustomAppFragmentViewIm
             if (result.resultCode == Activity.RESULT_OK) {
                 //do your stuff here
                 result.data?.getStringExtra("code")?.let {
-                    coupleCode = it
+                    cuponCode = it
+                    postCartApi(cuponCode)
                 }
             }
         }
+
+    private fun postCartApi(couponCode: String) {
+        showHideLoader(true)
+        dataManager.postCartApi(object : ApiResponseListener<ResponseCartData> {
+            override fun onSuccess(response: ResponseCartData) {
+                showHideLoader(false)
+                response?.let {
+                        populateCartDetails(response)
+                        cartLinearLayout?.visibility = View.VISIBLE
+                }
+
+            }
+
+            override fun onError(apiError: ApiError?) {
+                showHideLoader(false)
+                Toast.makeText(activity,apiError?.msg.toString(),Toast.LENGTH_SHORT).show()
+            }
+        }, userPreference.userData?.retailer?.id ?: 0, RequestCouponApply(couponCode))
+    }
 
     fun loadTab() {
         fetchCart()
@@ -235,7 +269,7 @@ class CartFragment : CustomAppCompatActivityViewImpl(),/*CustomAppFragmentViewIm
                 activity?.getString(R.string.rupees_value_double) ?: "",
                 Math.round(cartDetails.final_amount).toFloat()
             )
-            if ((cartDetails?.amount - cartDetails?.final_amount) == 0.0) {
+            /*if ((cartDetails?.amount - cartDetails?.final_amount) == 0.0) {
                 tvDiscountValue?.text = String.format(
                     activity?.getString(R.string.rupees_value_double) ?: "",
                     Math.round((cartDetails?.amount - cartDetails?.final_amount)).toFloat()
@@ -249,7 +283,7 @@ class CartFragment : CustomAppCompatActivityViewImpl(),/*CustomAppFragmentViewIm
                 )
                 tvDiscountValue?.visibility = View.VISIBLE
                 tvDiscount?.visibility = View.VISIBLE
-            }
+            }*/
 
             /*if (cartDetails.redeemed_riggle_coins != 0f) {
                 showAvailableCoinsView()
@@ -283,17 +317,21 @@ class CartFragment : CustomAppCompatActivityViewImpl(),/*CustomAppFragmentViewIm
                 )
             }
 
-            if (cartDetails.margin != null) tvDiscountValue?.text =
-                "₹" + Math.round(cartDetails.margin)
-            //Html.fromHtml(cartDetails.total_profit) else tvCartProfit?.visibility = View.GONE
-
+            if (cartDetails.coupon_discount_amount != null) tvDiscountValue?.text =
+                "₹" + cartDetails.coupon_discount_amount
+            else
+                tvDiscountValue?.text =
+                    "₹0.0"
             tvCheckoutPrice?.text = tvTotalAmountValue?.text.toString()
+
+            //Html.fromHtml(cartDetails.total_profit) else tvCartProfit?.visibility = View.GONE
             /*tvRiggleCoins?.text = activity?.getString(R.string.earn_value)?.let {
                 String.format(
                     it,
                     cartDetails.riggle_coins
                 )
             }*/
+
             tvRiggleCoins?.text = "Earn " + cartDetails.riggle_coins
         }
     }
@@ -352,17 +390,56 @@ class CartFragment : CustomAppCompatActivityViewImpl(),/*CustomAppFragmentViewIm
         type: Int
     ) {
         var itemCount = itemCount
-        showHideLoader(true)
         //worst case scenario, in case the value goes into negative due to some bug in calculation, user was not able to remove the item from cart at all.
         if (itemCount.toInt() < 0) {
             itemCount = "0"
         }
-        val variantUpdate = if (type == 2) VariantUpdate(null, itemCount.toInt(), product_id)
-        else VariantUpdate(product_id, itemCount.toInt(), null)
-        val item = ArrayList<VariantUpdate>()
-        item.add(variantUpdate)
-        //val cartDataRequest = RequestCartData(item)
-        val cartRequest = ProductCartRequest(item)
+        if (type == 2) {
+            //VariantUpdate(null, itemCount.toInt(), product_id)
+            val sheet = UpdateComboSheet()
+            val bundle = Bundle()
+            productsData.id.let {
+                bundle.putInt("product_id", it)
+            }
+            bundle.putInt("is_from", 1)
+            productsData.units?.let { products ->
+                bundle.putString(
+                    "scheme",
+                    Gson().toJson(ArrayList<ComboProducts>().apply {
+                        add(
+                            ComboProducts(
+                                productsData.code,
+                                productsData.created_at,
+                                products[0].id!!,
+                                productsData.is_active,
+                                productsData.name,
+                                products,
+                                products[0].product?.moq!!,
+                                productsData.update_url,
+                                productsData.updated_at
+                            )
+                        )
+                    })
+                )
+            }
+            //bundle.putString("scheme", Gson().toJson(productsData.combo_products))
+            sheet.arguments = bundle
+            sheet.show(supportFragmentManager, sheet.tag)
+            sheet.isCancelable = false
+            //sheet.setListener(this)
+            return
+        } else {
+            val variantUpdate = VariantUpdate(product_id, itemCount.toInt(), null)
+            val item = ArrayList<VariantUpdate>()
+            item.add(variantUpdate)
+            //val cartDataRequest = RequestCartData(item)
+            val cartRequest = ProductCartRequest(item)
+            updateCartData(cartRequest)
+        }
+    }
+
+    private fun updateCartData(cartRequest: ProductCartRequest) {
+        showHideLoader(true)
         userPreference.userData?.retailer?.id?.let {
             showHideLoader(true)
             dataManager.addCartItems(object :
@@ -390,54 +467,6 @@ class CartFragment : CustomAppCompatActivityViewImpl(),/*CustomAppFragmentViewIm
                 }
             }, it, cartRequest)
         }
-
-        /*dataManager.editCart(object : ApiResponseListener<APICommonResponse<EditCartResponse>> {
-            override fun onSuccess(response: APICommonResponse<EditCartResponse>) {
-                showHideLoader(false)
-
-                //if cart List is empty hide the cartView
-                cartAdapter?.let {
-                    if (it.productsData.isEmpty()) {
-                        showEmptyCartView()
-                        tvCartPrice?.text =
-                            String.format(
-                                activity?.getString(R.string.rupees_value_double) ?: "",
-                                0.0
-                            )
-                        tvDiscountValue?.text =
-                            String.format(
-                                activity?.getString(R.string.rupees_value_double) ?: "",
-                                0.0
-                            )
-                        tvTotalAmountValue?.text =
-                            String.format(
-                                activity?.getString(R.string.rupees_value_double) ?: "",
-                                0.0
-                            )
-                        cartLinearLayout?.visibility = View.GONE
-                    } else {
-                        hideEmptyCartView()
-                        response?.data?.cart_details?.let {
-                            //cartData?.cart_details = it
-                        }
-                        if (isRiggleCoinApplied) {
-                            applyRiggleCoin()
-                        }
-                        //populateCartDetails(response?.data?.cart_details)
-                    }
-                    response?.data?.parent_object?.let {
-                        val updateProdOnHome = UpdateProdOnHome(it)
-                        GlobalBus.bus?.post(updateProdOnHome)
-                    }
-
-                }
-
-            }
-
-            override fun onError(apiError: ApiError?) {
-                showHideLoader(false)
-            }
-        }, cartDataRequest)*/
     }
 
     private fun updateCartItem(data: EditCartResponse?) {
@@ -541,5 +570,7 @@ class CartFragment : CustomAppCompatActivityViewImpl(),/*CustomAppFragmentViewIm
             val intent = Intent(activity, CartFragment::class.java)
             return intent
         }
+
+        var obrComboList = SingleRequestEvent<ArrayList<VariantUpdate>>()
     }
 }

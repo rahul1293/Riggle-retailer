@@ -17,3 +17,7 @@ data class PostCartRequest(
     val products: List<VariantUpdate>,
     val redeemed_riggle_coins: Int
 )
+
+data class RequestCouponApply(
+    val coupon_code: String
+)

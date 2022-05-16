@@ -176,7 +176,7 @@ class CancelBottomSheet : BottomSheetDialogFragment() {
                 override fun onSuccess(response: ConstantsResponse) {
                     if (response != null) {
                         if (response.order_cancellation_reasons.isNotEmpty()) {
-                            reasonAdapter?.list = response.order_cancellation_reasons
+                            reasonAdapter?.list = response.retailer_order_cancellation_reasons
                         }
                     }
                     showHideLoader(false)

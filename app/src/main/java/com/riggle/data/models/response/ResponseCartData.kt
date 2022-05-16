@@ -11,6 +11,7 @@ data class ResponseCartData(
     var final_amount: Double,
     var riggle_coins: Double,
     var redeemed_riggle_coins: Float,
+    var coupon_discount_amount: String,
     var margin: Double
 )
 

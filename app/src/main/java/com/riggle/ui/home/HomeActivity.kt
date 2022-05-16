@@ -241,7 +241,12 @@ class HomeActivity : CustomAppCompatActivityViewImpl(), CustomAppViewConnector {
 
     override fun onDestroy() {
         super.onDestroy()
-        GlobalBus.bus?.unregister(this)
+        GlobalBus.bus?.let {
+            if ((it.isRegistered(this))) {
+                GlobalBus.bus?.unregister(this)
+            }
+        }
+        //GlobalBus.bus?.unregister(this)
     }
 
     override fun onResume() {

@@ -24,20 +24,16 @@ import com.riggle.ui.base.connector.CustomAppViewConnector
 import com.riggle.ui.base.fragment.CustomAppFragmentViewImpl
 import com.riggle.ui.bottomsheets.ProductVariantSheet
 import com.riggle.ui.dialogs.LoadingDialog
-import com.riggle.ui.home.HomeActivity
 import com.riggle.ui.home.adapters.HomeBrandAdapter
 import com.riggle.ui.home.adapters.HomeCategoryAdapter
 import com.riggle.ui.home.adapters.HomeProductsAdapter
 import com.riggle.ui.listener.ProductVariantListener
 import com.riggle.ui.other.SearchActivity
 import com.riggle.ui.other.ShopByBrandCategory
-import com.riggle.ui.other.registration.WelcomeScreen
 import com.riggle.utils.UserProfileSingleton
-import kotlinx.android.synthetic.main.fragment_cart.*
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_home.ivCartView
 import kotlinx.android.synthetic.main.fragment_home.tvRiggleCoins
-import kotlinx.android.synthetic.main.layout_appbar.*
 import org.koin.android.ext.android.inject
 import java.util.*
 import kotlin.collections.ArrayList
@@ -79,7 +75,6 @@ class HomeFragment : CustomAppFragmentViewImpl(), CustomAppViewConnector,
     override fun initializeViews(savedInstanceState: Bundle?) {
 
         rlBrands?.visibility = View.VISIBLE
-
         /*tvStoreName?.text = userPreference
             .getProfileData(UserProfileSingleton.PROFILE_PROPERTIES.STORE_NAME)*/
         tvStoreName?.text = userPreference
@@ -89,9 +84,7 @@ class HomeFragment : CustomAppFragmentViewImpl(), CustomAppViewConnector,
         //brands
         //category
         //getProductsAPI("all")
-
         addOnClickListeners()
-
         /*For brand list*/
         //populateBrandView()
 
@@ -134,7 +127,6 @@ class HomeFragment : CustomAppFragmentViewImpl(), CustomAppViewConnector,
         }
 
     }
-
 
     override fun onResume() {
         super.onResume()
@@ -198,10 +190,8 @@ class HomeFragment : CustomAppFragmentViewImpl(), CustomAppViewConnector,
                                 }
                             }
                         }
-
                     }
                 }
-
             }
 
             override fun onError(apiError: ApiError?) {
@@ -212,7 +202,6 @@ class HomeFragment : CustomAppFragmentViewImpl(), CustomAppViewConnector,
 
     private val brands: Unit
         private get() {
-
             val data = HashMap<String, String>()
             data.put("page", "1")
             data.put("type", "main")
@@ -233,6 +222,7 @@ class HomeFragment : CustomAppFragmentViewImpl(), CustomAppViewConnector,
                 }
             }, data)
         }
+
     val totalRiggleCoins: Unit
         get() {
             dataManager.getTotalRegalCoins(object :
@@ -249,6 +239,7 @@ class HomeFragment : CustomAppFragmentViewImpl(), CustomAppViewConnector,
                 override fun onError(apiError: ApiError?) {}
             })
         }
+
     private val category: Unit
         private get() {
             dataManager.getCategories(object :
@@ -341,7 +332,6 @@ class HomeFragment : CustomAppFragmentViewImpl(), CustomAppViewConnector,
         }
     }
 
-
     override fun itemClicked(product_id: Int) {
         openProductVariantSheet(product_id)
     }
@@ -364,7 +354,6 @@ class HomeFragment : CustomAppFragmentViewImpl(), CustomAppViewConnector,
                 break
             }
         }
-
 
         for (i in topPickData.indices) {
             if (topPickData[i].id == product_id || topPickData[i].id == product.siblingID) {
@@ -404,10 +393,9 @@ class HomeFragment : CustomAppFragmentViewImpl(), CustomAppViewConnector,
         if (loaderDialog != null) if (state) loaderDialog?.show() else loaderDialog?.hide()
     }
 
-
     fun refreshData() {
-        getProductsAPI("top")
-        getProductsAPI("all")
+        //getProductsAPI("top")
+        //getProductsAPI("all")
     }
 
     companion object {

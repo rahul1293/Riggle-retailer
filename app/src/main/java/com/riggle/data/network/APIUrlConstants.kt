@@ -78,6 +78,7 @@ class APIUrlConstants {
         const val constants: String = BuildConfig.BASE_URL + "core/constants/"
         const val cancelOrder: String = BuildConfig.BASE_URL + "core/orders/{id}/cancel/"
         const val updateCombo: String = BuildConfig.BASE_URL + "core/orders/{id}/products/combo_update/"
+        const val applyCoupon: String = BuildConfig.BASE_URL + "user/retailers/{id}/cart/?expand=banner_image,service_hub,brand"
 
     }
 }

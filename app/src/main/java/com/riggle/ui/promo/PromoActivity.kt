@@ -57,7 +57,7 @@ class PromoActivity : BaseActivity() {
         adapter = SimpleRecyclerViewAdapter(
             R.layout.list_coupon_items, BR.bean
         ) { v, m, pos ->
-            binding.etPromo.setText(m.code)
+            //binding.etPromo.setText(m.code)
             val intent = Intent()
             intent.putExtra("code",m.code)
             setResult(Activity.RESULT_OK,intent)

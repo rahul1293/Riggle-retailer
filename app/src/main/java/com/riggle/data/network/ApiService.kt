@@ -216,4 +216,10 @@ interface ApiService {
         @Body request: RequestComboUpdate
     ): Call<List<ComboUpdateResponse>>
 
+    @POST(APIUrlConstants.applyCoupon)
+    fun postCartApi(
+        @Path("id") orderId: Int?,
+        @Body request: RequestCouponApply
+    ): Call<ResponseCartData>
+
 }

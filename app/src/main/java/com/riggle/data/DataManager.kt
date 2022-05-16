@@ -8,9 +8,6 @@ import com.riggle.data.network.ApiResponseListener
 import kotlinx.coroutines.flow.Flow
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
-import retrofit2.Call
-import retrofit2.http.Body
-import retrofit2.http.Path
 import java.util.*
 
 interface DataManager {
@@ -224,6 +221,12 @@ interface DataManager {
         apiResponseListener: ApiResponseListener<List<ComboUpdateResponse>>,
         orderId: Int?,
         request: RequestComboUpdate
+    )
+
+    fun postCartApi(
+        apiResponseListener: ApiResponseListener<ResponseCartData>,
+        orderId: Int?,
+        request: RequestCouponApply
     )
 
 }
