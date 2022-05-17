@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.PorterDuff
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.TextView
@@ -11,10 +12,13 @@ import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentStatePagerAdapter
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import com.google.android.play.core.appupdate.AppUpdateManager
+import com.google.android.play.core.appupdate.AppUpdateManagerFactory
+import com.google.android.play.core.install.model.AppUpdateType
+import com.google.android.play.core.install.model.UpdateAvailability
 import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.riggle.BuildConfig
 import com.riggle.R
@@ -31,7 +35,6 @@ import org.koin.android.ext.android.inject
 import java.util.*
 
 class HomeActivity : CustomAppCompatActivityViewImpl(), CustomAppViewConnector {
-
     private val userPreference: UserProfileSingleton by inject()
 
     private var homePagerAdapter: TabAdapter? = null
@@ -40,6 +43,9 @@ class HomeActivity : CustomAppCompatActivityViewImpl(), CustomAppViewConnector {
     private var profileFragment: ProfileFragment? = null
     private var creditFragment: CreditFragment? = null
     private val rewardsFragment: RewardsFragment? = null
+
+    var appUpdateManager: AppUpdateManager? = null
+
     private var tabPosOnNewActivity = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         connectViewToParent(this)
@@ -51,6 +57,7 @@ class HomeActivity : CustomAppCompatActivityViewImpl(), CustomAppViewConnector {
     }
 
     override fun initializeViews(savedInstanceState: Bundle?) {
+        appUpdateManager = AppUpdateManagerFactory.create(this)
         setCrashlyticsUserIdentifier()
         populateBottomTabs()
         setUpTabs()
@@ -237,6 +244,40 @@ class HomeActivity : CustomAppCompatActivityViewImpl(), CustomAppViewConnector {
             }
         }
 
+        // Returns an intent object that you use to check for an update.
+        val appUpdateInfoTask = appUpdateManager?.appUpdateInfo
+
+// Checks whether the platform allows the specified type of update,
+// and current version staleness.
+        appUpdateInfoTask?.addOnSuccessListener { appUpdateInfo ->
+            if (appUpdateInfo.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE
+                && appUpdateInfo.updatePriority() >= 4 /* high priority */
+                && appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.IMMEDIATE)
+            ) {
+                // Request the update.
+                appUpdateManager?.startUpdateFlowForResult(
+                    // Pass the intent that is returned by 'getAppUpdateInfo()'.
+                    appUpdateInfo,
+                    // Or 'AppUpdateType.FLEXIBLE' for flexible updates.
+                    AppUpdateType.IMMEDIATE,
+                    // The current activity making the update request.
+                    this,
+                    // Include a request code to later monitor this update request.
+                    MY_REQUEST_CODE
+                )
+            }
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == MY_REQUEST_CODE) {
+            if (resultCode != RESULT_OK) {
+                Log.e("MY_APP", "Update flow failed! Result code: $resultCode")
+                // If the update is cancelled or fails,
+                // you can request to start the update again.
+            }
+        }
     }
 
     override fun onDestroy() {
@@ -265,5 +306,7 @@ class HomeActivity : CustomAppCompatActivityViewImpl(), CustomAppViewConnector {
             intent.putExtra("is_cart", isCheck)
             context.startActivity(intent)
         }
+
+        private const val MY_REQUEST_CODE = 101
     }
 }

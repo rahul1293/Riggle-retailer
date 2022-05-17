@@ -159,15 +159,15 @@ class CartFragment : CustomAppCompatActivityViewImpl(),/*CustomAppFragmentViewIm
             override fun onSuccess(response: ResponseCartData) {
                 showHideLoader(false)
                 response?.let {
-                        populateCartDetails(response)
-                        cartLinearLayout?.visibility = View.VISIBLE
+                    populateCartDetails(response)
+                    cartLinearLayout?.visibility = View.VISIBLE
                 }
 
             }
 
             override fun onError(apiError: ApiError?) {
                 showHideLoader(false)
-                Toast.makeText(activity,apiError?.msg.toString(),Toast.LENGTH_SHORT).show()
+                Toast.makeText(activity, apiError?.msg.toString(), Toast.LENGTH_SHORT).show()
             }
         }, userPreference.userData?.retailer?.id ?: 0, RequestCouponApply(couponCode))
     }
@@ -395,39 +395,46 @@ class CartFragment : CustomAppCompatActivityViewImpl(),/*CustomAppFragmentViewIm
             itemCount = "0"
         }
         if (type == 2) {
-            //VariantUpdate(null, itemCount.toInt(), product_id)
-            val sheet = UpdateComboSheet()
-            val bundle = Bundle()
-            productsData.id.let {
-                bundle.putInt("product_id", it)
-            }
-            bundle.putInt("is_from", 1)
-            productsData.units?.let { products ->
-                bundle.putString(
-                    "scheme",
-                    Gson().toJson(ArrayList<ComboProducts>().apply {
-                        add(
-                            ComboProducts(
-                                productsData.code,
-                                productsData.created_at,
-                                products[0].id!!,
-                                productsData.is_active,
-                                productsData.name,
-                                products,
-                                products[0].product?.moq!!,
-                                productsData.update_url,
-                                productsData.updated_at
+            if (itemCount.toInt() == 0) {
+                val variantUpdate = VariantUpdate(null, itemCount.toInt(), product_id)
+                val item = ArrayList<VariantUpdate>()
+                item.add(variantUpdate)
+                val cartRequest = ProductCartRequest(item)
+                updateCartData(cartRequest)
+            } else {
+                //VariantUpdate(null, itemCount.toInt(), product_id)
+                //sheet.setListener(this)
+                val sheet = UpdateComboSheet()
+                val bundle = Bundle()
+                productsData.id.let {
+                    bundle.putInt("product_id", it)
+                }
+                bundle.putInt("is_from", 1)
+                productsData.units?.let { products ->
+                    bundle.putString(
+                        "scheme",
+                        Gson().toJson(ArrayList<ComboProducts>().apply {
+                            add(
+                                ComboProducts(
+                                    productsData.code,
+                                    productsData.created_at,
+                                    products[0].id!!,
+                                    productsData.is_active,
+                                    productsData.name,
+                                    products,
+                                    products[0].product?.moq!!,
+                                    productsData.update_url,
+                                    productsData.updated_at
+                                )
                             )
-                        )
-                    })
-                )
+                        })
+                    )
+                }
+                //bundle.putString("scheme", Gson().toJson(productsData.combo_products))
+                sheet.arguments = bundle
+                sheet.show(supportFragmentManager, sheet.tag)
+                sheet.isCancelable = false
             }
-            //bundle.putString("scheme", Gson().toJson(productsData.combo_products))
-            sheet.arguments = bundle
-            sheet.show(supportFragmentManager, sheet.tag)
-            sheet.isCancelable = false
-            //sheet.setListener(this)
-            return
         } else {
             val variantUpdate = VariantUpdate(product_id, itemCount.toInt(), null)
             val item = ArrayList<VariantUpdate>()

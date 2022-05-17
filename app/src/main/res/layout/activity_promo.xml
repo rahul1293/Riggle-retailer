@@ -64,14 +64,180 @@
             android:textSize="15sp"
             app:layout_constraintTop_toBottomOf="@id/et_promo" />
 
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cvApplyCoin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="@dimen/_10sdp"
+            app:cardUseCompatPadding="true"
+            app:layout_constraintTop_toBottomOf="@+id/tv_one">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/llApplyCoin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:id="@+id/rlOrderProduct"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:padding="16dp">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/ivImg"
+                        android:layout_width="46dp"
+                        android:layout_height="46dp"
+                        android:src="@mipmap/ic_launcher" />
+
+                    <TextView
+                        android:id="@+id/tvConvert"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignTop="@+id/ivImg"
+                        android:layout_alignBottom="@+id/ivImg"
+                        android:layout_marginStart="16dp"
+                        android:layout_toRightOf="@+id/ivImg"
+                        android:fontFamily="@font/font_bold"
+                        android:gravity="center_vertical"
+                        android:text="CONVERT KARO"
+                        android:textColor="@color/black_85"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/tv_apply"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end|bottom"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:background="@drawable/btn_rounded_corner_home_off_4dp"
+                        android:backgroundTint="@color/red"
+                        android:ellipsize="end"
+                        android:layout_alignParentEnd="true"
+                        android:fontFamily="@font/font_regular"
+                        android:paddingStart="@dimen/_10sdp"
+                        android:paddingTop="@dimen/_5sdp"
+                        android:paddingEnd="@dimen/_15sdp"
+                        android:paddingBottom="@dimen/_5sdp"
+                        android:text="Free"
+                        android:textColor="@color/white"
+                        android:textSize="10sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvMoq"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignTop="@+id/rlUpdateCount"
+                        android:layout_alignBottom="@+id/rlUpdateCount"
+                        android:fontFamily="@font/font_medium"
+                        android:gravity="center_vertical"
+                        android:text="Redeem coin"
+                        android:textAllCaps="false"
+                        android:textColor="@color/black_85"
+                        android:textSize="14sp" />
+
+                    <RelativeLayout
+                        android:id="@+id/rlUpdateCount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/ivImg"
+                        android:layout_marginStart="16dp"
+                        android:layout_toEndOf="@+id/tvMoq">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/_2sdp"
+                            android:orientation="horizontal">
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/ivMinus"
+                                android:layout_width="28dp"
+                                android:layout_height="28dp"
+                                android:background="@color/colorPrimary"
+                                app:srcCompat="@drawable/ic_minus" />
+
+                            <TextView
+                                android:id="@+id/tvQuantSet"
+                                android:layout_width="40dp"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/et_bg_black"
+                                android:cursorVisible="false"
+                                android:digits="0123456789"
+                                android:fontFamily="@font/font_medium"
+                                android:gravity="center"
+                                android:text="500"
+                                android:textColor="@color/black_85"
+                                android:textSize="14sp"
+                                tools:ignore="TextViewEdits" />
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/ivPlus"
+                                android:layout_width="28dp"
+                                android:layout_height="28dp"
+                                android:background="@color/colorPrimary"
+                                app:srcCompat="@drawable/ic_plus" />
+                        </LinearLayout>
+
+                    </RelativeLayout>
+
+                    <TextView
+                        android:id="@+id/tvGrandPrice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tvMoq"
+                        android:ellipsize="end"
+                        android:fontFamily="@font/font_regular"
+                        android:maxLines="1"
+                        android:layout_marginTop="3dp"
+                        android:text="(Available Coins:5000)"
+                        android:textColor="@color/black_54"
+                        android:textSize="12sp"/>
+
+                    <TextView
+                        android:id="@+id/tvDiscount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tvGrandPrice"
+                        android:layout_marginTop="3dp"
+                        android:ellipsize="end"
+                        android:fontFamily="@font/font_medium"
+                        android:maxLines="1"
+                        android:text="Avail Discount"
+                        android:textColor="@color/black_85"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/tvDiscountPrice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tvGrandPrice"
+                        android:layout_marginTop="3dp"
+                        android:ellipsize="end"
+                        android:layout_marginStart="@dimen/_20sdp"
+                        android:layout_toRightOf="@+id/tvDiscount"
+                        android:fontFamily="@font/font_medium"
+                        android:maxLines="1"
+                        android:text="Rs. 5"
+                        android:textColor="@color/black_85"
+                        android:textSize="14sp" />
+
+                </RelativeLayout>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+        </androidx.cardview.widget.CardView>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_one"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_5sdp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_one" />
+            app:layout_constraintTop_toBottomOf="@id/cvApplyCoin" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

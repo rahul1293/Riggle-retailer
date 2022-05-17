@@ -42,10 +42,11 @@
 
             <TextView
                 android:id="@+id/tvName"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_10sdp"
                 android:ellipsize="end"
+                app:layout_constraintEnd_toEndOf="parent"
                 android:fontFamily="@font/font_medium"
                 android:hint="Coupon name"
                 android:maxLines="2"
@@ -57,13 +58,14 @@
 
             <TextView
                 android:id="@+id/siblingInfoTextView"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_5sdp"
                 android:ellipsize="end"
                 android:fontFamily="@font/font_regular"
                 android:hint="Offer line"
                 android:maxLines="2"
+                app:layout_constraintEnd_toStartOf="@+id/ivRight"
                 android:text="@{bean.description}"
                 android:textColor="@color/black_68"
                 android:textSize="12sp"
@@ -88,6 +90,7 @@
                 app:layout_constraintTop_toBottomOf="@id/siblingInfoTextView" />
 
             <ImageView
+                android:id="@+id/ivRight"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_arrow_right_black_24_dp"

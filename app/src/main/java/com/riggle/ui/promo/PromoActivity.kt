@@ -43,7 +43,7 @@ class PromoActivity : BaseActivity() {
             this@PromoActivity,
             R.layout.activity_promo
         )
-        setListioners()
+        setListeners()
         initAdapter()
     }
 
@@ -57,17 +57,19 @@ class PromoActivity : BaseActivity() {
         adapter = SimpleRecyclerViewAdapter(
             R.layout.list_coupon_items, BR.bean
         ) { v, m, pos ->
-            //binding.etPromo.setText(m.code)
-            val intent = Intent()
-            intent.putExtra("code",m.code)
-            setResult(Activity.RESULT_OK,intent)
-            finish()
+            binding.etPromo.setText(m.code)
         }
         binding.rvOne.adapter = adapter
     }
 
-    private fun setListioners() {
+    private fun setListeners() {
         binding.toolbar.findViewById<ImageView>(R.id.ivBack).setOnClickListener {
+            finish()
+        }
+        binding.tvApply.findViewById<TextView>(R.id.tvApply).setOnClickListener {
+            val intent = Intent()
+            intent.putExtra("code",binding.tvApply.text.toString().trim())
+            setResult(Activity.RESULT_OK,intent)
             finish()
         }
         binding.toolbar.findViewById<TextView>(R.id.tvToolbarTitle).text = "Apply Coupons"
