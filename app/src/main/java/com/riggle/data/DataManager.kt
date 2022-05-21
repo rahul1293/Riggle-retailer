@@ -224,7 +224,7 @@ interface DataManager {
     )
 
     fun postCartApi(
-        apiResponseListener: ApiResponseListener<ResponseCartData>,
+        apiResponseListener: ApiResponseListener<JsonElement>,
         orderId: Int?,
         request: RequestCouponApply
     )

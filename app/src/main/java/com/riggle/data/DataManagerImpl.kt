@@ -644,7 +644,7 @@ class DataManagerImpl(
     }
 
     override fun postCartApi(
-        apiResponseListener: ApiResponseListener<ResponseCartData>,
+        apiResponseListener: ApiResponseListener<JsonElement>,
         orderId: Int?,
         request: RequestCouponApply
     ) {

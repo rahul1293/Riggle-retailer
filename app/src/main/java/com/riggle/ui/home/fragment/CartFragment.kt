@@ -53,6 +53,7 @@ class CartFragment : CustomAppCompatActivityViewImpl(),/*CustomAppFragmentViewIm
     private var loaderDialog: LoadingDialog? = null
     private var avail_riggle_coin = 0
     private var cuponCode = ""
+    private var applied_coin = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         connectViewToParent(this)
@@ -148,28 +149,30 @@ class CartFragment : CustomAppCompatActivityViewImpl(),/*CustomAppFragmentViewIm
                 //do your stuff here
                 result.data?.getStringExtra("code")?.let {
                     cuponCode = it
-                    postCartApi(cuponCode)
+                    postCartApi(cuponCode,null)
+                }
+                result.data?.getStringExtra("coin_value")?.let {
+                    applied_coin = it
+                    postCartApi(null,applied_coin)
                 }
             }
         }
 
-    private fun postCartApi(couponCode: String) {
+    private fun postCartApi(couponCode: String?,riggle_coin:String?) {
         showHideLoader(true)
-        dataManager.postCartApi(object : ApiResponseListener<ResponseCartData> {
-            override fun onSuccess(response: ResponseCartData) {
+        dataManager.postCartApi(object : ApiResponseListener<JsonElement> {
+            override fun onSuccess(response: JsonElement) {
                 showHideLoader(false)
                 response?.let {
-                    populateCartDetails(response)
-                    cartLinearLayout?.visibility = View.VISIBLE
+                    fetchCart()
                 }
-
             }
 
             override fun onError(apiError: ApiError?) {
                 showHideLoader(false)
                 Toast.makeText(activity, apiError?.msg.toString(), Toast.LENGTH_SHORT).show()
             }
-        }, userPreference.userData?.retailer?.id ?: 0, RequestCouponApply(couponCode))
+        }, userPreference.userData?.retailer?.id ?: 0, RequestCouponApply(couponCode,riggle_coin))
     }
 
     fun loadTab() {

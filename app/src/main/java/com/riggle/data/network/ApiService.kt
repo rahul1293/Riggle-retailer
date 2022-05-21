@@ -220,6 +220,6 @@ interface ApiService {
     fun postCartApi(
         @Path("id") orderId: Int?,
         @Body request: RequestCouponApply
-    ): Call<ResponseCartData>
+    ): Call<JsonElement>
 
 }

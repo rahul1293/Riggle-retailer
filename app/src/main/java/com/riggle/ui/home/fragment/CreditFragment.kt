@@ -96,8 +96,8 @@ class CreditFragment : CustomAppFragmentViewImpl(), CustomAppViewConnector {
                 showHideLoader(false)
                 lottie.playAnimation()
                 resp = response
-                tvtopLine.text = "Place order worth Rs 50000/- to activate Riggle Credit"
-                tvmessage.text = "Rs ${response.differenceValue}/- worth for orders more to go"
+                tvtopLine.text = "Place order worth Rs 50000 to activate Riggle Credit"
+                tvmessage.text = "Rs ${response.differenceValue} worth for orders more to go"
                 response.percentage?.let {
                     cv_one.progress = it
                     tvpercent.text = "${it.toInt()}%"
