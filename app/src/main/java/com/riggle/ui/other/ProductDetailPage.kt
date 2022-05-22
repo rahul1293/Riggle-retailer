@@ -21,10 +21,7 @@ import com.riggle.data.models.ApiError
 import com.riggle.data.models.request.ProductCartRequest
 import com.riggle.data.models.request.RequestToAddCart
 import com.riggle.data.models.request.VariantUpdate
-import com.riggle.data.models.response.BannerImage
-import com.riggle.data.models.response.ProductsData
-import com.riggle.data.models.response.RetailerDetails
-import com.riggle.data.models.response.SchemesBean
+import com.riggle.data.models.response.*
 import com.riggle.data.network.ApiResponseListener
 import com.riggle.ui.base.activity.CustomAppCompatActivityViewImpl
 import com.riggle.ui.base.connector.CustomAppViewConnector
@@ -324,6 +321,11 @@ class ProductDetailPage : CustomAppCompatActivityViewImpl(), CustomAppViewConnec
                         plusMinusLayout?.visibility = View.GONE
                     }
                     showHideLoader(false)
+                    if (userPreference.sharedPreferencesUtil.cartCount > 0) {
+                        tvCartCount.visibility = View.VISIBLE
+                    } else {
+                        getCartData()
+                    }
                 }
 
                 override fun onError(apiError: ApiError?) {
@@ -384,6 +386,26 @@ class ProductDetailPage : CustomAppCompatActivityViewImpl(), CustomAppViewConnec
                      .show()
              }
          }, cartData)*/
+    }
+
+    private fun getCartData() {
+        dataManager.fetchCart(object : ApiResponseListener<ResponseCartData> {
+            override fun onSuccess(response: ResponseCartData) {
+                response.let {
+                    if (it.products_in_cart.isNotEmpty()) {
+                        tvCartCount.visibility = View.VISIBLE
+                        userPreference.sharedPreferencesUtil.cartCount = it.products_in_cart.size
+                    } else {
+                        userPreference.sharedPreferencesUtil.cartCount = 0
+                        tvCartCount.visibility = View.GONE
+                    }
+                }
+            }
+
+            override fun onError(apiError: ApiError?) {
+
+            }
+        }, userPreference.userData?.retailer?.id ?: 0, "banner_image,service_hub,brand")
     }
 
     val imageData = ArrayList<SlideModel>()

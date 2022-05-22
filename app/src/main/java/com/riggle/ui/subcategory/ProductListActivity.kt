@@ -15,6 +15,7 @@ import com.riggle.data.models.request.RequestToAddCart
 import com.riggle.data.models.request.VariantUpdate
 import com.riggle.data.models.response.BrandsCategoryData
 import com.riggle.data.models.response.ProductsData
+import com.riggle.data.models.response.ResponseCartData
 import com.riggle.data.models.response.SchemesBean
 import com.riggle.data.network.ApiResponseListener
 import com.riggle.ui.base.activity.CustomAppCompatActivityViewImpl
@@ -22,7 +23,6 @@ import com.riggle.ui.base.connector.CustomAppViewConnector
 import com.riggle.ui.bottomsheets.ComboBottomSheet
 import com.riggle.ui.bottomsheets.SchemeBottomSheet
 import com.riggle.ui.dialogs.LoadingDialog
-import com.riggle.ui.home.HomeActivity
 import com.riggle.ui.home.adapters.ShopByBrandsProductsAdapter
 import com.riggle.ui.home.fragment.CartFragment
 import com.riggle.ui.listener.ProductChooseListener
@@ -32,7 +32,9 @@ import com.riggle.utils.Constants
 import com.riggle.utils.UserProfileSingleton
 import kotlinx.android.synthetic.main.activity_product_list.*
 import kotlinx.android.synthetic.main.activity_product_list.llFilter
+import kotlinx.android.synthetic.main.activity_product_list.rvProducts
 import kotlinx.android.synthetic.main.layout_appbar.*
+import kotlinx.android.synthetic.main.layout_appbar.ivCartView
 import org.koin.android.ext.android.inject
 import java.util.ArrayList
 
@@ -242,6 +244,12 @@ class ProductListActivity : CustomAppCompatActivityViewImpl(), CustomAppViewConn
                         itemUpdatedItem(id, 0)
                     }*/
                     showHideLoader(false)
+
+                    if (userPreference.sharedPreferencesUtil.cartCount > 0) {
+                        tvCartCount.visibility = View.VISIBLE
+                    } else {
+                        getCartData()
+                    }
                 }
 
                 override fun onError(apiError: ApiError?) {
@@ -256,6 +264,26 @@ class ProductListActivity : CustomAppCompatActivityViewImpl(), CustomAppViewConn
                 }
             }, it, cartRequest)
         }
+    }
+
+    private fun getCartData() {
+        dataManager.fetchCart(object : ApiResponseListener<ResponseCartData> {
+            override fun onSuccess(response: ResponseCartData) {
+                response.let {
+                    if (it.products_in_cart.isNotEmpty()) {
+                        tvCartCount.visibility = View.VISIBLE
+                        userPreference.sharedPreferencesUtil.cartCount = it.products_in_cart.size
+                    } else {
+                        userPreference.sharedPreferencesUtil.cartCount = 0
+                        tvCartCount.visibility = View.GONE
+                    }
+                }
+            }
+
+            override fun onError(apiError: ApiError?) {
+
+            }
+        }, userPreference.userData?.retailer?.id ?: 0, "banner_image,service_hub,brand")
     }
 
     fun itemUpdatedItem(product_id: Int/*ProductsData*/, quantity: Int) {

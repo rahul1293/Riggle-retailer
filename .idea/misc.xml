@@ -4,7 +4,9 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/layout/activity_image_details.xml" value="0.14647530603630224" />
-        <entry key="app/src/main/res/layout/activity_promo.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/activity_pending_details.xml" value="0.1483539974348012" />
+        <entry key="app/src/main/res/layout/activity_promo.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/bottom_sheet_cancel.xml" value="0.1483539974348012" />
         <entry key="app/src/main/res/layout/bottom_sheet_combo.xml" value="0.14647530603630224" />
         <entry key="app/src/main/res/layout/bottom_sheet_combo_update.xml" value="0.1483539974348012" />
         <entry key="app/src/main/res/layout/fragment_active_order.xml" value="0.1483539974348012" />

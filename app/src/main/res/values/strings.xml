@@ -170,5 +170,7 @@
     <string name="order_history">Order History</string>
     <string name="live_orders">Live Orders</string>
     <string name="update_mix">Update Mix</string>
+    <string name="cancellation_reason">Cancellation Reason</string>
+    <string name="cancel_order">Cancel Order</string>
 
 </resources>

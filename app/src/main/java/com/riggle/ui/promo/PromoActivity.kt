@@ -1,5 +1,6 @@
 package com.riggle.ui.promo
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
@@ -97,12 +98,14 @@ class PromoActivity : BaseActivity() {
             } else {
                 binding.tvQuantSet.text = "0"
             }
+            updateConvert()
         }
         binding.ivPlus.setOnClickListener {
             if (binding.tvQuantSet.text.toString().toInt() + 500 < avail_riggle_coin) {
                 binding.tvQuantSet.text =
                     (binding.tvQuantSet.text.toString().toInt() + 500).toString()
             }
+            updateConvert()
         }
 
         binding.tvFree.setOnClickListener {
@@ -114,6 +117,14 @@ class PromoActivity : BaseActivity() {
             }
         }
 
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun updateConvert() {
+        if (!binding.tvQuantSet.text.toString().equals("", true)) {
+            val value = binding.tvQuantSet.text.toString().toInt()
+            binding.tvDiscount.text = "Get Rs. " + (value / 100).toString() + " off on your order"
+        }
     }
 
     private fun getCoupons() {
@@ -171,7 +182,7 @@ class PromoActivity : BaseActivity() {
         } else {
             binding.rlUpdateCount.alpha = 0.4f
         }
-        binding.tvQuantSet.text = avail_riggle_coin.toString()
+        //binding.tvQuantSet.text = avail_riggle_coin.toString()
     }
 
 }

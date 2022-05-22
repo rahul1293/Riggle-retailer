@@ -149,16 +149,16 @@ class CartFragment : CustomAppCompatActivityViewImpl(),/*CustomAppFragmentViewIm
                 //do your stuff here
                 result.data?.getStringExtra("code")?.let {
                     cuponCode = it
-                    postCartApi(cuponCode,null)
+                    postCartApi(cuponCode, null)
                 }
                 result.data?.getStringExtra("coin_value")?.let {
                     applied_coin = it
-                    postCartApi(null,applied_coin)
+                    postCartApi(null, applied_coin)
                 }
             }
         }
 
-    private fun postCartApi(couponCode: String?,riggle_coin:String?) {
+    private fun postCartApi(couponCode: String?, riggle_coin: String?) {
         showHideLoader(true)
         dataManager.postCartApi(object : ApiResponseListener<JsonElement> {
             override fun onSuccess(response: JsonElement) {
@@ -172,7 +172,7 @@ class CartFragment : CustomAppCompatActivityViewImpl(),/*CustomAppFragmentViewIm
                 showHideLoader(false)
                 Toast.makeText(activity, apiError?.msg.toString(), Toast.LENGTH_SHORT).show()
             }
-        }, userPreference.userData?.retailer?.id ?: 0, RequestCouponApply(couponCode,riggle_coin))
+        }, userPreference.userData?.retailer?.id ?: 0, RequestCouponApply(couponCode, riggle_coin))
     }
 
     fun loadTab() {
@@ -270,7 +270,7 @@ class CartFragment : CustomAppCompatActivityViewImpl(),/*CustomAppFragmentViewIm
             )
             tvCartPrice?.text = String.format(
                 activity?.getString(R.string.rupees_value_double) ?: "",
-                Math.round(cartDetails.final_amount).toFloat()
+                Math.round(cartDetails.amount).toFloat()
             )
             /*if ((cartDetails?.amount - cartDetails?.final_amount) == 0.0) {
                 tvDiscountValue?.text = String.format(
@@ -322,9 +322,14 @@ class CartFragment : CustomAppCompatActivityViewImpl(),/*CustomAppFragmentViewIm
 
             if (cartDetails.coupon_discount_amount != null) tvDiscountValue?.text =
                 "₹" + cartDetails.coupon_discount_amount
-            else
-                tvDiscountValue?.text =
-                    "₹0.0"
+            else {
+                if (cartDetails.redeemed_riggle_coins != null)
+                    tvDiscountValue?.text =
+                        "₹" + cartDetails.redeemed_riggle_coins
+                else
+                    tvDiscountValue?.text =
+                        "₹0.0"
+            }
             tvCheckoutPrice?.text = tvTotalAmountValue?.text.toString()
 
             //Html.fromHtml(cartDetails.total_profit) else tvCartProfit?.visibility = View.GONE
