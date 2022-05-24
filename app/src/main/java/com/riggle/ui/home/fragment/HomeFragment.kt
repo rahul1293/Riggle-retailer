@@ -219,6 +219,11 @@ class HomeFragment : CustomAppFragmentViewImpl(), CustomAppViewConnector,
 
                 override fun onError(apiError: ApiError?) {
                     Log.i("Tag", ":::::::")
+                    Toast.makeText(
+                        requireContext(),
+                        apiError?.msg ?: apiError?.message,
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }, data)
         }
