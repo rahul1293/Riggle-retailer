@@ -29,6 +29,7 @@ class DataManagerImpl(
     private val apiInterface: ApiService,
     private val retrofit: Retrofit
 ) : DataManager {
+
     override fun loginPhone(
         apiResponseListener: ApiResponseListener<APICommonResponse<LoginResponse>>,
         phone: Login
@@ -284,7 +285,6 @@ class DataManagerImpl(
         })
     }
 
-
     private fun <T> executeApiCallOne(
         commonResponseCall: Call<T>,
         apiResponseListener: ApiResponseListener<T>,
@@ -320,6 +320,8 @@ class DataManagerImpl(
             override fun onFailure(call: Call<T>, throwable: Throwable) {
                 call.request().headers
                 val error = ErrorUtils.resolveNetworkError(throwable)
+                if (error.message.equals("Canceled",true) || error.message.equals("stream wa reset: CANCEL",true))
+                    return
                 RiggleLogger.d("fatal::API_CALL", "onFailure::Error:message::" + error.message)
                 apiResponseListener.onError(error)
                 //val error1 = ErrorUtils.parseError(retrofit, call.execute())
@@ -532,12 +534,17 @@ class DataManagerImpl(
         )
     }
 
+    var addCartCall: Call<List<APICommonResponse<ProductsData>>>? = null
+
     override fun addCartItems(
         apiResponseListener: ApiResponseListener<List<APICommonResponse<ProductsData>>>,
         id: Int?, request: ProductCartRequest
     ) {
+        if (addCartCall != null)
+            addCartCall?.cancel()
+        addCartCall = apiInterface.addCartItems(id, request)
         executeApiCallOne(
-            apiInterface.addCartItems(id, request),
+            addCartCall!!,
             apiResponseListener,
             Calendar.getInstance().timeInMillis
         )

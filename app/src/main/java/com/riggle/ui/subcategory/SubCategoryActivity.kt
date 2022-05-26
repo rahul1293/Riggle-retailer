@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import com.riggle.R
 import com.riggle.data.models.APICommonResponse
@@ -86,6 +87,7 @@ class SubCategoryActivity : CustomAppCompatActivityViewImpl(), CustomAppViewConn
 
                 override fun onError(apiError: ApiError?) {
                     showHideLoader(false)
+                    Toast.makeText(this@SubCategoryActivity,apiError?.msg.toString(),Toast.LENGTH_SHORT).show()
                 }
             }, data)
         }

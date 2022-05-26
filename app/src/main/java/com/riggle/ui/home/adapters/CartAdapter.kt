@@ -54,7 +54,8 @@ internal constructor(private val mContext: Context, var productsData: ArrayList<
                 .placeholder(R.drawable.placeholder)
                 .apply(RequestOptions().diskCacheStrategy(DiskCacheStrategy.AUTOMATIC))
                 .into(holder.ivImg)*/
-            holder.ivRemove.visibility = View.GONE
+            //holder.ivRemove.visibility = View.GONE
+            holder.ivRemove.visibility = View.VISIBLE
             if (position > 0) {
                 if (productsData[position - 1].brand_id == productsData[position].brand_id) {
                     holder.tvName.visibility = View.GONE
