@@ -3,14 +3,10 @@ package com.riggle.ui.home.fragment
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.SimpleItemAnimator
 import com.google.gson.Gson
 import com.google.gson.JsonElement
 import com.riggle.R
@@ -25,17 +21,13 @@ import com.riggle.ui.base.fragment.CustomAppFragmentViewImpl
 import com.riggle.ui.bottomsheets.ProductVariantSheet
 import com.riggle.ui.dialogs.LoadingDialog
 import com.riggle.ui.home.adapters.HomeBrandAdapter
-import com.riggle.ui.home.adapters.HomeCategoryAdapter
 import com.riggle.ui.home.adapters.HomeProductsAdapter
 import com.riggle.ui.listener.ProductVariantListener
 import com.riggle.ui.other.SearchActivity
 import com.riggle.ui.other.ShopByBrandCategory
 import com.riggle.utils.UserProfileSingleton
 import kotlinx.android.synthetic.main.fragment_home.*
-import kotlinx.android.synthetic.main.fragment_home.ivCartView
-import kotlinx.android.synthetic.main.fragment_home.tvRiggleCoins
 import org.koin.android.ext.android.inject
-import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.collections.HashMap
 
@@ -55,9 +47,6 @@ class HomeFragment : CustomAppFragmentViewImpl(), CustomAppViewConnector,
     private var productsAdapter: HomeProductsAdapter? = null
     private var topPickAdapter: HomeProductsAdapter? = null
     private var loaderDialog: LoadingDialog? = null
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -73,21 +62,13 @@ class HomeFragment : CustomAppFragmentViewImpl(), CustomAppViewConnector,
     }
 
     override fun initializeViews(savedInstanceState: Bundle?) {
-
         rlBrands?.visibility = View.VISIBLE
         /*tvStoreName?.text = userPreference
             .getProfileData(UserProfileSingleton.PROFILE_PROPERTIES.STORE_NAME)*/
         tvStoreName?.text = userPreference
             .getProfileData(UserProfileSingleton.PROFILE_PROPERTIES.USER_NAME)
         loaderDialog = LoadingDialog(activity)
-        //getProductsAPI("top")
-        //brands
-        //category
-        //getProductsAPI("all")
         addOnClickListeners()
-        /*For brand list*/
-        //populateBrandView()
-
     }
 
     private fun addOnClickListeners() {
@@ -97,7 +78,7 @@ class HomeFragment : CustomAppFragmentViewImpl(), CustomAppViewConnector,
             }
         }
 
-        tvCategoryViewAll.setOnClickListener {
+        /*tvCategoryViewAll.setOnClickListener {
             activity?.let {
                 ShopByBrandCategory.start(
                     it,
@@ -112,7 +93,7 @@ class HomeFragment : CustomAppFragmentViewImpl(), CustomAppViewConnector,
             rlProducts?.top?.let { top ->
                 homeNestedScrollView?.smoothScrollTo(0, top)
             }
-        }
+        }*/
 
         ivSearch.setOnClickListener {
             activity?.let {
@@ -121,7 +102,6 @@ class HomeFragment : CustomAppFragmentViewImpl(), CustomAppViewConnector,
         }
 
         ivCartView.setOnClickListener {
-            //HomeActivity.start(this,true)
             val intent = CartFragment.newIntent(requireActivity())
             startActivity(intent)
         }
@@ -172,34 +152,6 @@ class HomeFragment : CustomAppFragmentViewImpl(), CustomAppViewConnector,
         }, userPreference.userData?.retailer?.id ?: 0, "banner_image,service_hub,brand")
     }
 
-    private fun getProductsAPI(type: String) {
-        dataManager.getProducts(object :
-            ApiResponseListener<APICommonResponse<ArrayList<ProductsData>>> {
-            override fun onSuccess(response: APICommonResponse<ArrayList<ProductsData>>) {
-                response?.data?.let {
-                    if (response.isSuccess && response.data != null && it.size > 0) {
-                        response.data?.let { dataList ->
-                            when (type) {
-                                "top" -> {
-                                    topPickData = dataList
-                                    populateTopPicksView()
-                                }
-                                "all" -> {
-                                    productsData = dataList
-                                    populateProductsView()
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-
-            override fun onError(apiError: ApiError?) {
-
-            }
-        }, type)
-    }
-
     private val brands: Unit
         private get() {
             val data = HashMap<String, String>()
@@ -228,55 +180,6 @@ class HomeFragment : CustomAppFragmentViewImpl(), CustomAppViewConnector,
             }, data)
         }
 
-    val totalRiggleCoins: Unit
-        get() {
-            dataManager.getTotalRegalCoins(object :
-                ApiResponseListener<APICommonResponse<RiggleCoinsResponse>> {
-                override fun onSuccess(response: APICommonResponse<RiggleCoinsResponse>) {
-                    response.data?.let {
-                        if (response.isSuccess) {
-                            tvRiggleCoins?.text = "" + it.riggleCointBalance
-                        }
-                    }
-
-                }
-
-                override fun onError(apiError: ApiError?) {}
-            })
-        }
-
-    private val category: Unit
-        private get() {
-            dataManager.getCategories(object :
-                ApiResponseListener<APICommonResponse<ArrayList<BrandsCategoryData>>> {
-                override fun onSuccess(response: APICommonResponse<ArrayList<BrandsCategoryData>>) {
-                    response.data?.let { responseData ->
-                        if (response.isSuccess && responseData.size > 0) {
-                            categoriesData = responseData
-                            populateCategoryView()
-                        }
-                    }
-
-                }
-
-                override fun onError(apiError: ApiError?) {}
-            })
-        }
-
-    private fun populateTopPicksView() {
-
-        activity?.let {
-            rlTopPicks?.visibility = View.VISIBLE
-            topPickAdapter = HomeProductsAdapter(it, topPickData)
-            (Objects.requireNonNull(rvTopPicks?.itemAnimator) as SimpleItemAnimator).supportsChangeAnimations =
-                false
-            rvTopPicks?.layoutManager = LinearLayoutManager(activity)
-            rvTopPicks?.adapter = topPickAdapter
-            topPickAdapter?.setListener(this)
-        }
-
-    }
-
     private fun populateBrandView() {
         activity?.let {
             rlBrands?.visibility = View.VISIBLE
@@ -287,7 +190,7 @@ class HomeFragment : CustomAppFragmentViewImpl(), CustomAppViewConnector,
     }
 
     private fun populateCategoryView() {
-        activity?.let {
+        /*activity?.let {
             rlCategories?.visibility = View.VISIBLE
             val categoriesAdapter = HomeCategoryAdapter(it, categoriesData)
             rvCategories?.layoutManager =
@@ -321,24 +224,11 @@ class HomeFragment : CustomAppFragmentViewImpl(), CustomAppViewConnector,
 
                 override fun onRequestDisallowInterceptTouchEvent(disallowIntercept: Boolean) {}
             })
-        }
-
-    }
-
-    private fun populateProductsView() {
-        activity?.let {
-            rlProducts?.visibility = View.VISIBLE
-            productsAdapter = HomeProductsAdapter(it, productsData)
-            (Objects.requireNonNull(rvProducts?.itemAnimator) as SimpleItemAnimator).supportsChangeAnimations =
-                false
-            rvProducts?.layoutManager = LinearLayoutManager(activity)
-            rvProducts?.adapter = productsAdapter
-            productsAdapter?.setListener(this)
-        }
+        }*/
     }
 
     override fun itemClicked(product_id: Int) {
-        openProductVariantSheet(product_id)
+        //openProductVariantSheet(product_id)
     }
 
     private fun openProductVariantSheet(product_id: Int) {
@@ -395,12 +285,7 @@ class HomeFragment : CustomAppFragmentViewImpl(), CustomAppViewConnector,
     }
 
     private fun showHideLoader(state: Boolean) {
-        if (loaderDialog != null) if (state) loaderDialog?.show() else loaderDialog?.hide()
-    }
-
-    fun refreshData() {
-        //getProductsAPI("top")
-        //getProductsAPI("all")
+        if (loaderDialog != null) if (state) loaderDialog?.show() else loaderDialog?.dismiss()
     }
 
     companion object {
@@ -411,11 +296,6 @@ class HomeFragment : CustomAppFragmentViewImpl(), CustomAppViewConnector,
             fragment.arguments = args
             return fragment
         }
-    }
-
-    override fun onStart() {
-        super.onStart()
-        //getDetails()
     }
 
     private fun getDetails() {
@@ -451,7 +331,6 @@ class HomeFragment : CustomAppFragmentViewImpl(), CustomAppViewConnector,
                 },
                 it, ""
             )
-            //expand = sub_area
         }
     }
 

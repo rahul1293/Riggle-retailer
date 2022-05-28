@@ -384,6 +384,9 @@ class WelcomeScreen : CustomAppCompatActivityViewImpl(), CustomAppViewConnector,
                                     var usrData = userPreference.userData
 
                                     usrData?.retailer = retailerDetails
+                                    retailerDetails.account_status?.let {
+                                        usrData?.account_status = it
+                                    }
                                     userPreference
                                         .updateUserData(usrData)
                                     userPreference

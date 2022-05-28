@@ -9,13 +9,14 @@ import androidx.databinding.ObservableList
 import androidx.recyclerview.widget.RecyclerView
 import com.riggle.R
 import com.riggle.data.models.response.CoinsEarning
+import com.riggle.data.models.response.Lenders
 import com.riggle.databinding.ItemPointHistoryBinding
 import com.riggle.databinding.ListPaylaterItemsBinding
 import com.riggle.ui.utils.BaseAdapter
 import kotlinx.android.synthetic.main.item_point_history.view.*
 
 
-class LenderAdapter(var list: List<String>) :
+class LenderAdapter(var list: List<Lenders>) :
     BaseAdapter<LenderAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         var binding: ListPaylaterItemsBinding = DataBindingUtil.inflate(
@@ -29,7 +30,7 @@ class LenderAdapter(var list: List<String>) :
     }
 
     override fun getItemCount(): Int {
-        return 10
+        return list.size
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {

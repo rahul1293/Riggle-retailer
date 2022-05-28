@@ -63,7 +63,7 @@ class APIUrlConstants {
         const val getCategoryList: String = BuildConfig.BASE_URL + "core/categories"
         const val pingDetails: String = BuildConfig.BASE_URL + "user/retailers/{id}/"
 
-        //const val pingDetails:String = BuildConfig.BASE_URL + "user/auth/ping"
+        const val authPing:String = BuildConfig.BASE_URL + "user/auth/ping"
         const val addToCart: String = BuildConfig.BASE_URL + "user/retailers/{id}/cart/"
 
         const val placeOrder: String = BuildConfig.BASE_URL + "core/orders/"

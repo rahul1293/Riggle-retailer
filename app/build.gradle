@@ -85,8 +85,8 @@ android {
         develop{
             applicationIdSuffix ".dev"
             resValue 'string', 'app_name', "Riggle Dev"
-            buildConfigField "String", "BASE_URL", '"https://api.riggleapp.in/api/v1/"'
-            //buildConfigField "String", "BASE_URL", '"https://stag.api.riggleapp.in/api/v1/"'
+            //buildConfigField "String", "BASE_URL", '"https://api.riggleapp.in/api/v1/"'
+            buildConfigField "String", "BASE_URL", '"https://stag.api.riggleapp.in/api/v1/"'
         }
         production{
             resValue 'string', 'app_name', "Riggle"

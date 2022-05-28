@@ -3,11 +3,25 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <data></data>
+    <data>
+
+        <variable
+            name="bean"
+            type="com.riggle.data.models.response.Lenders" />
+
+        <variable
+            name="callback"
+            type="com.riggle.baseClass.SimpleRecyclerViewAdapter.SimpleCallback" />
+
+        <variable
+            name="pos"
+            type="Integer" />
+    </data>
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:onClick="@{v->callback.onItemClick(v,bean,pos)}"
         app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="@dimen/_10sdp"
         app:cardUseCompatPadding="true"
@@ -35,11 +49,11 @@
                 android:ellipsize="end"
                 android:fontFamily="@font/font_medium"
                 android:maxLines="2"
+                android:text="@{bean.name}"
                 android:textColor="@color/black_85"
                 android:textSize="14sp"
                 app:layout_constraintStart_toEndOf="@id/ivImg"
-                app:layout_constraintTop_toTopOf="@id/ivImg"
-               android:text="Lender name" />
+                app:layout_constraintTop_toTopOf="@id/ivImg" />
 
             <TextView
                 android:id="@+id/siblingInfoTextView"
@@ -49,12 +63,23 @@
                 android:ellipsize="end"
                 android:fontFamily="@font/font_regular"
                 android:maxLines="2"
+                android:text='@{"Credit line upto Rs "+bean.credit_upto}'
                 android:textColor="@color/black_68"
                 android:textSize="12sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@id/tvName"
-                app:layout_constraintTop_toBottomOf="@id/tvName"
-               android:text="Credit line upto Rs 50000" />
+                app:layout_constraintTop_toBottomOf="@id/tvName" />
+
+            <include
+                android:id="@+id/creditDetails"
+                layout="@layout/layout_credit_details"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:bean="@{bean}"
+                android:layout_marginTop="@dimen/_10sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/siblingInfoTextView" />
 
             <TextView
                 android:id="@+id/tv_top"
@@ -65,12 +90,13 @@
                 android:ellipsize="end"
                 android:fontFamily="@font/font_regular"
                 android:padding="@dimen/_2sdp"
+                android:text="Top up available"
                 android:textColor="@color/white"
                 android:textSize="10sp"
+                android:visibility="gone"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@id/tvName"
-                app:layout_constraintTop_toBottomOf="@id/siblingInfoTextView"
-               android:text="Top up available" />
+                app:layout_constraintTop_toBottomOf="@id/siblingInfoTextView" />
 
             <ImageView
                 android:layout_width="wrap_content"

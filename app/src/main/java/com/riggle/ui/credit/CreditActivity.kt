@@ -1,23 +1,25 @@
 package com.riggle.ui.credit
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
-import android.util.Log
-import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.Gson
-import com.google.gson.JsonElement
+import com.google.gson.reflect.TypeToken
+import com.riggle.BR
 import com.riggle.R
 import com.riggle.baseClass.BaseActivity
-import com.riggle.data.models.ApiError
+import com.riggle.baseClass.SimpleRecyclerViewAdapter
 import com.riggle.data.models.response.*
-import com.riggle.data.network.ApiResponseListener
 import com.riggle.databinding.ActivityCreditBinding
+import com.riggle.databinding.ListPaylaterItemsBinding
 import com.riggle.utils.*
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
+
 
 class CreditActivity : BaseActivity() {
 
@@ -31,14 +33,29 @@ class CreditActivity : BaseActivity() {
             this@CreditActivity,
             R.layout.activity_credit
         )
+
+        val schemeList = Gson().fromJson<List<Lenders>>(
+            intent.getStringExtra("lenders").toString(),
+            object : TypeToken<ArrayList<Lenders>>() {}.type
+        )
         setListioners()
-        initAdapter()
+        if (schemeList != null) {
+            initAdapter(schemeList)
+        }
     }
 
-    private fun initAdapter() {
+    private fun initAdapter(schemeList: List<Lenders>) {
+        val adapter = SimpleRecyclerViewAdapter<Lenders, ListPaylaterItemsBinding>(
+            R.layout.list_paylater_items, BR.bean
+        ) { v, m, pos ->
+            val i = Intent(Intent.ACTION_VIEW)
+            i.data = Uri.parse(m.onboarding_link)
+            startActivity(i)
+        }
         binding.rvOne.layoutManager = LinearLayoutManager(this)
-        val adapter = LenderAdapter(listOf<String>())
+        //val adapter = LenderAdapter(schemeList/*listOf<Lenders>()*/)
         binding.rvOne.adapter = adapter
+        adapter.list = schemeList
     }
 
     private fun setListioners() {

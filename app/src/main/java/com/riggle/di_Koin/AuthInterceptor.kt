@@ -25,7 +25,7 @@ class AuthInterceptor(var userData: UserProfileSingleton) : Interceptor {
             } else {
                 builder.addHeader("Authorization", "Basic OTU5OTk3NjY5MjphaW5hYTAwNw==")
             }
-            builder.addHeader("Connection", "close")
+            //`builder.addHeader("Connection", "close")
         }
         //var req = builder.build();
         return chain.proceed(builder.build())

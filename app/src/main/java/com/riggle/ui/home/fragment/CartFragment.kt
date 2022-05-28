@@ -141,6 +141,21 @@ class CartFragment : CustomAppCompatActivityViewImpl(),/*CustomAppFragmentViewIm
                 }
             }
         }
+        getCoupons()
+    }
+
+    private fun getCoupons() {
+        dataManager.getCoupons(object : ApiResponseListener<List<CouponBean>> {
+            override fun onSuccess(response: List<CouponBean>) {
+                tvCartProfit.text = (response.size + 1).toString() + " Coupon Codes Available"
+            }
+
+            override fun onError(apiError: ApiError?) {
+                showHideLoader(false)
+                Toast.makeText(this@CartFragment, apiError?.message, Toast.LENGTH_SHORT).show()
+            }
+
+        })
     }
 
     private val startForResult =
@@ -472,13 +487,13 @@ class CartFragment : CustomAppCompatActivityViewImpl(),/*CustomAppFragmentViewIm
 
                 override fun onError(apiError: ApiError?) {
                     showHideLoader(false)
-                    if (!apiError?.message.equals("Parsing error", false))
-                        Toast.makeText(
-                            activity,
-                            apiError?.message,
-                            Toast.LENGTH_SHORT
-                        )
-                            .show()
+                    //if (!apiError?.message.equals("Parsing error", false))
+                    Toast.makeText(
+                        activity,
+                        apiError?.message,
+                        Toast.LENGTH_SHORT
+                    )
+                        .show()
                 }
             }, it, cartRequest)
         }

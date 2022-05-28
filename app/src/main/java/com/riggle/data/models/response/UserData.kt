@@ -37,7 +37,7 @@ data class  UserData(
         var retailer : UserDetails,
         val id: Int,
         val update_url: String,
-        val account_status: String,
+        var account_status: String,
         val is_deleted: Boolean,
         val deleted_at: String,
         val code: String,

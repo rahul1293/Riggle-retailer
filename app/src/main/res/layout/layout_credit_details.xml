@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="bean"
+            type="com.riggle.data.models.response.Lenders" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/llOne"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toTopOf="parent"
+            android:weightSum="4.5">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:layout_weight="1.5"
+                android:fontFamily="@font/font_medium"
+                android:maxLines="2"
+                android:gravity="center"
+                android:text="One Time\nProcessing Fees"
+                android:textColor="@color/black_85"
+                android:textSize="12sp"
+                app:layout_constraintStart_toEndOf="@id/ivImg"
+                app:layout_constraintTop_toTopOf="@id/ivImg" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:layout_weight="1"
+                android:fontFamily="@font/font_medium"
+                android:maxLines="2"
+                android:gravity="center"
+                android:text="0 - 7\nDays"
+                android:textColor="@color/black_85"
+                android:textSize="12sp"
+                app:layout_constraintStart_toEndOf="@id/ivImg"
+                app:layout_constraintTop_toTopOf="@id/ivImg" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:layout_weight="1"
+                android:fontFamily="@font/font_medium"
+                android:maxLines="2"
+                android:gravity="center"
+                android:text="8 - 14\nDays"
+                android:textColor="@color/black_85"
+                android:textSize="12sp"
+                app:layout_constraintStart_toEndOf="@id/ivImg"
+                app:layout_constraintTop_toTopOf="@id/ivImg" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:layout_weight="1"
+                android:fontFamily="@font/font_medium"
+                android:maxLines="2"
+                android:gravity="center"
+                android:text="Late\nFees"
+                android:textColor="@color/black_85"
+                android:textSize="12sp"
+                app:layout_constraintStart_toEndOf="@id/ivImg"
+                app:layout_constraintTop_toTopOf="@id/ivImg" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/_5sdp"
+            app:layout_constraintTop_toBottomOf="@+id/llOne"
+            android:weightSum="4.5">
+
+            <TextView
+                android:id="@+id/tvProcessing"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:layout_weight="1.5"
+                android:fontFamily="@font/font_regular"
+                android:maxLines="2"
+                android:gravity="center"
+                android:text="@{bean.processing_fee_text}"
+                android:textColor="@color/black_85"
+                android:textSize="12sp"
+                app:layout_constraintStart_toEndOf="@id/ivImg"
+                app:layout_constraintTop_toTopOf="@id/ivImg" />
+
+            <TextView
+                android:id="@+id/tvDaysOne"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:layout_weight="1"
+                android:fontFamily="@font/font_regular"
+                android:maxLines="2"
+                android:gravity="center"
+                android:text="@{bean.roi_0_7_days}"
+                android:textColor="@color/black_85"
+                android:textSize="12sp"
+                app:layout_constraintStart_toEndOf="@id/ivImg"
+                app:layout_constraintTop_toTopOf="@id/ivImg" />
+
+            <TextView
+                android:id="@+id/tvDaysTwo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:layout_weight="1"
+                android:fontFamily="@font/font_regular"
+                android:maxLines="2"
+                android:gravity="center"
+                android:text="@{bean.roi_8_14_days}"
+                android:textColor="@color/black_85"
+                android:textSize="12sp"
+                app:layout_constraintStart_toEndOf="@id/ivImg"
+                app:layout_constraintTop_toTopOf="@id/ivImg" />
+
+            <TextView
+                android:id="@+id/tvDaysThree"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:layout_weight="1"
+                android:fontFamily="@font/font_regular"
+                android:maxLines="2"
+                android:gravity="center"
+                android:text="@{bean.late_fee_text}"
+                android:textColor="@color/black_85"
+                android:textSize="12sp"
+                app:layout_constraintStart_toEndOf="@id/ivImg"
+                app:layout_constraintTop_toTopOf="@id/ivImg" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

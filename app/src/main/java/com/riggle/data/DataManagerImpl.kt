@@ -18,10 +18,6 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
-import retrofit2.http.Header
-import retrofit2.http.Path
-import retrofit2.http.Query
-import retrofit2.http.QueryMap
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -529,6 +525,14 @@ class DataManagerImpl(
     ) {
         executeApiCallOne(
             apiInterface.getPingDetails(data, expand),
+            apiResponseListener,
+            Calendar.getInstance().timeInMillis
+        )
+    }
+
+    override fun getAuthPing(apiResponseListener: ApiResponseListener<JsonElement>) {
+        executeApiCallOne(
+            apiInterface.getAuthPing(),
             apiResponseListener,
             Calendar.getInstance().timeInMillis
         )

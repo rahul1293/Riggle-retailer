@@ -223,6 +223,9 @@ internal constructor(private val mContext: Context, var productsData: ArrayList<
                 }
                 productsData[holder.adapterPosition].item_cart = quantity
                 holder.tvQuantSet.text = quantity.toString()
+
+                if (quantity < 0) // in case of quantity is less than 0
+                    holder.tvQuantSet.text = "0"
                 //if after subtraction quantity becomes zero, remove the item from the list
 
                 //val displayPrice = (holder.tvGrandPrice.text.toString().replace("₹", "")
@@ -247,8 +250,7 @@ internal constructor(private val mContext: Context, var productsData: ArrayList<
                 }
 
                 if (quantity <= 0) {
-                    productsData.removeAt(holder.adapterPosition)
-                    //notifyItemRemoved(holder.adapterPosition)
+                    //productsData.removeAt(holder.adapterPosition)
                     notifyDataSetChanged()
                 }
             }
@@ -280,7 +282,7 @@ internal constructor(private val mContext: Context, var productsData: ArrayList<
                     )
                 }
             }
-            productsData.removeAt(holder.adapterPosition)
+            //productsData.removeAt(holder.adapterPosition)
             notifyDataSetChanged()
         }
 

@@ -142,6 +142,9 @@ interface ApiService {
     @GET(APIUrlConstants.pingDetails)
     fun getPingDetails(@Path("id") data: Int?, @Query("expand") expand: String): Call<JsonElement>
 
+    @GET(APIUrlConstants.authPing)
+    fun getAuthPing(): Call<JsonElement>
+
     @POST(APIUrlConstants.addToCart)
     fun addCartItems(
         @Path("id") id: Int?,

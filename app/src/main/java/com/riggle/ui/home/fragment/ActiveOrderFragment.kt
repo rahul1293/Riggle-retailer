@@ -146,14 +146,6 @@ class ActiveOrderFragment : CustomAppFragmentViewImpl(), CustomAppViewConnector 
         return dataList
     }
 
-    fun loadTab() {
-
-    }
-
-    fun clearCart() {
-
-    }
-
     private fun showHideLoader(state: Boolean) {
         if (loaderDialog != null) if (state) loaderDialog?.show() else loaderDialog?.hide()
     }

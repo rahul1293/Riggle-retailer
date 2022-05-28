@@ -11,5 +11,18 @@ data class CreditResponse(
     @SerializedName("status")
     val status: String?,
     @SerializedName("difference_value")
-    val differenceValue: Float?
+    val differenceValue: Float?,
+    @SerializedName("lenders")
+    val lenders: List<Lenders>
+)
+
+data class Lenders(
+    val credit_upto: Int,
+    val document_list: List<String>,
+    val late_fee_text: String,
+    val name: String,
+    val onboarding_link: String,
+    val processing_fee_text: String,
+    val roi_0_7_days: String,
+    val roi_8_14_days: String
 )

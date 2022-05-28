@@ -222,16 +222,15 @@ class HomeActivity : CustomAppCompatActivityViewImpl(), CustomAppViewConnector {
 
     @Subscribe
     fun getMessage(product: UpdateProdOnHome?) {
-        if (product != null && homeFragment != null) {
+        /*if (product != null && homeFragment != null) {
             homeFragment?.itemUpdated(product.productsData)
-        }
+        }*/
     }
 
     @Subscribe
     fun getMessage(orderConfirmed: OnOrderConfirmed) {
         if (orderConfirmed.isConfirmed) {
-            cartFragment?.clearCart()
-            homeFragment?.refreshData()
+            //cartFragment?.clearCart()
             //homeFragment?.totalRiggleCoins
         }
     }

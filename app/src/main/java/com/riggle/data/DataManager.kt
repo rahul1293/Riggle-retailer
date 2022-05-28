@@ -8,6 +8,7 @@ import com.riggle.data.network.ApiResponseListener
 import kotlinx.coroutines.flow.Flow
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
+import retrofit2.Call
 import java.util.*
 
 interface DataManager {
@@ -176,6 +177,8 @@ interface DataManager {
         apiResponseListener: ApiResponseListener<JsonElement>,
         data: Int?, expand: String
     )
+
+    fun getAuthPing(apiResponseListener: ApiResponseListener<JsonElement>)
 
     fun addCartItems(
         apiResponseListener: ApiResponseListener<List<APICommonResponse<ProductsData>>>,
