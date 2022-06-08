@@ -125,6 +125,7 @@ class ProductListActivity : CustomAppCompatActivityViewImpl(), CustomAppViewConn
                                 }
                             }
                         }
+                        getCartData()
                     }
 
                     override fun onError(apiError: ApiError?) {

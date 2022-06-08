@@ -342,10 +342,10 @@
                     android:layout_below="@id/tvPriceItems"
                     android:layout_marginTop="12dp"
                     android:fontFamily="@font/font_medium"
-                    android:text="@string/riggle_coins_discount"
+                    android:text="@string/offer_discount"
                     android:textColor="@color/black_85"
                     android:textSize="14sp" />
-
+                <!--riggle_coins_discount-->
                 <TextView
                     android:id="@+id/tvRiggleCoins"
                     android:layout_width="wrap_content"
@@ -494,7 +494,6 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/tvDiscountValue"
                     android:layout_marginTop="12dp"
-                    android:layout_toStartOf="@+id/tvMode"
                     android:fontFamily="@font/font_regular"
                     android:text="@string/mode_of_payment"
                     android:textColor="@color/black_85"

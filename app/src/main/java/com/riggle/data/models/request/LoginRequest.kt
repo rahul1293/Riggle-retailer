@@ -20,7 +20,7 @@ data class OTPVerification(
 )
 
 data class UploadOrder(
-    val redeemed_riggle_coins: Long,
+    /*val redeemed_riggle_coins: Long,*/
     val delivery_date: String,
     val retailer: Int
 )

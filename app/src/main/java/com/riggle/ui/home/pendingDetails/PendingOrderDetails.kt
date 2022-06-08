@@ -177,7 +177,7 @@ class PendingOrderDetails : CustomAppCompatActivityViewImpl(), CustomAppViewConn
 
     private fun updateView(response: OrderDetailsResponse) {
         setDateVale(tvDate, response.delivery_date)
-        tvCartPrice?.text = "₹" + response.final_amount
+        tvCartPrice?.text = "₹" + response.amount
         tvDiscountValue?.text = "₹" + (response?.amount - response?.final_amount)
         tvTotalAmountValue?.text = "₹" + response.final_amount
     }

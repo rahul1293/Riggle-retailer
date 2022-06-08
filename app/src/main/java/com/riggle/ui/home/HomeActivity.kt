@@ -107,7 +107,7 @@ class HomeActivity : CustomAppCompatActivityViewImpl(), CustomAppViewConnector {
             homePagerAdapter.addFragment(rewardsFragment, getString(R.string.rewards), R.drawable.ic_rewards);
         }*/
 
-        viewPager!!.adapter = homePagerAdapter
+        viewPager?.adapter = homePagerAdapter
         //tabLayout!!.setupWithViewPager(viewPager)
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
             tab.text = "OBJECT ${(position + 1)}"
@@ -127,6 +127,7 @@ class HomeActivity : CustomAppCompatActivityViewImpl(), CustomAppViewConnector {
         highLightCurrentTab(0)
         tabLayout!!.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
+                viewPager?.currentItem = tab.position
                 highLightCurrentTab(tab.position)
                 tabPosOnNewActivity = tab.position
                 /*if (tab.position == 1) {

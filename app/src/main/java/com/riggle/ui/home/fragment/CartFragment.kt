@@ -93,6 +93,9 @@ class CartFragment : CustomAppCompatActivityViewImpl(),/*CustomAppFragmentViewIm
 
         llOffer.setOnClickListener {
             val intent = PromoActivity.newIntent(this)
+            cartData?.redeemed_riggle_coins?.let {
+                intent.putExtra("applied_coin",it)
+            }
             startForResult.launch(intent)
             //startActivity(intent)
         }
@@ -141,7 +144,6 @@ class CartFragment : CustomAppCompatActivityViewImpl(),/*CustomAppFragmentViewIm
                 }
             }
         }
-        getCoupons()
     }
 
     private fun getCoupons() {
@@ -335,15 +337,29 @@ class CartFragment : CustomAppCompatActivityViewImpl(),/*CustomAppFragmentViewIm
                 )
             }
 
-            if (cartDetails.coupon_discount_amount != null) tvDiscountValue?.text =
-                "₹" + cartDetails.coupon_discount_amount
-            else {
-                if (cartDetails.redeemed_riggle_coins != null)
+            if (cartDetails.coupon_discount_amount != null) {
+                if (cartDetails.redeemed_riggle_coins != null && !cartDetails.redeemed_riggle_coins.equals(
+                        ""
+                    )
+                ) {
+                    val total =
+                        cartDetails.coupon_discount_amount.toFloat() + cartDetails.redeemed_riggle_coins.toFloat()/100
+                    tvDiscountValue?.text = "₹$total"
+                } else {
                     tvDiscountValue?.text =
-                        "₹" + cartDetails.redeemed_riggle_coins
-                else
+                        "₹" + cartDetails.coupon_discount_amount
+                }
+            } else {
+                if (cartDetails.redeemed_riggle_coins != null && !cartDetails.redeemed_riggle_coins.equals(
+                        ""
+                    )) {
+                    val total = cartDetails.redeemed_riggle_coins.toFloat()/100
+                    tvDiscountValue?.text =
+                        "₹$total"/*cartDetails.redeemed_riggle_coins*/
+                }else {
                     tvDiscountValue?.text =
                         "₹0.0"
+                }
             }
             tvCheckoutPrice?.text = tvTotalAmountValue?.text.toString()
 
@@ -552,6 +568,7 @@ class CartFragment : CustomAppCompatActivityViewImpl(),/*CustomAppFragmentViewIm
         super.onResume()
         loadTab()
         getDetails()
+        getCoupons()
     }
 
     private fun getDetails() {

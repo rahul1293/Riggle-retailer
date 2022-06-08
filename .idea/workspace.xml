@@ -17,7 +17,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9964b9da-8eeb-4a29-830a-9d7f13c2cd17" name="Default Changelist" comment="26MAY22">
+    <list default="true" id="9964b9da-8eeb-4a29-830a-9d7f13c2cd17" name="Default Changelist" comment="28MAY22">
       <change beforePath="$PROJECT_DIR$/.gradle/6.9/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.9/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.9/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.9/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.9/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.9/fileHashes/fileHashes.bin" afterDir="false" />
@@ -31,35 +31,25 @@
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/riggle/data/DataManager.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/riggle/data/DataManager.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/riggle/data/DataManagerImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/riggle/data/DataManagerImpl.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/riggle/data/models/response/CreditResponse.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/riggle/data/models/response/CreditResponse.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/riggle/data/models/response/UserData.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/riggle/data/models/response/UserData.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/riggle/data/network/APIUrlConstants.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/riggle/data/network/APIUrlConstants.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/riggle/data/network/ApiService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/riggle/data/network/ApiService.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/riggle/di_Koin/AuthInterceptor.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/riggle/di_Koin/AuthInterceptor.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/riggle/ui/SplashActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/riggle/ui/SplashActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/riggle/ui/credit/CreditActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/riggle/ui/credit/CreditActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/riggle/ui/credit/LenderAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/riggle/ui/credit/LenderAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/riggle/data/models/request/LoginRequest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/riggle/data/models/request/LoginRequest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/riggle/data/models/response/OrderData.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/riggle/data/models/response/OrderData.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/riggle/data/models/response/ResponseCartData.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/riggle/data/models/response/ResponseCartData.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/riggle/ui/home/HomeActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/riggle/ui/home/HomeActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/riggle/ui/home/adapters/CartAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/riggle/ui/home/adapters/CartAdapter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/riggle/ui/home/adapters/HomeProductsAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/riggle/ui/home/adapters/HomeProductsAdapter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/riggle/ui/home/fragment/ActiveOrderFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/riggle/ui/home/fragment/ActiveOrderFragment.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/riggle/ui/home/fragment/CartFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/riggle/ui/home/fragment/CartFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/riggle/ui/home/fragment/CreditFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/riggle/ui/home/fragment/CreditFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/riggle/ui/home/fragment/HomeFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/riggle/ui/home/fragment/HomeFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/riggle/ui/other/registration/WelcomeScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/riggle/ui/other/registration/WelcomeScreen.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_cart.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_cart.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_home.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_home.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/list_paylater_items.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/list_paylater_items.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/riggle/ui/home/pendingDetails/PendingOrderDetails.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/riggle/ui/home/pendingDetails/PendingOrderDetails.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/riggle/ui/other/OrderDetailActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/riggle/ui/other/OrderDetailActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/riggle/ui/other/SelectDeliverySlot.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/riggle/ui/other/SelectDeliverySlot.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/riggle/ui/promo/PromoActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/riggle/ui/promo/PromoActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/riggle/ui/subcategory/ProductListActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/riggle/ui/subcategory/ProductListActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_order_detail.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_order_detail.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[52009d13c0b7b487]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -136,6 +126,8 @@
     <property name="android-custom-view/home/rahul/.gradle/caches/modules-2/files-2.1/androidx.viewpager2/viewpager2/1.0.0/3c3569044e6969f1ee5c3aa03b08e6717a2d782f/viewpager2-1.0.0-sources.jar!/androidx/viewpager2/widget/ViewPager2.java_ViewPager2_DIMENSIONS" value="1080&#10;1920" />
     <property name="android-custom-view/home/rahul/.gradle/caches/modules-2/files-2.1/com.github.denzcoskun/ImageSlideshow/0.1.0/b3843ed206863a279b1a15748695a7c4e5cf3ceb/ImageSlideshow-0.1.0-sources.jar!/com/denzcoskun/imageslider/ImageSlider.kt_ImageSlider_DIMENSIONS" value="1080&#10;1920" />
     <property name="android-custom-view/home/rahul/.gradle/caches/modules-2/files-2.1/com.github.denzcoskun/ImageSlideshow/0.1.0/b3843ed206863a279b1a15748695a7c4e5cf3ceb/ImageSlideshow-0.1.0-sources.jar!/com/denzcoskun/imageslider/ImageSlider.kt_SELECTED" value="ImageSlider" />
+    <property name="android-custom-view/home/rahul/.gradle/caches/modules-2/files-2.1/com.google.android.material/material/1.3.0/b42a5159ef2c670d26ce08246ec5aaf8f92e5a42/material-1.3.0-sources.jar!/com/google/android/material/tabs/TabLayout.java_SELECTED" value="TabLayout" />
+    <property name="android-custom-view/home/rahul/.gradle/caches/modules-2/files-2.1/com.google.android.material/material/1.3.0/b42a5159ef2c670d26ce08246ec5aaf8f92e5a42/material-1.3.0-sources.jar!/com/google/android/material/tabs/TabLayout.java_TabLayout_DIMENSIONS" value="1080&#10;1920" />
     <property name="android-custom-view/home/rahul/.gradle/caches/modules-2/files-2.1/com.jsibbold/zoomage/1.3.1/fc264af6c01aa13da058724fb56ca58a9211c131/zoomage-1.3.1-sources.jar!/com/jsibbold/zoomage/ZoomageView.java_SELECTED" value="ZoomageView" />
     <property name="android-custom-view/home/rahul/.gradle/caches/modules-2/files-2.1/com.jsibbold/zoomage/1.3.1/fc264af6c01aa13da058724fb56ca58a9211c131/zoomage-1.3.1-sources.jar!/com/jsibbold/zoomage/ZoomageView.java_ZoomageView_DIMENSIONS" value="1080&#10;1920" />
     <property name="android-custom-view/home/rahul/Android/Sdk/sources/android-30/android/view/View.java_SELECTED" value="View" />
@@ -355,7 +347,14 @@
       <option name="project" value="LOCAL" />
       <updated>1653591744190</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="28MAY22">
+      <created>1653757460771</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1653757460771</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -386,7 +385,8 @@
     <MESSAGE value="22MAY22" />
     <MESSAGE value="24MAY22" />
     <MESSAGE value="26MAY22" />
-    <option name="LAST_COMMIT_MESSAGE" value="26MAY22" />
+    <MESSAGE value="28MAY22" />
+    <option name="LAST_COMMIT_MESSAGE" value="28MAY22" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -443,12 +443,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="kotlin-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/riggle/ui/home/fragment/CartFragment.kt</url>
-          <line>235</line>
+          <line>237</line>
           <option name="timeStamp" value="17" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="kotlin-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/riggle/ui/home/HomeActivity.kt</url>
-          <line>297</line>
+          <line>298</line>
           <option name="timeStamp" value="21" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="kotlin-line">
@@ -503,7 +503,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="kotlin-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/riggle/ui/home/fragment/CartFragment.kt</url>
-          <line>242</line>
+          <line>244</line>
           <option name="timeStamp" value="55" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="kotlin-line">
@@ -523,22 +523,22 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="kotlin-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/riggle/ui/home/fragment/CartFragment.kt</url>
-          <line>472</line>
+          <line>488</line>
           <option name="timeStamp" value="95" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="kotlin-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/riggle/ui/home/fragment/CartFragment.kt</url>
-          <line>483</line>
+          <line>499</line>
           <option name="timeStamp" value="96" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="kotlin-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/riggle/ui/home/fragment/CartFragment.kt</url>
-          <line>490</line>
+          <line>506</line>
           <option name="timeStamp" value="97" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="kotlin-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/riggle/ui/home/fragment/CartFragment.kt</url>
-          <line>489</line>
+          <line>505</line>
           <option name="timeStamp" value="98" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="kotlin-line">
@@ -563,32 +563,32 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="kotlin-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/riggle/ui/home/fragment/CartFragment.kt</url>
-          <line>186</line>
+          <line>188</line>
           <option name="timeStamp" value="106" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="kotlin-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/riggle/ui/home/fragment/CartFragment.kt</url>
-          <line>176</line>
+          <line>178</line>
           <option name="timeStamp" value="107" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="kotlin-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/riggle/ui/home/fragment/CartFragment.kt</url>
-          <line>187</line>
+          <line>189</line>
           <option name="timeStamp" value="110" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="kotlin-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/riggle/ui/home/fragment/CartFragment.kt</url>
-          <line>180</line>
+          <line>182</line>
           <option name="timeStamp" value="111" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="kotlin-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/riggle/ui/home/fragment/CartFragment.kt</url>
-          <line>181</line>
+          <line>183</line>
           <option name="timeStamp" value="112" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="kotlin-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/riggle/ui/promo/PromoActivity.kt</url>
-          <line>168</line>
+          <line>174</line>
           <option name="timeStamp" value="114" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="kotlin-line">
@@ -628,8 +628,18 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="kotlin-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/riggle/ui/home/fragment/CartFragment.kt</url>
-          <line>337</line>
+          <line>339</line>
           <option name="timeStamp" value="135" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/riggle/ui/promo/PromoActivity.kt</url>
+          <line>53</line>
+          <option name="timeStamp" value="136" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/riggle/ui/promo/PromoActivity.kt</url>
+          <line>54</line>
+          <option name="timeStamp" value="137" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

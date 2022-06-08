@@ -8,6 +8,7 @@
         <entry key="app/src/main/res/layout/activity_credit.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.1483539974348012" />
         <entry key="app/src/main/res/layout/activity_image_details.xml" value="0.14647530603630224" />
+        <entry key="app/src/main/res/layout/activity_order_detail.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_pending_details.xml" value="0.1483539974348012" />
         <entry key="app/src/main/res/layout/activity_promo.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.1483539974348012" />
@@ -18,7 +19,9 @@
         <entry key="app/src/main/res/layout/bottom_sheet_product_variant.xml" value="0.1483539974348012" />
         <entry key="app/src/main/res/layout/fragment_active_order.xml" value="0.1483539974348012" />
         <entry key="app/src/main/res/layout/fragment_cart.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/fragment_credit.xml" value="0.1483539974348012" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.14647530603630224" />
+        <entry key="app/src/main/res/layout/fragment_reward.xml" value="0.1483539974348012" />
         <entry key="app/src/main/res/layout/layout_appbar.xml" value="0.1" />
         <entry key="app/src/main/res/layout/layout_credit_details.xml" value="0.1483539974348012" />
         <entry key="app/src/main/res/layout/layout_plus_minus.xml" value="0.14647530603630224" />

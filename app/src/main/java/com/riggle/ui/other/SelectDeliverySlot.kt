@@ -184,7 +184,7 @@ class SelectDeliverySlot : CustomAppCompatActivityViewImpl(), CustomAppViewConne
     fun proceed() {
         val details = userPreference.userData?.retailer?.id?.let {
             UploadOrder(
-                Math.round(redeemRiggle),
+                /*Math.round(redeemRiggle),*/
                 tvDeliverDate.text.toString().trim(),
                 it
             )

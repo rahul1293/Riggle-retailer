@@ -25,6 +25,10 @@ import com.riggle.ui.other.adapter.MyOrderDetailAdapter
 import com.riggle.utils.UserProfileSingleton
 import com.riggle.utils.Utility
 import kotlinx.android.synthetic.main.activity_order_detail.*
+import kotlinx.android.synthetic.main.activity_order_detail.tvDiscountValue
+import kotlinx.android.synthetic.main.activity_order_detail.tvPriceItems
+import kotlinx.android.synthetic.main.activity_order_detail.tvRiggleCoins
+import kotlinx.android.synthetic.main.activity_order_detail.tvTotalAmountValue
 import kotlinx.android.synthetic.main.layout_appbar.*
 import org.koin.android.ext.android.inject
 
@@ -124,15 +128,44 @@ class OrderDetailActivity : CustomAppCompatActivityViewImpl(), CustomAppViewConn
                 getString(R.string.price_value_items),
                 orderDetail.products.size
             )
-            tvPrice?.text = orderDetail.amount.toString()
+            tvPrice?.text = "₹" + orderDetail.amount.toString()
             tvDiscountValue?.text = orderDetail.riggleCoins.toString()
-            tvRiggleCoins?.text = orderDetail.redeemedRiggleCoins.toString()
-            tvTotalAmountValue?.text = orderDetail.finalAmount.toString()
 
-            tvPaidAmount?.text = orderDetail.paidAmount.toString()
-            tvPendingAmount?.text = orderDetail.pendingAmount.toString()
 
-            tvMode?.text = "Cash"//orderDetail.price_detail.payment_mode
+            if (orderDetail.coupon_discount_amount != null) {
+                if (orderDetail.redeemedRiggleCoins != null && !orderDetail.redeemedRiggleCoins.equals(
+                        "", true
+                    )
+                ) {
+                    val total =
+                        orderDetail.coupon_discount_amount.toFloat() + orderDetail.redeemedRiggleCoins.toFloat() / 100
+                    tvRiggleCoins?.text = "₹$total"
+                } else {
+                    tvRiggleCoins?.text =
+                        "₹" + orderDetail.coupon_discount_amount
+                }
+            } else {
+                if (orderDetail.redeemedRiggleCoins != null && !orderDetail.redeemedRiggleCoins.equals(
+                        "", true
+                    )
+                ) {
+                    val total = orderDetail.redeemedRiggleCoins.toFloat() / 100
+                    tvRiggleCoins?.text =
+                        "₹$total"/*cartDetails.redeemed_riggle_coins*/
+                } else {
+                    tvRiggleCoins?.text =
+                        "₹0.0"
+                }
+            }
+
+            //tvRiggleCoins?.text = orderDetail.redeemedRiggleCoins.toString()
+
+            tvTotalAmountValue?.text = "₹" + orderDetail.finalAmount.toString()
+
+            tvPaidAmount?.text = "₹" + orderDetail.paidAmount.toString()
+            tvPendingAmount?.text = "₹" + orderDetail.pendingAmount.toString()
+
+            tvMode?.text = "Pay On Delivery"//orderDetail.price_detail.payment_mode
             tvStoreName?.text = userPreference
                 .getProfileData(UserProfileSingleton.PROFILE_PROPERTIES.USER_NAME)
             tvStoreAddress?.text = userPreference

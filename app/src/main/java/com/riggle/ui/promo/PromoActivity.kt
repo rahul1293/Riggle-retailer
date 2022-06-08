@@ -50,6 +50,12 @@ class PromoActivity : BaseActivity() {
             this@PromoActivity,
             R.layout.activity_promo
         )
+        intent.getStringExtra("applied_coin")?.let {
+            if (!it.equals("", true)) {
+                binding.tvQuantSet.text = it
+                updateConvert()
+            }
+        }
         setListeners()
         initAdapter()
     }
